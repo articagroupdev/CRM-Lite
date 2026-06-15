@@ -1,0 +1,194 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Enums ─────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+enum ContactStatus {
+  SUBSCRIBED
+  UNSUBSCRIBED
+  BOUNCED
+  COMPLAINED
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  SENDING
+  SENT
+  PAUSED
+  CANCELLED
+}
+
+enum EmailStatus {
+  PENDING
+  SENT
+  DELIVERED
+  OPENED
+  CLICKED
+  BOUNCED
+  FAILED
+}
+
+// ── Users ─────────────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String
+  password      String?
+  role          UserRole  @default(USER)
+  image         String?
+  isActive      Boolean   @default(true)
+  emailVerified DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  campaigns     EmailCampaign[] @relation("CreatedBy")
+  reports       Report[]
+
+  @@map("users")
+}
+
+// ── Analyzer Reports ──────────────────────────────────────────────────────────
+
+model Report {
+  id               String   @id @default(cuid())
+  fileName         String
+  platform         String
+  clientName       String?
+  facebookPageName String
+  reportData       Json
+  aiContent        Json
+  generationDate   String
+  totalSpent       Float    @default(0)
+  totalResults     Float    @default(0)
+  campaignCount    Int      @default(0)
+  tags             Json
+  description      String?
+  createdById      String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  createdBy        User?    @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@map("reports")
+}
+
+// ── Clients (for Email Hub organization) ──────────────────────────────────────
+
+model Client {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  company   String?
+  status    String   @default("ACTIVE")
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  emailLists EmailList[]
+
+  @@map("clients")
+}
+
+// ── Email Hub ─────────────────────────────────────────────────────────────────
+
+model EmailList {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  isActive    Boolean  @default(true)
+  clientId    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  client    Client?         @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  contacts  EmailContact[]
+  campaigns EmailCampaign[]
+
+  @@map("email_lists")
+}
+
+model EmailContact {
+  id             String        @id @default(cuid())
+  email          String
+  firstName      String?
+  lastName       String?
+  phone          String?
+  company        String?
+  status         ContactStatus @default(SUBSCRIBED)
+  listId         String
+  unsubscribedAt DateTime?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  list EmailList @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@unique([email, listId])
+  @@map("email_contacts")
+}
+
+model EmailCampaign {
+  id          String         @id @default(cuid())
+  name        String
+  subject     String
+  htmlContent String         @db.Text
+  status      CampaignStatus @default(DRAFT)
+  listId      String
+  templateId  String?
+  attachments String?
+  scheduledAt DateTime?
+  sentAt      DateTime?
+  createdById String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  list      EmailList      @relation(fields: [listId], references: [id], onDelete: Cascade)
+  template  EmailTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  createdBy User?          @relation("CreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+  sentEmails EmailSent[]
+
+  @@map("email_campaigns")
+}
+
+model EmailTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  subject     String
+  htmlContent String   @db.Text
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  campaigns EmailCampaign[]
+
+  @@map("email_templates")
+}
+
+model EmailSent {
+  id          String      @id @default(cuid())
+  campaignId  String
+  contactId   String?
+  email       String
+  status      EmailStatus @default(PENDING)
+  sentAt      DateTime?
+  openedAt    DateTime?
+  clickedAt   DateTime?
+  bouncedAt   DateTime?
+  createdAt   DateTime    @default(now())
+
+  campaign EmailCampaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  @@map("email_sent")
+}
