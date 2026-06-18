@@ -124,17 +124,22 @@ export async function emptyTrashAction() {
 
 // ── Folders ────────────────────────────────────────────────────────────────
 
-const folderSelect = {
+const makeFolderSelect = (userId: string) => ({
   id: true, name: true, color: true,
-  _count: { select: { notes: { where: { deletedAt: null as null } } } },
-};
+  _count: {
+    select: {
+      notes: { where: { deletedAt: null as null, userId } },
+    },
+  },
+});
 
 export async function getNoteFoldersAction() {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) return [];
   return prisma.noteFolder.findMany({
+    where: { createdById: session.user.id },
     orderBy: { name: "asc" },
-    select: folderSelect,
+    select: makeFolderSelect(session.user.id),
   });
 }
 
@@ -143,14 +148,14 @@ export async function createNoteFolderAction(data: { name: string; color?: strin
   if (!session?.user?.id) return null;
   return prisma.noteFolder.create({
     data: { ...data, createdById: session.user.id },
-    select: folderSelect,
+    select: makeFolderSelect(session.user.id),
   });
 }
 
 export async function updateNoteFolderAction(id: string, data: { name?: string; color?: string }) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) return null;
-  return prisma.noteFolder.update({ where: { id }, data, select: folderSelect });
+  return prisma.noteFolder.update({ where: { id }, data, select: makeFolderSelect(session.user.id) });
 }
 
 export async function deleteNoteFolderAction(id: string) {

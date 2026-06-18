@@ -615,6 +615,13 @@ export default function NotasPage() {
     setSelected(n);
     setIsNewNote(true);
     setEditMode(true);
+    if (activeFolderId) {
+      setFolders((prev) => prev.map((f) =>
+        f.id === activeFolderId
+          ? { ...f, _count: { notes: f._count.notes + 1 } }
+          : f,
+      ));
+    }
     setTimeout(() => titleRef.current?.focus(), 80);
   };
 
@@ -623,11 +630,19 @@ export default function NotasPage() {
   const handleTrashConfirm = async () => {
     if (!trashConfirm) return;
     const id = trashConfirm;
+    const noteToTrash = notes.find((n) => n.id === id);
     setTrashConfirm(null);
     await trashNoteAction(id);
     setNotes((prev) => prev.filter((n) => n.id !== id));
     setTotal((t) => Math.max(0, t - 1));
     if (selected?.id === id) closeModal();
+    if (noteToTrash?.folderId) {
+      setFolders((prev) => prev.map((f) =>
+        f.id === noteToTrash.folderId
+          ? { ...f, _count: { notes: Math.max(0, f._count.notes - 1) } }
+          : f,
+      ));
+    }
   };
 
   const handlePin = async (note: Note) => {
