@@ -533,6 +533,7 @@ export default function NotasPage() {
 
   const [editMode, setEditMode] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [lightbox, setLightbox] = useState<{ url: string; name: string } | null>(null);
 
   const titleRef      = useRef<HTMLInputElement>(null);
   const editorRef     = useRef<HTMLDivElement>(null);
@@ -1280,21 +1281,29 @@ export default function NotasPage() {
                                 "relative w-[76px] h-[76px] rounded-2xl overflow-hidden cursor-pointer border transition-all duration-150 group-hover:scale-[1.04] group-hover:shadow-lg",
                                 noteDark ? "border-white/10" : "border-black/8",
                               )}
-                              onClick={() => window.open(att.url, "_blank")}
+                              onClick={() => isImage
+                                ? setLightbox({ url: att.url, name: att.name })
+                                : undefined
+                              }
                             >
                               {isImage ? (
                                 // eslint-disable-next-line @next/next/no-img-element
                                 <img src={att.url} alt={att.name} className="w-full h-full object-cover" />
                               ) : (
-                                <div className={cn(
-                                  "w-full h-full flex flex-col items-center justify-center gap-1",
-                                  noteDark ? "bg-red-950/60" : "bg-red-50",
-                                )}>
+                                <a
+                                  href={att.url}
+                                  download={att.name}
+                                  onClick={(e) => e.stopPropagation()}
+                                  className={cn(
+                                    "w-full h-full flex flex-col items-center justify-center gap-1",
+                                    noteDark ? "bg-red-950/60" : "bg-red-50",
+                                  )}
+                                >
                                   <FilePdf size={30} weight="duotone" className={noteDark ? "text-red-300" : "text-red-500"} />
                                   <span className={cn("text-[8px] font-bold uppercase tracking-wider", noteDark ? "text-red-300/60" : "text-red-400/80")}>PDF</span>
-                                </div>
+                                </a>
                               )}
-                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors pointer-events-none" />
                               {editMode && (
                                 <button
                                   onClick={(e) => { e.stopPropagation(); handleRemoveAttachment(att.url); }}
@@ -1365,6 +1374,44 @@ export default function NotasPage() {
           onConfirm={handleDeleteFolder}
           onCancel={() => setDeleteFolderConfirm(null)}
         />
+      )}
+
+      {/* ── Lightbox imagen ── */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            onClick={() => setLightbox(null)}
+            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+          >
+            <X size={18} />
+          </button>
+
+          <a
+            href={lightbox.url}
+            download={lightbox.name}
+            onClick={(e) => e.stopPropagation()}
+            className="absolute top-4 left-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
+            title="Descargar"
+          >
+            <DownloadSimple size={18} />
+          </a>
+
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={lightbox.url}
+            alt={lightbox.name}
+            className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl"
+            style={{ maxHeight: "calc(100vh - 80px)", maxWidth: "calc(100vw - 80px)" }}
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/60 text-[12px] bg-black/40 px-3 py-1 rounded-full truncate max-w-xs">
+            {lightbox.name}
+          </p>
+        </div>
       )}
     </>
   );
