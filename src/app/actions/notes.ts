@@ -8,7 +8,7 @@ const PAGE_SIZE = 40;
 
 const noteSelect = {
   id: true, title: true, content: true, color: true,
-  pinned: true, folderId: true, createdAt: true, updatedAt: true,
+  pinned: true, folderId: true, attachments: true, createdAt: true, updatedAt: true,
   user: { select: { name: true, image: true } },
 };
 
@@ -81,7 +81,7 @@ export async function createNoteAction(folderId?: string) {
 
 export async function updateNoteAction(
   id: string,
-  data: { title?: string; content?: string; pinned?: boolean; color?: string | null; folderId?: string | null }
+  data: { title?: string; content?: string; pinned?: boolean; color?: string | null; folderId?: string | null; attachments?: object[] }
 ) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) return null;

@@ -11,14 +11,18 @@ import {
   Image as ImageIcon, ListBullets, ListNumbers, Quotes, X,
   SquaresFour, Rows, Palette, Folder, FolderOpen,
   CaretLeft, CaretRight, Warning, CaretDown,
+  PencilSimple, Eye, FilePdf, Paperclip, DownloadSimple,
 } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+type Attachment = { name: string; url: string; type: string; size: number };
+
 type Note = {
   id: string; title: string; content: string;
   color: string | null; pinned: boolean; folderId: string | null;
+  attachments: Attachment[];
   createdAt: Date; updatedAt: Date;
   user: { name: string; image: string | null };
 };
@@ -527,10 +531,14 @@ export default function NotasPage() {
   const [deleteFolderConfirm, setDeleteFolderConfirm] = useState<{ id: string; name: string; count: number } | null>(null);
   const [folderPicker,        setFolderPicker]        = useState<{ noteId: string; folderId: string | null } | null>(null);
 
+  const [editMode, setEditMode] = useState(false);
+  const [uploading, setUploading] = useState(false);
+
   const titleRef      = useRef<HTMLInputElement>(null);
   const editorRef     = useRef<HTMLDivElement>(null);
   const timerRef      = useRef<ReturnType<typeof setTimeout> | null>(null);
   const imgInputRef   = useRef<HTMLInputElement>(null);
+  const pdfInputRef   = useRef<HTMLInputElement>(null);
   const savedRangeRef = useRef<Range | null>(null);
   const selectedRef   = useRef<Note | null>(null);
 
@@ -567,7 +575,7 @@ export default function NotasPage() {
       if (editorRef.current) editorRef.current.innerHTML = selected.content ?? "";
       if (titleRef.current)  titleRef.current.value      = selected.title  ?? "";
     }, 10);
-  }, [selected?.id]); // eslint-disable-line
+  }, [selected?.id, editMode]); // eslint-disable-line
 
   type AutoSaveData = { title?: string; content?: string; pinned?: boolean; color?: string | null; folderId?: string | null };
   const scheduleAutoSave = useCallback((data: AutoSaveData) => {
@@ -596,7 +604,7 @@ export default function NotasPage() {
     updateNoteAction(id, { color: hex });
   };
 
-  const closeModal = () => { setSelected(null); setIsNewNote(false); };
+  const closeModal = () => { setSelected(null); setIsNewNote(false); setEditMode(false); };
 
   const handleCreate = async () => {
     const note = await createNoteAction(activeFolderId ?? undefined);
@@ -606,6 +614,7 @@ export default function NotasPage() {
     setTotal((t) => t + 1);
     setSelected(n);
     setIsNewNote(true);
+    setEditMode(true);
     setTimeout(() => titleRef.current?.focus(), 80);
   };
 
@@ -638,22 +647,58 @@ export default function NotasPage() {
     if (sel && sel.rangeCount > 0) savedRangeRef.current = sel.getRangeAt(0).cloneRange();
   };
 
-  const handleImageFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (file.size > 5 * 1024 * 1024) { alert("Imagen máxima 5 MB"); return; }
-    const reader = new FileReader();
-    reader.onload = () => {
+    if (file.size > 20 * 1024 * 1024) { alert("Imagen máxima 20 MB"); return; }
+    e.target.value = "";
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      if (!res.ok) throw new Error("Upload failed");
+      const { url } = await res.json();
       editorRef.current?.focus();
       const sel = window.getSelection();
       if (savedRangeRef.current) { sel?.removeAllRanges(); sel?.addRange(savedRangeRef.current); }
       document.execCommand("insertHTML", false,
-        `<p><img src="${reader.result}" alt="" style="max-width:100%;height:auto;border-radius:10px;margin:8px 0;display:block;" /></p>`
+        `<p><img src="${url}" alt="" style="max-width:100%;height:auto;border-radius:10px;margin:8px 0;display:block;" /></p>`
       );
       captureAndSave();
-    };
-    reader.readAsDataURL(file);
+    } catch { alert("Error al subir imagen"); }
+    finally { setUploading(false); }
+  };
+
+  const handlePdfFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 20 * 1024 * 1024) { alert("PDF máximo 20 MB"); return; }
     e.target.value = "";
+    const note = selectedRef.current;
+    if (!note) return;
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      if (!res.ok) throw new Error("Upload failed");
+      const att: Attachment = await res.json();
+      const newAtts = [...(note.attachments ?? []), att];
+      await updateNoteAction(note.id, { attachments: newAtts });
+      setSelected((s) => s ? { ...s, attachments: newAtts } : null);
+      setNotes((prev) => prev.map((n) => n.id === note.id ? { ...n, attachments: newAtts } : n));
+    } catch { alert("Error al subir PDF"); }
+    finally { setUploading(false); }
+  };
+
+  const handleRemoveAttachment = async (url: string) => {
+    const note = selectedRef.current;
+    if (!note) return;
+    const newAtts = (note.attachments ?? []).filter((a) => a.url !== url);
+    await updateNoteAction(note.id, { attachments: newAtts });
+    setSelected((s) => s ? { ...s, attachments: newAtts } : null);
+    setNotes((prev) => prev.map((n) => n.id === note.id ? { ...n, attachments: newAtts } : n));
   };
 
   const handleCreateFolder = async (name: string) => {
@@ -1008,52 +1053,67 @@ export default function NotasPage() {
               "flex items-center gap-0.5 px-4 py-2.5 border-b flex-shrink-0",
               noteDark ? "border-white/15 bg-black/20" : "border-black/10 bg-white/30 backdrop-blur-sm",
             )}>
-              <TBtn dark={noteDark} onAction={() => exec("bold")} title="Negrita"><span className="font-bold">B</span></TBtn>
-              <TBtn dark={noteDark} onAction={() => exec("italic")} title="Cursiva"><span className="italic font-semibold">I</span></TBtn>
-              <TBtn dark={noteDark} onAction={() => exec("underline")} title="Subrayado"><span className="underline font-semibold">U</span></TBtn>
-              <div className={cn("w-px h-4 mx-1", noteDark ? "bg-white/20" : "bg-black/10")} />
-              <TBtn dark={noteDark} onAction={() => exec("formatBlock", "h1")} title="H1"><span className="text-[11px] font-bold">H1</span></TBtn>
-              <TBtn dark={noteDark} onAction={() => exec("formatBlock", "h2")} title="H2"><span className="text-[11px] font-bold">H2</span></TBtn>
-              <TBtn dark={noteDark} onAction={() => exec("formatBlock", "h3")} title="H3"><span className="text-[11px] font-bold">H3</span></TBtn>
-              <div className={cn("w-px h-4 mx-1", noteDark ? "bg-white/20" : "bg-black/10")} />
-              <TBtn dark={noteDark} onAction={() => exec("insertUnorderedList")} title="Lista"><ListBullets size={13} /></TBtn>
-              <TBtn dark={noteDark} onAction={() => exec("insertOrderedList")} title="Numerada"><ListNumbers size={13} /></TBtn>
-              <TBtn dark={noteDark} onAction={() => exec("formatBlock", "blockquote")} title="Cita"><Quotes size={13} /></TBtn>
-              <div className={cn("w-px h-4 mx-1", noteDark ? "bg-white/20" : "bg-black/10")} />
-              <TBtn dark={noteDark} onAction={() => { saveRange(); imgInputRef.current?.click(); }} title="Imagen">
-                <ImageIcon size={13} />
-              </TBtn>
-              <input ref={imgInputRef} type="file" accept="image/*" className="hidden" onChange={handleImageFile} />
+              {editMode ? (
+                <>
+                  <TBtn dark={noteDark} onAction={() => exec("bold")} title="Negrita"><span className="font-bold">B</span></TBtn>
+                  <TBtn dark={noteDark} onAction={() => exec("italic")} title="Cursiva"><span className="italic font-semibold">I</span></TBtn>
+                  <TBtn dark={noteDark} onAction={() => exec("underline")} title="Subrayado"><span className="underline font-semibold">U</span></TBtn>
+                  <div className={cn("w-px h-4 mx-1", noteDark ? "bg-white/20" : "bg-black/10")} />
+                  <TBtn dark={noteDark} onAction={() => exec("formatBlock", "h1")} title="H1"><span className="text-[11px] font-bold">H1</span></TBtn>
+                  <TBtn dark={noteDark} onAction={() => exec("formatBlock", "h2")} title="H2"><span className="text-[11px] font-bold">H2</span></TBtn>
+                  <TBtn dark={noteDark} onAction={() => exec("formatBlock", "h3")} title="H3"><span className="text-[11px] font-bold">H3</span></TBtn>
+                  <div className={cn("w-px h-4 mx-1", noteDark ? "bg-white/20" : "bg-black/10")} />
+                  <TBtn dark={noteDark} onAction={() => exec("insertUnorderedList")} title="Lista"><ListBullets size={13} /></TBtn>
+                  <TBtn dark={noteDark} onAction={() => exec("insertOrderedList")} title="Numerada"><ListNumbers size={13} /></TBtn>
+                  <TBtn dark={noteDark} onAction={() => exec("formatBlock", "blockquote")} title="Cita"><Quotes size={13} /></TBtn>
+                  <div className={cn("w-px h-4 mx-1", noteDark ? "bg-white/20" : "bg-black/10")} />
+                  <TBtn dark={noteDark} onAction={() => { saveRange(); imgInputRef.current?.click(); }} title="Insertar imagen">
+                    {uploading ? <span className="text-[9px]">…</span> : <ImageIcon size={13} />}
+                  </TBtn>
+                  <TBtn dark={noteDark} onAction={() => pdfInputRef.current?.click()} title="Adjuntar PDF">
+                    {uploading ? <span className="text-[9px]">…</span> : <FilePdf size={13} />}
+                  </TBtn>
+                  <input ref={imgInputRef} type="file" accept="image/*" className="hidden" onChange={handleImageFile} />
+                  <input ref={pdfInputRef} type="file" accept="application/pdf" className="hidden" onChange={handlePdfFile} />
 
-              <div className="flex-1" />
+                  <div className="flex-1" />
 
-              <span className={cn(
-                "text-[11px] mr-1 transition-opacity",
-                saving === "idle" ? "opacity-0" : "opacity-100",
-                saving === "saving"
-                  ? (noteDark ? "text-white/50" : "text-muted-foreground")
-                  : (noteDark ? "text-green-300" : "text-green-600"),
-              )}>
-                {saving === "saving" ? "Guardando…" : "Guardado ✓"}
-              </span>
+                  <span className={cn(
+                    "text-[11px] mr-1 transition-opacity",
+                    saving === "idle" && !uploading ? "opacity-0" : "opacity-100",
+                    uploading
+                      ? (noteDark ? "text-white/50" : "text-muted-foreground")
+                      : saving === "saving"
+                        ? (noteDark ? "text-white/50" : "text-muted-foreground")
+                        : (noteDark ? "text-green-300" : "text-green-600"),
+                  )}>
+                    {uploading ? "Subiendo…" : saving === "saving" ? "Guardando…" : "Guardado ✓"}
+                  </span>
+                </>
+              ) : (
+                <div className="flex-1" />
+              )}
 
               <ColorPicker current={selected.color} dark={noteDark} onChange={handleColorChange} />
-
-              {/* Move to folder */}
               <TBtn dark={noteDark} onAction={() => openFolderPicker(selected.id)} title="Mover a carpeta">
                 <FolderOpen size={13} />
               </TBtn>
-
               <TBtn dark={noteDark} onAction={() => handlePin(selected)} title={selected.pinned ? "Desanclar" : "Anclar"} active={selected.pinned}>
                 <PushPin size={13} weight={selected.pinned ? "fill" : "regular"}
                   className={selected.pinned ? (noteDark ? "text-amber-300" : "text-amber-500") : ""} />
               </TBtn>
-
               {!isNewNote && (
                 <TBtn dark={noteDark} onAction={() => handleTrashRequest(selected.id)} title="Mover a papelera" danger>
                   <Trash size={13} />
                 </TBtn>
               )}
+
+              <div className={cn("w-px h-4 mx-1", noteDark ? "bg-white/20" : "bg-black/10")} />
+
+              {/* Edit / View toggle */}
+              <TBtn dark={noteDark} onAction={() => setEditMode((v) => !v)} title={editMode ? "Ver nota" : "Editar nota"} active={editMode}>
+                {editMode ? <Eye size={13} /> : <PencilSimple size={13} />}
+              </TBtn>
 
               <button
                 onClick={closeModal}
@@ -1066,51 +1126,175 @@ export default function NotasPage() {
               </button>
             </div>
 
-            {/* Editor body */}
+            {/* Body */}
             <div className="flex-1 overflow-y-auto overflow-x-hidden">
               <div className="max-w-2xl mx-auto px-8 pt-8 pb-16">
-                <input
-                  ref={titleRef}
-                  defaultValue={selected.title}
-                  onChange={() => {
-                    setSelected((s) => s ? { ...s, title: titleRef.current?.value ?? s.title } : null);
-                    captureAndSave();
-                  }}
-                  onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); editorRef.current?.focus(); } }}
-                  placeholder="Sin título"
-                  className={cn(
-                    "w-full text-[26px] font-heading font-bold bg-transparent border-none outline-none mb-1 leading-tight",
-                    noteDark ? "text-white placeholder:text-white/20" : "text-foreground placeholder:text-foreground/20",
-                  )}
-                />
+
+                {/* Title */}
+                {editMode ? (
+                  <input
+                    ref={titleRef}
+                    defaultValue={selected.title}
+                    onChange={() => {
+                      setSelected((s) => s ? { ...s, title: titleRef.current?.value ?? s.title } : null);
+                      captureAndSave();
+                    }}
+                    onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); editorRef.current?.focus(); } }}
+                    placeholder="Sin título"
+                    className={cn(
+                      "w-full text-[26px] font-heading font-bold bg-transparent border-none outline-none mb-1 leading-tight",
+                      noteDark ? "text-white placeholder:text-white/20" : "text-foreground placeholder:text-foreground/20",
+                    )}
+                  />
+                ) : (
+                  <h1 className={cn(
+                    "text-[26px] font-heading font-bold mb-1 leading-tight",
+                    noteDark ? "text-white" : "text-foreground",
+                    !selected.title && "opacity-30",
+                  )}>
+                    {selected.title || "Sin título"}
+                  </h1>
+                )}
+
                 <p className={cn("text-[11px] mb-5", noteDark ? "text-white/40" : "text-foreground/40")}>
                   {formatDate(selected.updatedAt)}
                 </p>
-                <div
-                  ref={editorRef}
-                  contentEditable
-                  suppressContentEditableWarning
-                  onInput={captureAndSave}
-                  data-placeholder="Escribe algo…"
-                  className={cn(
-                    "min-h-[300px] outline-none text-[15px] leading-relaxed overflow-wrap-anywhere break-words [&_*]:max-w-full",
-                    noteDark ? "text-white/90" : "text-foreground",
-                    "[&_h1]:text-2xl [&_h1]:font-heading [&_h1]:font-bold [&_h1]:mt-7 [&_h1]:mb-2 [&_h1]:leading-tight",
-                    "[&_h2]:text-xl [&_h2]:font-heading [&_h2]:font-semibold [&_h2]:mt-6 [&_h2]:mb-2",
-                    "[&_h3]:text-[17px] [&_h3]:font-heading [&_h3]:font-semibold [&_h3]:mt-5 [&_h3]:mb-1.5",
-                    "[&_p]:mb-3 [&_p]:leading-relaxed",
-                    "[&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-3 [&_ul]:space-y-1",
-                    "[&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-3 [&_ol]:space-y-1",
-                    noteDark
-                      ? "[&_blockquote]:border-l-[3px] [&_blockquote]:border-white/30 [&_blockquote]:pl-4 [&_blockquote]:py-2 [&_blockquote]:my-4 [&_blockquote]:text-white/60 [&_blockquote]:bg-white/10 [&_blockquote]:rounded-r-xl [&_blockquote]:italic"
-                      : "[&_blockquote]:border-l-[3px] [&_blockquote]:border-foreground/20 [&_blockquote]:pl-4 [&_blockquote]:py-2 [&_blockquote]:my-4 [&_blockquote]:text-foreground/60 [&_blockquote]:bg-black/5 [&_blockquote]:rounded-r-xl [&_blockquote]:italic",
-                    "[&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-xl [&_img]:my-4 [&_img]:shadow-sm [&_img]:block",
-                    "[&_b]:font-semibold [&_strong]:font-semibold",
-                    noteDark
-                      ? "empty:before:content-[attr(data-placeholder)] empty:before:text-white/25 empty:before:pointer-events-none"
-                      : "empty:before:content-[attr(data-placeholder)] empty:before:text-foreground/25 empty:before:pointer-events-none",
-                  )}
-                />
+
+                {/* Content: Edit mode */}
+                {editMode && (
+                  <div
+                    ref={editorRef}
+                    contentEditable
+                    suppressContentEditableWarning
+                    onInput={captureAndSave}
+                    data-placeholder="Escribe algo…"
+                    className={cn(
+                      "min-h-[300px] outline-none text-[15px] leading-relaxed overflow-wrap-anywhere break-words [&_*]:max-w-full",
+                      noteDark ? "text-white/90" : "text-foreground",
+                      "[&_h1]:text-2xl [&_h1]:font-heading [&_h1]:font-bold [&_h1]:mt-7 [&_h1]:mb-2 [&_h1]:leading-tight",
+                      "[&_h2]:text-xl [&_h2]:font-heading [&_h2]:font-semibold [&_h2]:mt-6 [&_h2]:mb-2",
+                      "[&_h3]:text-[17px] [&_h3]:font-heading [&_h3]:font-semibold [&_h3]:mt-5 [&_h3]:mb-1.5",
+                      "[&_p]:mb-3 [&_p]:leading-relaxed",
+                      "[&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-3 [&_ul]:space-y-1",
+                      "[&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-3 [&_ol]:space-y-1",
+                      noteDark
+                        ? "[&_blockquote]:border-l-[3px] [&_blockquote]:border-white/30 [&_blockquote]:pl-4 [&_blockquote]:py-2 [&_blockquote]:my-4 [&_blockquote]:text-white/60 [&_blockquote]:bg-white/10 [&_blockquote]:rounded-r-xl [&_blockquote]:italic"
+                        : "[&_blockquote]:border-l-[3px] [&_blockquote]:border-foreground/20 [&_blockquote]:pl-4 [&_blockquote]:py-2 [&_blockquote]:my-4 [&_blockquote]:text-foreground/60 [&_blockquote]:bg-black/5 [&_blockquote]:rounded-r-xl [&_blockquote]:italic",
+                      "[&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-xl [&_img]:my-4 [&_img]:shadow-sm [&_img]:block",
+                      "[&_b]:font-semibold [&_strong]:font-semibold",
+                      noteDark
+                        ? "empty:before:content-[attr(data-placeholder)] empty:before:text-white/25 empty:before:pointer-events-none"
+                        : "empty:before:content-[attr(data-placeholder)] empty:before:text-foreground/25 empty:before:pointer-events-none",
+                    )}
+                  />
+                )}
+
+                {/* Content: View mode */}
+                {!editMode && (
+                  <>
+                    {selected.content ? (
+                      <div
+                        dangerouslySetInnerHTML={{ __html: selected.content }}
+                        className={cn(
+                          "text-[15px] leading-relaxed break-words [&_*]:max-w-full select-text",
+                          noteDark ? "text-white/90" : "text-foreground",
+                          "[&_h1]:text-2xl [&_h1]:font-heading [&_h1]:font-bold [&_h1]:mt-7 [&_h1]:mb-2 [&_h1]:leading-tight",
+                          "[&_h2]:text-xl [&_h2]:font-heading [&_h2]:font-semibold [&_h2]:mt-6 [&_h2]:mb-2",
+                          "[&_h3]:text-[17px] [&_h3]:font-heading [&_h3]:font-semibold [&_h3]:mt-5 [&_h3]:mb-1.5",
+                          "[&_p]:mb-3 [&_p]:leading-relaxed",
+                          "[&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-3 [&_ul]:space-y-1",
+                          "[&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-3 [&_ol]:space-y-1",
+                          noteDark
+                            ? "[&_blockquote]:border-l-[3px] [&_blockquote]:border-white/30 [&_blockquote]:pl-4 [&_blockquote]:py-2 [&_blockquote]:my-4 [&_blockquote]:text-white/60 [&_blockquote]:bg-white/10 [&_blockquote]:rounded-r-xl [&_blockquote]:italic"
+                            : "[&_blockquote]:border-l-[3px] [&_blockquote]:border-foreground/20 [&_blockquote]:pl-4 [&_blockquote]:py-2 [&_blockquote]:my-4 [&_blockquote]:text-foreground/60 [&_blockquote]:bg-black/5 [&_blockquote]:rounded-r-xl [&_blockquote]:italic",
+                          "[&_img]:max-w-full [&_img]:h-auto [&_img]:rounded-xl [&_img]:my-4 [&_img]:shadow-sm [&_img]:block [&_img]:cursor-pointer",
+                          "[&_b]:font-semibold [&_strong]:font-semibold",
+                        )}
+                      />
+                    ) : (
+                      <p className={cn("text-[15px]", noteDark ? "text-white/25" : "text-foreground/25")}>
+                        Nota vacía…
+                      </p>
+                    )}
+
+                    {/* Edit hint */}
+                    <button
+                      onClick={() => setEditMode(true)}
+                      className={cn(
+                        "mt-6 flex items-center gap-1.5 text-[12px] px-3 py-1.5 rounded-lg transition-colors",
+                        noteDark
+                          ? "text-white/40 hover:text-white/70 hover:bg-white/10"
+                          : "text-muted-foreground hover:text-foreground hover:bg-black/5",
+                      )}
+                    >
+                      <PencilSimple size={12} />
+                      Editar nota
+                    </button>
+                  </>
+                )}
+
+                {/* Attachments (PDFs) */}
+                {(selected.attachments?.length > 0) && (
+                  <div className={cn(
+                    "mt-6 pt-5 border-t",
+                    noteDark ? "border-white/10" : "border-black/8",
+                  )}>
+                    <p className={cn(
+                      "text-[11px] font-semibold uppercase tracking-wider mb-3 flex items-center gap-1.5",
+                      noteDark ? "text-white/40" : "text-muted-foreground",
+                    )}>
+                      <Paperclip size={11} /> Adjuntos
+                    </p>
+                    <div className="space-y-2">
+                      {selected.attachments.map((att) => (
+                        <div
+                          key={att.url}
+                          className={cn(
+                            "flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-colors group",
+                            noteDark
+                              ? "border-white/10 bg-white/5 hover:bg-white/10"
+                              : "border-black/8 bg-black/3 hover:bg-black/5",
+                          )}
+                        >
+                          <FilePdf size={20} className={noteDark ? "text-red-300 flex-shrink-0" : "text-red-500 flex-shrink-0"} weight="duotone" />
+                          <div className="flex-1 min-w-0">
+                            <p className={cn("text-[13px] font-medium truncate", noteDark ? "text-white/90" : "text-foreground")}>
+                              {att.name}
+                            </p>
+                            <p className={cn("text-[11px]", noteDark ? "text-white/40" : "text-muted-foreground")}>
+                              {(att.size / 1024 / 1024).toFixed(1)} MB
+                            </p>
+                          </div>
+                          <a
+                            href={att.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={cn(
+                              "w-7 h-7 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
+                              noteDark ? "text-white/50 hover:bg-white/15 hover:text-white" : "text-muted-foreground hover:bg-black/8 hover:text-foreground",
+                            )}
+                            title="Abrir PDF"
+                          >
+                            <DownloadSimple size={14} />
+                          </a>
+                          {editMode && (
+                            <button
+                              onClick={() => handleRemoveAttachment(att.url)}
+                              className={cn(
+                                "w-7 h-7 rounded-lg flex items-center justify-center transition-colors flex-shrink-0 opacity-0 group-hover:opacity-100",
+                                noteDark ? "text-red-300/60 hover:bg-red-400/20 hover:text-red-300" : "text-red-400 hover:bg-red-50 hover:text-red-500",
+                              )}
+                              title="Quitar adjunto"
+                            >
+                              <X size={12} />
+                            </button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
               </div>
             </div>
           </div>

@@ -258,18 +258,19 @@ model NoteFolder {
 }
 
 model Note {
-  id         String      @id @default(cuid())
-  title      String      @default("Sin título")
-  content    String      @default("") @db.Text
-  color      String?
-  pinned     Boolean     @default(false)
-  folderId   String?
-  folder     NoteFolder? @relation(fields: [folderId], references: [id], onDelete: SetNull)
-  deletedAt  DateTime?
-  userId     String
-  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  id          String      @id @default(cuid())
+  title       String      @default("Sin título")
+  content     String      @default("") @db.Text
+  color       String?
+  pinned      Boolean     @default(false)
+  folderId    String?
+  folder      NoteFolder? @relation(fields: [folderId], references: [id], onDelete: SetNull)
+  attachments Json        @default("[]")
+  deletedAt   DateTime?
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 
   @@index([userId])
   @@index([folderId])
