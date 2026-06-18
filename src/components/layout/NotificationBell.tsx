@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Bell, UserPlus, Trash, UserCircleGear, Key, X, CheckCheck, Dot } from "@phosphor-icons/react";
+import { Bell, UserPlus, Trash, UserCircleGear, Key, X, Checks, Dot } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import {
   getNotificationsAction,
@@ -140,7 +140,7 @@ export function NotificationBell({ collapsed = false }: { collapsed?: boolean })
             <div className="flex items-center gap-1">
               {unread > 0 && (
                 <button onClick={handleMarkAllRead} title="Marcar todas como leídas" className="text-muted-foreground hover:text-foreground p-1 rounded transition-colors">
-                  <CheckCheck size={14} />
+                  <Checks size={14} />
                 </button>
               )}
               {notifications.length > 0 && (
