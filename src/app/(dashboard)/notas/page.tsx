@@ -1236,99 +1236,86 @@ export default function NotasPage() {
                   </>
                 )}
 
-                {/* Recursos (imágenes + PDFs) */}
-                {(selected.attachments?.length > 0 || (editMode && uploading)) && (() => {
-                  const images = (selected.attachments ?? []).filter((a) => a.type.startsWith("image/"));
-                  const pdfs   = (selected.attachments ?? []).filter((a) => !a.type.startsWith("image/"));
-                  return (
-                    <div className={cn("mt-6 pt-5 border-t", noteDark ? "border-white/10" : "border-black/8")}>
-                      <p className={cn(
-                        "text-[11px] font-semibold uppercase tracking-wider mb-3 flex items-center gap-1.5",
-                        noteDark ? "text-white/40" : "text-muted-foreground",
-                      )}>
-                        <Paperclip size={11} />
-                        Recursos
-                        <span className={cn("px-1.5 py-0.5 rounded-full text-[9px]", noteDark ? "bg-white/10" : "bg-black/5")}>
+                {/* Recursos */}
+                {(selected.attachments?.length > 0 || uploading) && (
+                  <div className={cn("mt-6 pt-5 border-t", noteDark ? "border-white/10" : "border-black/8")}>
+                    <p className={cn(
+                      "text-[10px] font-semibold uppercase tracking-widest mb-3 flex items-center gap-1.5",
+                      noteDark ? "text-white/30" : "text-foreground/35",
+                    )}>
+                      <Paperclip size={10} />
+                      Recursos
+                      {selected.attachments?.length > 0 && (
+                        <span className={cn(
+                          "ml-0.5 px-1.5 py-0.5 rounded-full text-[9px] font-medium",
+                          noteDark ? "bg-white/10 text-white/50" : "bg-black/6 text-foreground/50",
+                        )}>
                           {selected.attachments.length}
                         </span>
-                      </p>
-
-                      {/* Galería de imágenes */}
-                      {images.length > 0 && (
-                        <div className="mb-4">
-                          <div className={cn(
-                            "grid gap-2",
-                            images.length === 1 ? "grid-cols-1" :
-                            images.length === 2 ? "grid-cols-2" :
-                            "grid-cols-3",
-                          )}>
-                            {images.map((img) => (
-                              <div key={img.url} className="relative group aspect-video rounded-xl overflow-hidden">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                  src={img.url}
-                                  alt={img.name}
-                                  className="w-full h-full object-cover cursor-pointer transition-transform group-hover:scale-105"
-                                  onClick={() => window.open(img.url, "_blank")}
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-                                <p className="absolute bottom-0 left-0 right-0 px-2 py-1 text-[10px] text-white truncate opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-black/60">
-                                  {img.name}
-                                </p>
-                                {editMode && (
-                                  <button
-                                    onClick={() => handleRemoveAttachment(img.url)}
-                                    className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-black/50 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500"
-                                    title="Quitar imagen"
-                                  >
-                                    <X size={11} />
-                                  </button>
-                                )}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
                       )}
+                    </p>
 
-                      {/* PDFs */}
-                      {pdfs.length > 0 && (
-                        <div className="space-y-2">
-                          {pdfs.map((att) => (
+                    <div className="flex flex-wrap gap-2.5">
+                      {(selected.attachments ?? []).map((att) => {
+                        const isImage = att.type.startsWith("image/");
+                        return (
+                          <div key={att.url} className="group flex flex-col items-center" style={{ width: 76 }}>
                             <div
-                              key={att.url}
                               className={cn(
-                                "flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-colors group",
-                                noteDark ? "border-white/10 bg-white/5 hover:bg-white/10" : "border-black/8 bg-black/3 hover:bg-black/5",
+                                "relative w-[76px] h-[76px] rounded-2xl overflow-hidden cursor-pointer border transition-all duration-150 group-hover:scale-[1.04] group-hover:shadow-lg",
+                                noteDark ? "border-white/10" : "border-black/8",
                               )}
+                              onClick={() => window.open(att.url, "_blank")}
                             >
-                              <FilePdf size={20} className={noteDark ? "text-red-300 flex-shrink-0" : "text-red-500 flex-shrink-0"} weight="duotone" />
-                              <div className="flex-1 min-w-0">
-                                <p className={cn("text-[13px] font-medium truncate", noteDark ? "text-white/90" : "text-foreground")}>{att.name}</p>
-                                <p className={cn("text-[11px]", noteDark ? "text-white/40" : "text-muted-foreground")}>{(att.size / 1024 / 1024).toFixed(1)} MB</p>
-                              </div>
-                              <a href={att.url} target="_blank" rel="noopener noreferrer"
-                                className={cn("w-7 h-7 rounded-lg flex items-center justify-center transition-colors flex-shrink-0",
-                                  noteDark ? "text-white/50 hover:bg-white/15 hover:text-white" : "text-muted-foreground hover:bg-black/8 hover:text-foreground")}
-                                title="Abrir PDF"
-                              >
-                                <DownloadSimple size={14} />
-                              </a>
+                              {isImage ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img src={att.url} alt={att.name} className="w-full h-full object-cover" />
+                              ) : (
+                                <div className={cn(
+                                  "w-full h-full flex flex-col items-center justify-center gap-1",
+                                  noteDark ? "bg-red-950/60" : "bg-red-50",
+                                )}>
+                                  <FilePdf size={30} weight="duotone" className={noteDark ? "text-red-300" : "text-red-500"} />
+                                  <span className={cn("text-[8px] font-bold uppercase tracking-wider", noteDark ? "text-red-300/60" : "text-red-400/80")}>PDF</span>
+                                </div>
+                              )}
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
                               {editMode && (
-                                <button onClick={() => handleRemoveAttachment(att.url)}
-                                  className={cn("w-7 h-7 rounded-lg flex items-center justify-center transition-colors flex-shrink-0 opacity-0 group-hover:opacity-100",
-                                    noteDark ? "text-red-300/60 hover:bg-red-400/20 hover:text-red-300" : "text-red-400 hover:bg-red-50 hover:text-red-500")}
-                                  title="Quitar adjunto"
+                                <button
+                                  onClick={(e) => { e.stopPropagation(); handleRemoveAttachment(att.url); }}
+                                  className="absolute top-1 right-1 w-[18px] h-[18px] rounded-full bg-black/60 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500 flex-shrink-0"
+                                  title="Quitar"
                                 >
-                                  <X size={12} />
+                                  <X size={8} />
                                 </button>
                               )}
                             </div>
-                          ))}
+                            <p className={cn(
+                              "mt-1.5 text-[10px] text-center leading-tight w-full truncate px-0.5",
+                              noteDark ? "text-white/35" : "text-foreground/40",
+                            )}>
+                              {att.name}
+                            </p>
+                          </div>
+                        );
+                      })}
+
+                      {uploading && (
+                        <div className="flex flex-col items-center" style={{ width: 76 }}>
+                          <div className={cn(
+                            "w-[76px] h-[76px] rounded-2xl border flex items-center justify-center animate-pulse",
+                            noteDark ? "border-white/10 bg-white/5" : "border-black/8 bg-black/3",
+                          )}>
+                            <span className={cn("text-[18px]", noteDark ? "text-white/20" : "text-foreground/20")}>…</span>
+                          </div>
+                          <p className={cn("mt-1.5 text-[10px] text-center", noteDark ? "text-white/20" : "text-foreground/30")}>
+                            Subiendo
+                          </p>
                         </div>
                       )}
                     </div>
-                  );
-                })()}
+                  </div>
+                )}
 
               </div>
             </div>
