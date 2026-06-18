@@ -569,7 +569,8 @@ export default function NotasPage() {
     }, 10);
   }, [selected?.id]); // eslint-disable-line
 
-  const scheduleAutoSave = useCallback((data: Partial<Note>) => {
+  type AutoSaveData = { title?: string; content?: string; pinned?: boolean; color?: string | null; folderId?: string | null };
+  const scheduleAutoSave = useCallback((data: AutoSaveData) => {
     const note = selectedRef.current;
     if (!note) return;
     setSaving("saving");

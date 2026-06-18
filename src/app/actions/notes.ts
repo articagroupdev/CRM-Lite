@@ -81,7 +81,7 @@ export async function createNoteAction(folderId?: string) {
 
 export async function updateNoteAction(
   id: string,
-  data: { title?: string; content?: string; pinned?: boolean; color?: string; folderId?: string | null }
+  data: { title?: string; content?: string; pinned?: boolean; color?: string | null; folderId?: string | null }
 ) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.id) return null;
