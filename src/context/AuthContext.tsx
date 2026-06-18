@@ -36,9 +36,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     : null;
 
   const handleSignIn = async (email: string, password: string) => {
-    const res = await signIn("credentials", { email, password, redirect: false });
-    if (res?.ok) return { ok: true };
-    return { ok: false, error: res?.error ?? "Credenciales incorrectas" };
+    try {
+      const res = await signIn("credentials", { email, password, redirect: false });
+      if (res?.ok) return { ok: true };
+      return { ok: false, error: res?.error ?? "CredentialsSignin" };
+    } catch {
+      return { ok: false, error: "CredentialsSignin" };
+    }
   };
 
   const handleSignOut = async () => {

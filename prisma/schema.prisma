@@ -11,6 +11,7 @@ datasource db {
 
 enum UserRole {
   ADMIN
+  TRAFIKER
   USER
 }
 
@@ -46,18 +47,67 @@ model User {
   id            String    @id @default(cuid())
   email         String    @unique
   name          String
+  lastName      String?
+  birthDate     DateTime?
   password      String?
   role          UserRole  @default(USER)
   image         String?
   isActive      Boolean   @default(true)
+  deletedAt     DateTime?
   emailVerified DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
   campaigns     EmailCampaign[] @relation("CreatedBy")
   reports       Report[]
+  verifications  EmailVerification[]
+  passwordResets PasswordResetToken[]
+  notes         Note[]
+  noteFolders   NoteFolder[]
 
   @@map("users")
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@map("password_reset_tokens")
+}
+
+model EmailVerification {
+  id        String   @id @default(cuid())
+  userId    String
+  code      String
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("email_verifications")
+}
+
+// ── Admin Notifications ───────────────────────────────────────────────────────
+
+model Notification {
+  id        String   @id @default(cuid())
+  type      String
+  title     String
+  body      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([read])
+  @@map("notifications")
 }
 
 // ── Analyzer Reports ──────────────────────────────────────────────────────────
@@ -191,4 +241,38 @@ model EmailSent {
   campaign EmailCampaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
 
   @@map("email_sent")
+}
+
+model NoteFolder {
+  id          String   @id @default(cuid())
+  name        String
+  color       String?
+  createdById String
+  createdBy   User     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  notes       Note[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([createdById])
+  @@map("note_folders")
+}
+
+model Note {
+  id         String      @id @default(cuid())
+  title      String      @default("Sin título")
+  content    String      @default("") @db.Text
+  color      String?
+  pinned     Boolean     @default(false)
+  folderId   String?
+  folder     NoteFolder? @relation(fields: [folderId], references: [id], onDelete: SetNull)
+  deletedAt  DateTime?
+  userId     String
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+
+  @@index([userId])
+  @@index([folderId])
+  @@index([deletedAt])
+  @@map("notes")
 }

@@ -16,7 +16,7 @@ export async function sendEmail(opts: EmailOptions): Promise<{ success: boolean;
   try {
     const resend = new Resend(key);
     await resend.emails.send({
-      from,
+      from: `Artica Group <${from}>`,
       to: opts.to,
       subject: opts.subject,
       html: opts.html,

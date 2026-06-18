@@ -32,7 +32,7 @@ export default function ReportHistoryPage() {
 
   const handleLoad = (report: StoredReport) => {
     const params = new URLSearchParams({ reportId: report.id });
-    const basePath = report.platform === 'meta' ? '/analyzer/artica' : '/analyzer';
+    const basePath = report.platform === 'meta' ? '/analyzer/artica' : report.platform === 'tiktok' ? '/analyzer/tiktok' : '/analyzer';
     router.push(`${basePath}?${params.toString()}`);
   };
 

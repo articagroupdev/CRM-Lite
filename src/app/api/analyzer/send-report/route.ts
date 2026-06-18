@@ -48,20 +48,22 @@ export async function POST(req: NextRequest) {
     const reportDate = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
     const period = computePeriod(reportData);
     const brand = platform === 'meta-4101' ? '4101' : 'default';
+    const effectivePlatform: 'meta' | 'tiktok' | 'google' = platform === 'tiktok' ? 'tiktok' : platform === 'google' ? 'google' : 'meta';
+    const platformLabel = effectivePlatform === 'tiktok' ? 'TikTok Ads' : effectivePlatform === 'google' ? 'Google Ads' : 'Meta Ads';
 
     const html = generateAnalyzerReportEmailTemplate({
-      clientName: clientName || 'Cliente',
+      clientName: clientName || '',
       reportDate,
       period,
       reportData,
       aiContent: aiContent || [],
       selectedMetricsVisibility: selectedMetricsVisibility || {},
       allMetricsConfig: allMetricsConfig || [],
-      platform: 'meta',
+      platform: effectivePlatform,
       brand,
     });
 
-    const subject = `Reporte Meta Ads${clientName ? ` – ${clientName}` : ''} · ${reportDate}`;
+    const subject = `Reporte ${platformLabel}${clientName ? ` – ${clientName}` : ''} · ${reportDate}`;
     const result = await sendEmail({ to, subject, html });
 
     if (!result.success) {

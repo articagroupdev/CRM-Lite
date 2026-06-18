@@ -18,6 +18,11 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "CRM Lite | Meta & Email Hub",
   description: "Plataforma ligera para gestionar campañas de Meta y Email Marketing.",
+  icons: {
+    icon: '/img/icon.webp',
+    shortcut: '/img/icon.webp',
+    apple: '/img/icon.webp',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

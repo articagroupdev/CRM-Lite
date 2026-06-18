@@ -1,11 +1,13 @@
 import React, { forwardRef } from 'react';
+import { getPdfDesignSystem, getPdfBrandConfig, type PdfBrand } from '@/lib/pdf-design-system';
+import { PencilSimpleLine, CalendarBlank, NotePencil } from '@phosphor-icons/react';
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface PlannedEmail {
   id: string;
   subject: string;
   sendDate: string;
-  audience: string;
-  objective: string;
   notes: string;
   imageDataUrl: string | null;
 }
@@ -18,101 +20,194 @@ export interface EmailPlanData {
   emails: PlannedEmail[];
 }
 
-const PRIMARY = '#011b6a';
-const ACCENT = '#fa922e';
-const GRAY50 = '#f9fafb';
-const GRAY200 = '#e5e7eb';
-const GRAY500 = '#6b7280';
-const GRAY600 = '#4b5563';
-const GRAY800 = '#1f2937';
+// ─── Cover Page ───────────────────────────────────────────────────────────────
 
-export const PlannerCoverPage = forwardRef<HTMLDivElement, { data: EmailPlanData }>(
-  ({ data }, ref) => (
-    <div
-      ref={ref}
-      style={{
-        width: '816px', height: '1056px', backgroundColor: '#fff',
-        padding: '72px', display: 'flex', flexDirection: 'column',
-        fontFamily: 'system-ui, -apple-system, sans-serif', color: GRAY800,
-        position: 'relative', overflow: 'hidden',
-      }}
-    >
-      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: `linear-gradient(90deg, ${PRIMARY}, ${ACCENT})` }} />
-      <div style={{ position: 'absolute', top: '-80px', right: '-80px', width: '320px', height: '320px', borderRadius: '50%', background: `radial-gradient(circle, #dbeafe 0%, transparent 70%)`, opacity: 0.4 }} />
-      <div style={{ position: 'absolute', bottom: '-100px', left: '-100px', width: '400px', height: '400px', borderRadius: '50%', background: `radial-gradient(circle, #fef3c7 0%, transparent 70%)`, opacity: 0.3 }} />
+interface CoverProps {
+  data: EmailPlanData;
+  brand?: PdfBrand;
+  logoSrc?: string;
+}
 
-      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '72px', zIndex: 10 }}>
-        <div style={{ fontWeight: 800, fontSize: '22px', color: PRIMARY, letterSpacing: '-0.03em' }}>CRM Lite</div>
-        <div style={{ textAlign: 'right' }}>
-          <p style={{ fontWeight: 600, color: PRIMARY, fontSize: '14px', letterSpacing: '0.05em', margin: 0 }}>Planificacion de Email Marketing</p>
-          <p style={{ fontSize: '12px', color: GRAY500, margin: '4px 0 0' }}>{data.generationDate}</p>
+export const PlannerCoverPage = forwardRef<HTMLDivElement, CoverProps>(
+  ({ data, brand = 'default', logoSrc }, ref) => {
+    const ds = getPdfDesignSystem(brand);
+    const brandConfig = getPdfBrandConfig(brand);
+    const { colors, typography, spacing, pdf, gradients } = ds;
+
+    return (
+      <div
+        ref={ref}
+        style={{
+          boxSizing: 'border-box',
+          position: 'relative',
+          overflow: 'hidden',
+          width: `${pdf.pageWidth}px`,
+          height: `${pdf.pageHeight}px`,
+          backgroundColor: colors.neutral.white,
+          padding: '80px 72px',
+          display: 'flex',
+          flexDirection: 'column',
+          fontFamily: typography.fontFamily.sans,
+          color: colors.neutral.gray800,
+        }}
+      >
+        {/* Accent bars */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '4px', background: gradients.primary }} />
+        <div style={{ position: 'absolute', bottom: 0, right: 0, width: '4px', height: '100%', background: gradients.accent }} />
+
+        {/* Decorative circles */}
+        <div style={{ position: 'absolute', top: '-100px', right: '-100px', width: '400px', height: '400px', borderRadius: '50%', background: `radial-gradient(circle, ${colors.primaryLighter} 0%, transparent 70%)`, opacity: 0.3 }} />
+        <div style={{ position: 'absolute', bottom: '-150px', left: '-150px', width: '500px', height: '500px', borderRadius: '50%', background: `radial-gradient(circle, ${colors.accentLighter} 0%, transparent 70%)`, opacity: 0.2 }} />
+
+        <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', height: '100%' }}>
+          {/* Header */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '72px' }}>
+            {logoSrc ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={logoSrc}
+                alt={brandConfig.companyName}
+                style={{ width: '220px', height: '66px', objectFit: 'contain', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}
+              />
+            ) : (
+              <span style={{ fontWeight: typography.fontWeight.bold, color: colors.primary, fontSize: typography.fontSize['2xl'] }}>
+                {brandConfig.companyName}
+              </span>
+            )}
+            <div style={{ textAlign: 'right' }}>
+              <p style={{ fontWeight: typography.fontWeight.semibold, color: colors.primary, fontSize: typography.fontSize.lg, letterSpacing: typography.letterSpacing.wide, marginBottom: spacing.xs }}>
+                Planificación de Email Marketing
+              </p>
+              <p style={{ fontSize: typography.fontSize.sm, color: colors.neutral.gray500, marginTop: spacing.xs }}>
+                {data.generationDate}
+              </p>
+            </div>
+          </div>
+
+          {/* Main */}
+          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: '56px', paddingBottom: '56px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: spacing.base }}>
+              <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: colors.secondary, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <CalendarBlank size={18} weight="bold" color="#ffffff" />
+              </div>
+              <p style={{ fontSize: typography.fontSize.xl, fontWeight: typography.fontWeight.light, letterSpacing: typography.letterSpacing.widest, textTransform: 'uppercase', color: colors.secondary, margin: 0 }}>
+                {data.planTitle || 'Plan de Emails'}
+              </p>
+            </div>
+            <h1 style={{ fontSize: typography.fontSize['7xl'], fontWeight: typography.fontWeight.bold, lineHeight: typography.lineHeight.tight, color: colors.primary, marginBottom: spacing.xl, letterSpacing: typography.letterSpacing.tighter }}>
+              {data.clientName || 'Cliente'}
+            </h1>
+            <p style={{ fontSize: typography.fontSize['2xl'], fontWeight: typography.fontWeight.light, color: colors.neutral.gray600, maxWidth: '620px', lineHeight: typography.lineHeight.relaxed, marginTop: spacing.sm }}>
+              Planificación detallada de {data.emails.length} email{data.emails.length !== 1 ? 's' : ''} para el periodo {data.period}, preparada por {brandConfig.companyName}.
+            </p>
+          </div>
+
+          {/* Footer */}
+          <div style={{ textAlign: 'left', paddingTop: '56px', borderTop: `2px solid ${colors.neutral.gray200}` }}>
+            <p style={{ color: colors.neutral.gray500, fontWeight: typography.fontWeight.semibold, fontSize: typography.fontSize.lg, letterSpacing: typography.letterSpacing.wide, textTransform: 'uppercase', marginBottom: spacing.base }}>
+              PERIODO:
+            </p>
+            <p style={{ color: colors.primary, fontWeight: typography.fontWeight.bold, fontSize: typography.fontSize['2xl'], marginTop: spacing.sm, marginBottom: spacing.xl }}>
+              {data.period}
+            </p>
+            <div style={{ display: 'flex', gap: '48px', fontSize: typography.fontSize.base, color: colors.neutral.gray600, fontWeight: typography.fontWeight.medium }}>
+              <p>
+                <span style={{ fontWeight: typography.fontWeight.medium }}>Emails Planificados: </span>
+                <span style={{ fontWeight: typography.fontWeight.bold }}>{data.emails.length}</span>
+              </p>
+            </div>
+          </div>
         </div>
-      </header>
-
-      <main style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', zIndex: 10 }}>
-        <p style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: ACCENT, margin: '0 0 16px' }}>
-          {data.planTitle || 'Plan de Emails'}
-        </p>
-        <h1 style={{ fontSize: '56px', fontWeight: 800, color: PRIMARY, margin: '0 0 24px', lineHeight: 1.1, letterSpacing: '-0.03em' }}>
-          {data.clientName || 'Cliente'}
-        </h1>
-        <p style={{ fontSize: '20px', fontWeight: 300, color: GRAY600, maxWidth: '560px', lineHeight: 1.6, margin: 0 }}>
-          Planificacion de {data.emails.length} email{data.emails.length !== 1 ? 's' : ''} para el periodo {data.period}.
-        </p>
-      </main>
-
-      <footer style={{ borderTop: `2px solid ${GRAY200}`, paddingTop: '40px', zIndex: 10 }}>
-        <p style={{ color: GRAY500, fontWeight: 600, fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 8px' }}>PERIODO</p>
-        <p style={{ color: PRIMARY, fontWeight: 700, fontSize: '20px', margin: '0 0 24px' }}>{data.period}</p>
-        <p style={{ fontSize: '14px', color: GRAY600, margin: 0 }}>
-          <span style={{ fontWeight: 500 }}>Emails Planificados: </span>
-          <span style={{ fontWeight: 700 }}>{data.emails.length}</span>
-        </p>
-      </footer>
-    </div>
-  )
+      </div>
+    );
+  }
 );
 PlannerCoverPage.displayName = 'PlannerCoverPage';
 
-function EmailCard({ email, index }: { email: PlannedEmail; index: number }) {
+// ─── Email Card (inside detail pages) ────────────────────────────────────────
+
+interface EmailCardProps {
+  email: PlannedEmail;
+  index: number;
+  total: number;
+  brand?: PdfBrand;
+}
+
+function EmailCard({ email, index, brand = 'default' }: EmailCardProps) {
+  const ds = getPdfDesignSystem(brand);
+  const { colors, typography } = ds;
+
   return (
     <div style={{
-      flex: 1, display: 'flex', flexDirection: 'row',
-      backgroundColor: '#fff', borderRadius: '12px', overflow: 'hidden',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.06)', border: `1px solid ${GRAY200}`,
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'row',
+      backgroundColor: colors.neutral.white,
+      borderRadius: '16px',
+      overflow: 'hidden',
+      boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+      border: `1px solid ${colors.neutral.gray200}`,
     }}>
-      <div style={{ width: '6px', backgroundColor: PRIMARY, flexShrink: 0 }} />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'row', padding: '24px 28px', gap: '32px' }}>
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: PRIMARY, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <span style={{ color: '#fff', fontWeight: 700, fontSize: '14px' }}>{index + 1}</span>
+      {/* Left accent bar */}
+      <div style={{ width: '8px', backgroundColor: colors.primary, flexShrink: 0 }} />
+
+      {/* Content */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'row', padding: '28px 32px', gap: '40px' }}>
+        {/* Left – Info */}
+        <div style={{ width: email.imageDataUrl ? '280px' : '100%', display: 'flex', flexDirection: 'column', flexShrink: 0, justifyContent: 'center', gap: '20px' }}>
+          {/* Subject */}
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+            <PencilSimpleLine size={18} weight="regular" color={colors.primary} style={{ flexShrink: 0, marginTop: '3px' }} />
+            <div>
+              <p style={{ fontSize: '12px', color: colors.primary, fontWeight: typography.fontWeight.semibold, textTransform: 'uppercase', letterSpacing: '0.03em', margin: '0 0 6px 0' }}>
+                ASUNTO:
+              </p>
+              <p style={{ fontSize: '15px', color: colors.neutral.gray800, fontWeight: typography.fontWeight.semibold, margin: 0, lineHeight: 1.45 }}>
+                {email.subject || 'Sin asunto'}
+              </p>
             </div>
-            <h3 style={{ fontSize: '16px', fontWeight: 700, color: PRIMARY, margin: 0, lineHeight: 1.3 }}>{email.subject || 'Sin asunto'}</h3>
           </div>
+
+          {/* Send date */}
           {email.sendDate && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '12px', fontWeight: 600, color: GRAY500, letterSpacing: '0.05em', textTransform: 'uppercase' }}>Fecha de envio:</span>
-              <span style={{ fontSize: '13px', fontWeight: 600, color: ACCENT }}>{email.sendDate}</span>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <CalendarBlank size={18} weight="regular" color={colors.primary} style={{ flexShrink: 0, marginTop: '3px' }} />
+              <div>
+                <p style={{ fontSize: '12px', color: colors.primary, fontWeight: typography.fontWeight.semibold, textTransform: 'uppercase', letterSpacing: '0.03em', margin: '0 0 6px 0' }}>
+                  FECHA DE ENVÍO:
+                </p>
+                <p style={{ fontSize: '15px', color: colors.neutral.gray800, fontWeight: typography.fontWeight.medium, margin: 0 }}>
+                  {email.sendDate}
+                </p>
+              </div>
             </div>
           )}
-          {email.audience && (
-            <div><span style={{ fontSize: '11px', fontWeight: 600, color: GRAY500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Audiencia: </span><span style={{ fontSize: '13px', color: GRAY800 }}>{email.audience}</span></div>
-          )}
-          {email.objective && (
-            <div><span style={{ fontSize: '11px', fontWeight: 600, color: GRAY500, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Objetivo: </span><span style={{ fontSize: '13px', color: GRAY800 }}>{email.objective}</span></div>
-          )}
+
+          {/* Notes */}
           {email.notes && (
-            <div style={{ backgroundColor: GRAY50, borderRadius: '8px', padding: '12px', marginTop: '4px' }}>
-              <p style={{ fontSize: '11px', fontWeight: 600, color: GRAY500, textTransform: 'uppercase', letterSpacing: '0.05em', margin: '0 0 4px' }}>Notas</p>
-              <p style={{ fontSize: '12px', color: GRAY600, margin: 0, lineHeight: 1.5 }}>{email.notes}</p>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <NotePencil size={18} weight="regular" color={colors.primary} style={{ flexShrink: 0, marginTop: '3px' }} />
+              <div>
+                <p style={{ fontSize: '12px', color: colors.primary, fontWeight: typography.fontWeight.semibold, textTransform: 'uppercase', letterSpacing: '0.03em', margin: '0 0 6px 0' }}>
+                  NOTA:
+                </p>
+                <p style={{ fontSize: '13px', color: colors.neutral.gray700, lineHeight: 1.55, margin: 0, whiteSpace: 'pre-wrap' }}>
+                  {email.notes}
+                </p>
+              </div>
             </div>
           )}
         </div>
+
+        {/* Right – Image */}
         {email.imageDataUrl && (
-          <div style={{ width: '160px', flexShrink: 0, borderRadius: '8px', overflow: 'hidden', border: `1px solid ${GRAY200}` }}>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', minWidth: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={email.imageDataUrl} alt="Email preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            <img
+              src={email.imageDataUrl}
+              alt={email.subject}
+              style={{ maxWidth: '100%', width: 'auto', height: 'auto', display: 'block', maxHeight: '400px', objectFit: 'contain', borderRadius: '10px', boxShadow: '0 6px 24px rgba(0,0,0,0.12)' }}
+            />
           </div>
         )}
       </div>
@@ -120,22 +215,58 @@ function EmailCard({ email, index }: { email: PlannedEmail; index: number }) {
   );
 }
 
-export function PlannerEmailDetailPage({ emails, startIndex, pageNumber }: { emails: PlannedEmail[]; startIndex: number; total: number; pageNumber: number }) {
+// ─── Detail Page (2 emails per page) ─────────────────────────────────────────
+
+interface DetailPageProps {
+  emails: PlannedEmail[];
+  startIndex: number;
+  total: number;
+  pageNumber: number;
+  brand?: PdfBrand;
+}
+
+export function PlannerEmailDetailPage({ emails, startIndex, total, pageNumber, brand = 'default' }: DetailPageProps) {
+  const ds = getPdfDesignSystem(brand);
+  const { colors, typography } = ds;
+
   return (
     <div style={{
-      width: '816px', minHeight: '1056px', backgroundColor: '#fff',
-      padding: '56px 64px', display: 'flex', flexDirection: 'column',
-      fontFamily: 'system-ui, -apple-system, sans-serif', gap: '24px',
+      boxSizing: 'border-box',
+      width: `${ds.pdf.pageWidth}px`,
+      height: `${ds.pdf.pageHeight}px`,
+      backgroundColor: '#f0f4f8',
+      fontFamily: typography.fontFamily.sans,
+      color: colors.neutral.gray800,
+      padding: '32px 40px',
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-        <div style={{ fontWeight: 800, fontSize: '18px', color: PRIMARY }}>CRM Lite</div>
-        <p style={{ fontSize: '12px', color: GRAY500, margin: 0 }}>Emails Planificados · Pag. {pageNumber}</p>
+      {/* Top accent bar */}
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '5px', background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.secondary} 100%)` }} />
+
+      {/* Page header */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '16px', marginBottom: '20px', borderBottom: `2px solid ${colors.neutral.gray200}`, flexShrink: 0 }}>
+        <p style={{ fontSize: '14px', color: colors.primary, fontWeight: typography.fontWeight.bold, margin: 0, letterSpacing: '0.02em' }}>
+          Planificación de Email Marketing
+        </p>
+        <p style={{ fontSize: '12px', color: colors.neutral.gray500, margin: 0, fontWeight: typography.fontWeight.medium }}>
+          Página {pageNumber}
+        </p>
       </div>
-      {emails.map((email, i) => (
-        <EmailCard key={email.id} email={email} index={startIndex + i} />
-      ))}
-      <div style={{ marginTop: 'auto', paddingTop: '24px', borderTop: `1px solid ${GRAY200}`, display: 'flex', justifyContent: 'center' }}>
-        <p style={{ fontSize: '11px', color: GRAY500, margin: 0 }}>CRM Lite · Plan de Email Marketing</p>
+
+      {/* Email cards */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px', minHeight: 0 }}>
+        {emails.map((email, idx) => (
+          <EmailCard key={email.id} email={email} index={startIndex + idx} total={total} brand={brand} />
+        ))}
+      </div>
+
+      {/* Page footer */}
+      <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '16px', marginTop: '20px', borderTop: `2px solid ${colors.neutral.gray200}`, flexShrink: 0 }}>
+        <p style={{ fontSize: '11px', color: colors.neutral.gray400, margin: 0, letterSpacing: '0.03em' }}>
+          Artica Group — Planificación de Email Marketing
+        </p>
       </div>
     </div>
   );

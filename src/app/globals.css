@@ -72,8 +72,38 @@
 
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { @apply bg-transparent; }
-  ::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
-  ::-webkit-scrollbar-thumb:hover { @apply bg-muted-foreground/30; }
+  ::-webkit-scrollbar-thumb { background-color: #011b6a; border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background-color: #0ca5c1; }
+  * { scrollbar-width: thin; scrollbar-color: #011b6a transparent; }
+}
+
+/* ── Light theme ────────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --background: 0 0% 97%;
+  --foreground: 222 47% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 15%;
+  --primary: 227 98% 21%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 190 90% 38%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 220 14% 92%;
+  --muted-foreground: 215 14% 42%;
+  --accent: 27 96% 58%;
+  --accent-foreground: 0 0% 100%;
+  --border: 220 13% 86%;
+  --input: 220 13% 86%;
+  --ring: 227 98% 21%;
+  --sidebar-background: 220 20% 94%;
+  --sidebar-foreground: 222 47% 20%;
+  --sidebar-primary: 227 98% 21%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 227 65% 28%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 220 13% 82%;
+  --sidebar-ring: 227 98% 21%;
 }
 
 @layer utilities {

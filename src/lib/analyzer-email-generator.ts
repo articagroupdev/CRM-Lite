@@ -22,7 +22,7 @@ export interface GenerateAnalyzerReportEmailParams {
   aiContent: (SingleCampaignAiContent | { error: string; summary: string; analysis: string; conclusions: string } | null)[];
   selectedMetricsVisibility: Record<string, boolean>;
   allMetricsConfig: MetricConfig[];
-  platform?: string;
+  platform?: 'meta' | 'tiktok' | 'google';
   brand?: 'default' | '4101';
 }
 
@@ -32,7 +32,7 @@ const resolveBaseUrl = () =>
 const BASE_URL = resolveBaseUrl();
 
 const DEFAULT_ARTICA_LOGO_URL =
-  process.env.ANALYZER_META_LOGO_URL || 'https://artica.group/logo.png';
+  process.env.ANALYZER_META_LOGO_URL || `${BASE_URL}/img/logo-artica-1.png`;
 
 const DEFAULT_4101_LOGO_URL =
   process.env.ANALYZER_META_LOGO_URL_4101 || `${BASE_URL}/logo-4101.png`;
@@ -130,6 +130,10 @@ export function generateAnalyzerReportEmailTemplate(params: GenerateAnalyzerRepo
         return `${start} - ${end}`;
       } catch { /* ignore */ }
     }
+    if (platform === 'tiktok' || platform === 'google') {
+      if (isValidValue(campaign.adName) && campaign.adName !== campaign.campaignName) return campaign.adName!.trim();
+      if (isValidValue(campaign.adSetName) && campaign.adSetName !== campaign.campaignName) return campaign.adSetName!.trim();
+    }
     if (isValidValue(campaign.adSetName)) return campaign.adSetName!.trim();
     return 'General';
   };
@@ -143,7 +147,7 @@ export function generateAnalyzerReportEmailTemplate(params: GenerateAnalyzerRepo
         const campaignName = reportData[0].campaignName?.trim();
         if (campaignName && campaignName !== '-' && campaignName !== '[Campaña no especificada]') return campaignName;
       }
-      return 'Reporte Meta Ads';
+      return platform === 'tiktok' ? 'Reporte TikTok Ads' : platform === 'google' ? 'Reporte Google Ads' : 'Reporte Meta Ads';
     }
     return name;
   };
@@ -198,42 +202,56 @@ export function generateAnalyzerReportEmailTemplate(params: GenerateAnalyzerRepo
     return `https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify(chartConfig))}&w=520&h=260&bkg=white`;
   };
 
-  const getMetricValue = (metricId: string, campaign: ReportData): { value: string; label: string } | null => {
+  const getMetricValueDirect = (metricId: string, campaignData: ReportData): { value: string; label: string } | null => {
     try {
-      const map: Record<string, () => { value: string; label: string } | null> = {
-        amountSpent: () => ({ value: formatCurrency(campaign.amountSpent), label: 'Inversión' }),
-        results: () => ({ value: formatNumber(campaign.results), label: 'Resultados' }),
-        costPerResult: () => ({ value: formatCurrency(campaign.costPerResult), label: 'Costo/Resultado' }),
-        reach: () => ({ value: formatNumber(campaign.reach), label: 'Alcance' }),
-        impressions: () => ({ value: formatNumber(campaign.impressions), label: 'Impresiones' }),
-        ctr: () => ({ value: formatPercentage(campaign.ctr), label: 'CTR' }),
-        linkClicks: () => ({ value: formatNumber(campaign.linkClicks), label: 'Clics' }),
-        frequency: () => ({ value: formatNumber(campaign.frequency, true), label: 'Frecuencia' }),
-        cpc: () => ({ value: formatCurrency(campaign.cpc), label: 'CPC' }),
-        cpm: () => ({ value: formatCurrency(campaign.cpm), label: 'CPM' }),
-      };
-      return map[metricId]?.() ?? null;
+      if (metricId === 'resultsPrimary') {
+        const label = campaignData.resultColumnName || (platform === 'google' ? 'Conversiones' : 'Resultados');
+        const primaryValue = campaignData.results ?? campaignData.leads ?? campaignData.conversations ?? 0;
+        return { value: formatNumber(primaryValue), label };
+      } else if (metricId === 'costPerResultPrimary') {
+        const label = campaignData.costPerResultColumnName || (platform === 'google' ? 'Costo por Conversión' : 'Costo por Resultado');
+        return { value: formatCurrency(campaignData.costPerResult), label };
+      } else if (metricId === 'amountSpent') {
+        return { value: formatCurrency(campaignData.amountSpent), label: 'Inversión' };
+      } else if (metricId === 'reach') {
+        return { value: formatNumber(campaignData.reach), label: 'Alcance' };
+      } else if (metricId === 'impressions') {
+        return { value: formatNumber(campaignData.impressions), label: 'Impresiones' };
+      } else if (metricId === 'frequency') {
+        return { value: formatNumber(campaignData.frequency, true), label: 'Frecuencia' };
+      } else if (metricId === 'linkClicks') {
+        return { value: formatNumber(campaignData.linkClicks), label: 'Clics' };
+      } else if (metricId === 'ctr') {
+        return { value: formatPercentage(campaignData.ctr), label: 'CTR' };
+      } else if (metricId === 'cpc') {
+        return { value: formatCurrency(campaignData.cpc), label: 'CPC Promedio' };
+      } else if (metricId === 'resultRate') {
+        return { value: formatPercentage(campaignData.resultRate), label: 'Tasa de Conversión' };
+      }
+      return null;
     } catch { return null; }
   };
 
   const METRIC_STYLES: Record<string, { bg: string; border: string; text: string }> = {
     amountSpent: { bg: '#ecfdf5', border: '#d1fae5', text: '#059669' },
-    results: { bg: '#eff6ff', border: '#dbeafe', text: '#2563eb' },
-    costPerResult: { bg: '#fff1f2', border: '#ffe4e6', text: '#e11d48' },
+    resultsPrimary: { bg: '#eff6ff', border: '#dbeafe', text: '#2563eb' },
+    costPerResultPrimary: { bg: '#fff1f2', border: '#ffe4e6', text: '#e11d48' },
     reach: { bg: '#f5f3ff', border: '#ede9fe', text: '#7c3aed' },
     impressions: { bg: '#eef2ff', border: '#e0e7ff', text: '#4f46e5' },
     ctr: { bg: '#fff7ed', border: '#ffedd5', text: '#ea580c' },
     linkClicks: { bg: '#ecfeff', border: '#cffafe', text: '#0891b2' },
     frequency: { bg: '#f8fafc', border: '#e2e8f0', text: '#64748b' },
     cpc: { bg: '#fef3c7', border: '#fde68a', text: '#d97706' },
-    cpm: { bg: '#fce7f3', border: '#fbcfe8', text: '#db2777' },
+    resultRate: { bg: '#fce7f3', border: '#fbcfe8', text: '#db2777' },
   };
 
   const generateCampaignMetricsGrid = (campaign: ReportData): string => {
-    const metricIds = ['amountSpent', 'results', 'costPerResult', 'reach', 'impressions', 'ctr', 'linkClicks', 'frequency'];
+    const metricIds = platform === 'google'
+      ? ['amountSpent', 'resultsPrimary', 'costPerResultPrimary', 'cpc', 'impressions', 'ctr', 'linkClicks', 'resultRate']
+      : ['amountSpent', 'resultsPrimary', 'costPerResultPrimary', 'reach', 'impressions', 'ctr', 'linkClicks', 'frequency'];
     const cells: string[] = [];
     metricIds.forEach(id => {
-      const res = getMetricValue(id, campaign);
+      const res = getMetricValueDirect(id, campaign);
       if (!res) return;
       const s = METRIC_STYLES[id] || METRIC_STYLES.frequency;
       cells.push(`
@@ -265,7 +283,7 @@ export function generateAnalyzerReportEmailTemplate(params: GenerateAnalyzerRepo
     return `
       <div style="margin-top:20px;background-color:#fbfbfc;border:1px solid ${colors.border};border-radius:8px;padding:20px;">
         ${summary ? `<div style="${sectionStyle}"><h5 style="${titleStyle}">Resumen Ejecutivo</h5><div style="${textStyle}">${summary}</div></div>` : ''}
-        ${analysis ? `<div style="${sectionStyle}"><h5 style="${titleStyle}">Análisis de Rendimiento</h5><div style="${textStyle}">${analysis}</div></div>` : ''}
+        ${analysis ? `<div style="${sectionStyle}"><h5 style="${titleStyle}">Insights Clave</h5><div style="${textStyle}">${analysis}</div></div>` : ''}
         ${conclusions ? `<div><h5 style="${titleStyle}">Conclusiones</h5><div style="${textStyle}">${conclusions}</div></div>` : ''}
       </div>
     `;
@@ -343,7 +361,7 @@ export function generateAnalyzerReportEmailTemplate(params: GenerateAnalyzerRepo
   <div class="content">
 
     <div class="content-padding" style="padding:30px 30px 20px 30px;text-align:center;">
-      <p style="font-size:11px;font-weight:700;color:${colors.accent};text-transform:uppercase;margin:0 0 8px 0;letter-spacing:1px;">Reporte de Rendimiento Meta Ads</p>
+      <p style="font-size:11px;font-weight:700;color:${colors.accent};text-transform:uppercase;margin:0 0 8px 0;letter-spacing:1px;">Reporte de Rendimiento ${platform === 'tiktok' ? 'TikTok Ads' : platform === 'google' ? 'Google Ads' : 'Meta Ads'}</p>
       <h1 style="font-size:22px;font-weight:800;color:${colors.primary};margin:0 0 6px 0;letter-spacing:-0.5px;">${getClientDisplayName()}</h1>
       ${displayPeriod ? `<p style="font-size:13px;color:${colors.secondary};margin:0;">Periodo: ${displayPeriod}</p>` : ''}
     </div>
@@ -373,12 +391,10 @@ export function generateAnalyzerReportEmailTemplate(params: GenerateAnalyzerRepo
       }).join('')}
     </div>
 
-    ${reportData.length > 1 ? `
     <div class="content-padding" style="padding:0 30px 40px 30px;text-align:center;">
-      <p style="font-size:11px;font-weight:700;color:${colors.secondary};text-transform:uppercase;margin:0 0 12px 0;letter-spacing:0.8px;">Distribución de Inversión</p>
+      <p style="font-size:11px;font-weight:700;color:${colors.secondary};text-transform:uppercase;margin:0 0 12px 0;letter-spacing:0.8px;">Distribución de Inversión por Campaña</p>
       <img src="${chartUrl}" width="100%" style="max-width:520px;height:auto;border-radius:8px;border:1px solid #f1f5f9;" alt="Gráfico de Inversión" />
     </div>
-    ` : ''}
 
     <div class="content-padding" style="background-color:#f8fafc;padding:20px;text-align:center;border-top:1px solid ${colors.border};">
       <p style="font-size:11px;color:${colors.secondary};margin:0;">

@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
 import { Sidebar } from "@/components/layout/Sidebar";
-import { List, Bell } from "@phosphor-icons/react";
+import { TopBar } from "@/components/layout/TopBar";
+import { List } from "@phosphor-icons/react";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useAuth();
@@ -47,14 +48,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {/* Main content */}
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
-        {/* Top header (mobile) */}
-        <header className="md:hidden flex items-center justify-between h-14 px-4 bg-sidebar border-b border-sidebar-border flex-shrink-0">
-          <button onClick={() => setMobileSidebarOpen(true)} className="text-white/70 hover:text-white transition-colors">
+        {/* Mobile topbar */}
+        <header className="md:hidden flex items-center justify-between h-12 px-4 bg-sidebar border-b border-sidebar-border flex-shrink-0">
+          <button onClick={() => setMobileSidebarOpen(true)} className="text-sidebar-foreground/70 hover:text-sidebar-foreground transition-colors">
             <List size={22} />
           </button>
-          <span className="text-white font-heading font-semibold text-sm">CRM Lite</span>
+          <span className="text-sidebar-foreground font-heading font-semibold text-sm">CRM Lite</span>
           <div className="w-8" />
         </header>
+
+        {/* Desktop topbar */}
+        <div className="hidden md:block">
+          <TopBar />
+        </div>
 
         {/* Page content */}
         <main className="flex-1 overflow-y-auto">

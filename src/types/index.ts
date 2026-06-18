@@ -1,12 +1,15 @@
-export type UserRole = "ADMIN" | "USER";
+export type UserRole = "ADMIN" | "TRAFIKER" | "USER";
 
 export interface UserProfile {
   id: string;
   email: string;
   name?: string | null;
+  lastName?: string | null;
+  birthDate?: Date | null;
   image?: string | null;
   role: UserRole;
   isActive: boolean;
+  deletedAt?: Date | null;
   createdAt: Date;
   updatedAt: Date;
 }

@@ -85,6 +85,43 @@ async function tryGenerate(prompt: string): Promise<string> {
   throw lastErr;
 }
 
+function buildTikTokPrompt(campaignData: ReportData): string {
+  const { campaignName, adName, facebookPageName, startDate, endDate,
+    amountSpent, impressions, reach, results, linkClicks, videoPlays } = campaignData;
+  const ctrCalc = impressions ? (((linkClicks || 0) / impressions) * 100).toFixed(2) : '0.00';
+  const cpcCalc = linkClicks ? ((amountSpent || 0) / linkClicks).toFixed(2) : '0.00';
+  const cprCalc = results ? ((amountSpent || 0) / results).toFixed(2) : '0.00';
+  const freq = reach ? ((impressions || 0) / reach).toFixed(2) : '0.00';
+  const cvr = linkClicks ? (((results || 0) / linkClicks) * 100).toFixed(2) : '0.00';
+
+  return `Eres un experto en TikTok Ads. Analiza estos datos y responde en JSON con claves "summary", "analysis" (lista HTML <ul><li>...</li></ul>), "conclusions".
+Cuenta: ${facebookPageName} | Campaña: ${campaignName}${adName ? ` / ${adName}` : ''}
+Período: ${startDate} – ${endDate}
+Gasto: $${(amountSpent||0).toFixed(2)} | Alcance: ${reach||0} | Impresiones: ${impressions||0} | Frecuencia: ${freq}x
+Resultados: ${results||0} | Costo/Resultado: $${cprCalc} | Tasa Conversión: ${cvr}%
+Clics: ${linkClicks||0} | CTR: ${ctrCalc}% | CPC: $${cpcCalc}${videoPlays ? ` | Reproducciones Video: ${videoPlays.toLocaleString()}` : ''}
+Benchmarks TikTok: CTR promedio 0.5–2%. Analiza saturación de audiencia (frecuencia), calidad del creativo (CTR), eficiencia (costo/resultado) y métricas de video si aplican.
+CRÍTICO: Responde SOLO con JSON válido, sin markdown ni texto extra.`;
+}
+
+export async function generateGroqTikTokAnalysis(campaignData: ReportData): Promise<GeminiAnalysisResult> {
+  if (!GROQ_API_KEY) {
+    return {
+      summary: 'Sin API Key',
+      analysis: '<p>Configure <strong>GROQ_API_KEY</strong> en el archivo <code>.env</code> para activar el análisis de IA con Groq.</p>',
+      conclusions: '',
+      error: 'No API key',
+    };
+  }
+  try {
+    const text = await tryGenerate(buildTikTokPrompt(campaignData));
+    return parseResponse(text);
+  } catch (err: any) {
+    const friendly = friendlyError(err);
+    return { summary: '', analysis: `<p class="text-destructive">${friendly}</p>`, conclusions: '', error: friendly };
+  }
+}
+
 export async function generateGroqCampaignAnalysis(campaignData: ReportData): Promise<GeminiAnalysisResult> {
   if (!GROQ_API_KEY) {
     return {

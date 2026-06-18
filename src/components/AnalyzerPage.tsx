@@ -18,8 +18,8 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { parseMetaCSV } from '@/lib/csvParser';
-import { generateSingleCampaignReportContentAction } from '@/app/actions/analyzer';
+import { parseMetaCSV, parseTikTokCSV } from '@/lib/csvParser';
+import { generateSingleCampaignReportContentAction, generateTikTokCampaignReportContentAction } from '@/app/actions/analyzer';
 import { useReportHistory } from '@/hooks/use-report-history';
 import { useToast } from '@/hooks/use-toast';
 import type { ReportData, SingleCampaignAiContent, MetricConfig } from '@/types';
@@ -34,7 +34,7 @@ import {
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export type AnalyzerPlatform = 'meta-4101' | 'meta';
+export type AnalyzerPlatform = 'meta-4101' | 'meta' | 'tiktok';
 
 export interface AnalyzerConfig {
   platform: AnalyzerPlatform;
@@ -44,6 +44,12 @@ export interface AnalyzerConfig {
   accentTo: string;
   pdfPrefix: string;
   brand: string;
+  primaryHex: string;
+  accentHex: string;
+  buttonHex: string;
+  chartPalette: string[];
+  logoLight: string;
+  logoDark: string;
 }
 
 export const ANALYZER_CONFIGS: Record<AnalyzerPlatform, AnalyzerConfig> = {
@@ -51,19 +57,46 @@ export const ANALYZER_CONFIGS: Record<AnalyzerPlatform, AnalyzerConfig> = {
     platform: 'meta-4101',
     title: 'Analyzer Meta 4101',
     subtitle: 'Análisis de campañas Meta Ads · IA + PDF',
-    accentFrom: 'from-[#011b6a]',
-    accentTo: 'to-blue-600',
+    accentFrom: '',
+    accentTo: '',
     pdfPrefix: 'Meta_4101',
     brand: '4101',
+    primaryHex: '#1a1a1a',
+    accentHex: '#E85A1A',
+    buttonHex: '#E85A1A',
+    chartPalette: ['#1a1a1a', '#E85A1A', '#333333', '#555555', '#c44c0c', '#d45c1c', '#e06c2c'],
+    logoLight: '/img/logo-4101.png',
+    logoDark: '/img/logo-4101.png',
   },
   'meta': {
     platform: 'meta',
     title: 'Analyzer Meta Artica',
     subtitle: 'Análisis de campañas Meta Ads · IA + PDF',
-    accentFrom: 'from-orange-600',
-    accentTo: 'to-[#011b6a]',
+    accentFrom: '',
+    accentTo: '',
     pdfPrefix: 'Meta_Artica',
     brand: 'Artica',
+    primaryHex: '#011b6a',
+    accentHex: '#0ca5c1',
+    buttonHex: '#011b6a',
+    chartPalette: ['#011b6a', '#0ca5c1', '#02308a', '#0240a8', '#0350c5', '#0460e0', '#1565c0'],
+    logoLight: '/img/logo-artica-1.png',
+    logoDark: '/img/logo-artica-2.png',
+  },
+  'tiktok': {
+    platform: 'tiktok',
+    title: 'Analyzer TikTok Ads',
+    subtitle: 'Análisis de campañas TikTok Ads · IA + PDF',
+    accentFrom: '',
+    accentTo: '',
+    pdfPrefix: 'TikTok',
+    brand: 'Artica',
+    primaryHex: '#010101',
+    accentHex: '#ff0050',
+    buttonHex: '#010101',
+    chartPalette: ['#010101', '#ff0050', '#00f2ea', '#333333', '#555555', '#e0003c', '#00d4cc'],
+    logoLight: '/img/logo-artica-1.png',
+    logoDark: '/img/logo-artica-2.png',
   },
 };
 
@@ -111,11 +144,13 @@ function formatDateDisplay(iso: string): string {
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-function AiContent({ content }: { content: string }) {
-  if (!content) return null;
-  const isHtml = content.trim().startsWith('<');
-  if (isHtml) return <div className="text-sm text-muted-foreground leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_li]:leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />;
-  return <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap">{content}</p>;
+function AiContent({ content }: { content: unknown }) {
+  if (content === null || content === undefined || content === '') return null;
+  const str = typeof content === 'string' ? content : String(content);
+  if (!str.trim()) return null;
+  const isHtml = str.trim().startsWith('<');
+  if (isHtml) return <div className="text-sm text-muted-foreground leading-relaxed [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_li]:leading-relaxed" dangerouslySetInnerHTML={{ __html: str }} />;
+  return <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap">{str}</p>;
 }
 
 function ReportSection({ title, children, isLoading }: { title: string; children: React.ReactNode; isLoading?: boolean }) {
@@ -154,11 +189,13 @@ function CampaignMetrics({ campaignData, selectedMetrics }: { campaignData: Repo
 
 function SummaryStatCard({ label, value, icon: Icon, color }: { label: string; value: string; icon: React.ElementType; color: string }) {
   return (
-    <div className="bg-card/70 backdrop-blur-md border border-border/60 rounded-xl p-4 flex items-center gap-3 shadow-sm">
-      <div className={cn('p-2.5 rounded-lg flex-shrink-0', color)}><Icon className="h-5 w-5 text-white" /></div>
-      <div>
-        <p className="text-xs text-muted-foreground font-medium">{label}</p>
-        <p className="text-lg font-bold text-foreground">{value}</p>
+    <div className="bg-card border border-border rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3 shadow-sm">
+      <div className="p-2 sm:p-2.5 rounded-lg flex-shrink-0" style={{ backgroundColor: color }}>
+        <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
+      </div>
+      <div className="min-w-0">
+        <p className="text-xs text-muted-foreground font-medium truncate">{label}</p>
+        <p className="text-base sm:text-lg font-bold text-foreground">{value}</p>
       </div>
     </div>
   );
@@ -166,16 +203,23 @@ function SummaryStatCard({ label, value, icon: Icon, color }: { label: string; v
 
 // ─── Chart Components ─────────────────────────────────────────────────────────
 
-function CampaignSpendChart({ data }: { data: ReportData[] }) {
+function CampaignSpendChart({ data, palette }: { data: ReportData[]; palette: string[] }) {
   const [isClient, setIsClient] = useState(false);
-  useEffect(() => { setIsClient(true); }, []);
+  const [yAxisWidth, setYAxisWidth] = useState(90);
+  useEffect(() => {
+    setIsClient(true);
+    const update = () => setYAxisWidth(window.innerWidth < 640 ? 65 : 110);
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  }, []);
 
   const chartData = useMemo(() =>
     data.map((c, i) => ({
       name: c.campaignName.length > 18 ? c.campaignName.slice(0, 18) + '…' : c.campaignName,
       spend: c.amountSpent || 0,
-      fill: `hsl(${(i * 45) % 360}, 65%, 48%)`,
-    })), [data]);
+      fill: palette[i % palette.length],
+    })), [data, palette]);
 
   if (!isClient) return <div className="h-[260px] w-full animate-pulse bg-muted rounded-md" />;
 
@@ -202,11 +246,11 @@ function CampaignSpendChart({ data }: { data: ReportData[] }) {
           <YAxis
             dataKey="name"
             type="category"
-            width={110}
+            width={yAxisWidth}
             stroke="hsl(var(--muted-foreground))"
             fontSize={9}
             interval={0}
-            tick={{ fill: 'hsl(var(--muted-foreground))', width: 110 }}
+            tick={{ fill: 'hsl(var(--muted-foreground))', width: yAxisWidth }}
           />
           <RechartsTooltip content={<CustomTooltip />} cursor={{ fill: 'hsl(var(--muted))', opacity: 0.15 }} />
           <Bar dataKey="spend" name="Inversión" radius={[0, 4, 4, 0]} barSize={16} maxBarSize={22}>
@@ -220,7 +264,7 @@ function CampaignSpendChart({ data }: { data: ReportData[] }) {
   );
 }
 
-function CampaignOverviewChart({ data }: { data: ReportData[] }) {
+function CampaignOverviewChart({ data, barColor, lineColor }: { data: ReportData[]; barColor: string; lineColor: string }) {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => { setIsClient(true); }, []);
 
@@ -244,10 +288,10 @@ function CampaignOverviewChart({ data }: { data: ReportData[] }) {
     return (
       <div className="bg-card border border-border rounded-lg shadow-lg p-2.5 text-xs">
         <p className="font-semibold text-foreground mb-1.5">{label}</p>
-        <p className="mb-1" style={{ color: 'hsl(217, 91%, 60%)' }}>
+        <p className="mb-1" style={{ color: '#011b6a' }}>
           Inversión: <span className="font-semibold">${Number(spend).toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
         </p>
-        <p style={{ color: 'hsl(27, 96%, 58%)' }}>
+        <p style={{ color: '#0ca5c1' }}>
           Resultados: <span className="font-semibold">{Number(results).toLocaleString('es-ES')}</span>
         </p>
       </div>
@@ -291,7 +335,7 @@ function CampaignOverviewChart({ data }: { data: ReportData[] }) {
             dataKey="spend"
             name="Inversión"
             radius={[6, 6, 0, 0]}
-            fill="hsl(217, 91%, 60%)"
+            fill={barColor}
             fillOpacity={0.85}
             barSize={18}
           />
@@ -300,7 +344,7 @@ function CampaignOverviewChart({ data }: { data: ReportData[] }) {
             type="monotone"
             dataKey="results"
             name="Resultados"
-            stroke="hsl(27, 96%, 58%)"
+            stroke={lineColor}
             strokeWidth={3}
             dot={{ r: 3 }}
             activeDot={{ r: 5 }}
@@ -311,7 +355,7 @@ function CampaignOverviewChart({ data }: { data: ReportData[] }) {
   );
 }
 
-function CampaignTimelineChart({ dailyEntries }: { dailyEntries: import('@/types').DailyData[] }) {
+function CampaignTimelineChart({ dailyEntries, primaryColor, accentColor }: { dailyEntries: import('@/types').DailyData[]; primaryColor: string; accentColor: string }) {
   const [isClient, setIsClient] = useState(false);
   useEffect(() => { setIsClient(true); }, []);
 
@@ -377,15 +421,15 @@ function CampaignTimelineChart({ dailyEntries }: { dailyEntries: import('@/types
           />
           <RechartsTooltip content={<ChartTooltip />} />
           <Legend iconSize={10} iconType="circle" wrapperStyle={{ fontSize: 10, color: 'hsl(var(--foreground))' }} />
-          <Line yAxisId="left" type="monotone" dataKey="impressions" stroke="hsl(210, 80%, 60%)" name="Impresiones" dot={false} strokeWidth={2} activeDot={{ r: 4 }} />
+          <Line yAxisId="left" type="monotone" dataKey="impressions" stroke={primaryColor} name="Impresiones" dot={false} strokeWidth={2} activeDot={{ r: 4 }} />
           {hasReach && (
-            <Line yAxisId="left" type="monotone" dataKey="reach" stroke="hsl(270, 70%, 65%)" name="Alcance" dot={false} strokeWidth={2} activeDot={{ r: 4 }} />
+            <Line yAxisId="left" type="monotone" dataKey="reach" stroke={primaryColor + 'bb'} name="Alcance" dot={false} strokeWidth={2} activeDot={{ r: 4 }} />
           )}
           {!hasReach && hasClicks && (
-            <Line yAxisId="left" type="monotone" dataKey="linkClicks" stroke="hsl(180, 70%, 50%)" name="Clics" dot={false} strokeWidth={2} activeDot={{ r: 4 }} />
+            <Line yAxisId="left" type="monotone" dataKey="linkClicks" stroke={accentColor} name="Clics" dot={false} strokeWidth={2} activeDot={{ r: 4 }} />
           )}
           {hasResults && (
-            <Line yAxisId="right" type="monotone" dataKey="results" stroke="hsl(27, 96%, 58%)" name="Resultados" dot={false} strokeWidth={2} strokeDasharray="5 5" activeDot={{ r: 4 }} />
+            <Line yAxisId="right" type="monotone" dataKey="results" stroke={accentColor} name="Resultados" dot={false} strokeWidth={2} strokeDasharray="5 5" activeDot={{ r: 4 }} />
           )}
         </LineChart>
       </ResponsiveContainer>
@@ -435,7 +479,7 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
   const mainPageName = useMemo(() => reportData.length > 0 ? reportData[0].facebookPageName : 'N/A', [reportData]);
   const overallStart = useMemo(() => reportData.length > 0 ? reportData.reduce((e, c) => new Date(c.startDate) < new Date(e) ? c.startDate : e, reportData[0].startDate) : 'N/A', [reportData]);
   const overallEnd = useMemo(() => reportData.length > 0 ? reportData.reduce((l, c) => new Date(c.endDate) > new Date(l) ? c.endDate : l, reportData[0].endDate) : 'N/A', [reportData]);
-  const primaryColor = config.platform === 'meta' ? '#c2400e' : '#011b6a';
+  const primaryColor = '#011b6a';
 
   const aggregatedMetrics = useMemo(() => {
     if (reportData.length === 0) return null;
@@ -558,14 +602,15 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
     setIsSavedToHistory(false);
     try {
       const text = await file.text();
-      const parsed = parseMetaCSV(text, clientName || null);
+      const parsed = config.platform === 'tiktok'
+        ? parseTikTokCSV(text, clientName || null)
+        : parseMetaCSV(text, clientName || null);
       if (!parsed.length) { setError('No se encontraron datos válidos en el CSV.'); return; }
       parsed.sort((a, b) => (b.results || 0) - (a.results || 0));
       setReportData(parsed);
       setAiContent(Array(parsed.length).fill(null));
       setFileName(file.name);
-      setStatusMessage(`${parsed.length} campaña${parsed.length !== 1 ? 's' : ''} cargada${parsed.length !== 1 ? 's' : ''}. Usa "Analizar con IA" para generar el análisis.`);
-      toast({ title: 'CSV Procesado', description: `${parsed.length} campañas cargadas. Ahora puedes analizarlas con IA.` });
+      generateAll(parsed);
     } catch (err: any) {
       setError(err.message || 'Error al procesar el CSV.');
     }
@@ -597,21 +642,24 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
     }
   }, [reportData]);
 
-  const generateAll = useCallback(async () => {
-    if (!reportData.length) return;
+  const generateAll = useCallback(async (freshData?: ReportData[]) => {
+    const items = freshData ?? reportData;
+    if (!items.length) return;
     setIsGeneratingAll(true);
     setError(null);
     setShareableLink(null);
     let errCount = 0;
-    const localAiContent: AiEntry[] = Array(reportData.length).fill(null);
+    const localAiContent: AiEntry[] = Array(items.length).fill(null);
 
-    for (let i = 0; i < reportData.length; i++) {
-      const pct = Math.round(((i + 1) / reportData.length) * 100);
-      setStatusMessage(`🤖 Analizando ${i + 1}/${reportData.length} · ${pct}% — "${formatCampaignIdentifier(reportData[i])}"`);
+    for (let i = 0; i < items.length; i++) {
+      const pct = Math.round(((i + 1) / items.length) * 100);
+      setStatusMessage(`Analizando ${i + 1}/${items.length} · ${pct}% — "${formatCampaignIdentifier(items[i])}"`);
       setGeneratingIndices(prev => new Set(prev).add(i));
       try {
         if (i > 0) await new Promise(r => setTimeout(r, 1500));
-        const result = await generateSingleCampaignReportContentAction(reportData[i]);
+        const result = config.platform === 'tiktok'
+          ? await generateTikTokCampaignReportContentAction(items[i])
+          : await generateSingleCampaignReportContentAction(items[i]);
         if ('error' in result && result.error) errCount++;
         localAiContent[i] = result;
         setAiContent(prev => { const n = [...prev]; n[i] = result; return n; });
@@ -625,7 +673,7 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
       }
     }
 
-    const success = reportData.length - errCount;
+    const success = items.length - errCount;
     const finalMsg = errCount > 0
       ? `⚠️ ${success} análisis generados, ${errCount} con errores.`
       : `✅ ${success} análisis generados exitosamente.`;
@@ -645,12 +693,12 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
           platform: config.platform,
           clientName: clientName || null,
           facebookPageName: mainPageName,
-          reportData,
+          reportData: items,
           aiContent: localAiContent,
           generationDate: new Date().toISOString(),
           totalSpent,
           totalResults,
-          campaignCount: reportData.length,
+          campaignCount: items.length,
           tags: [],
         });
         setIsSavedToHistory(true);
@@ -664,42 +712,131 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
       return;
     }
     setIsGeneratingPdf(true);
-    toast({ title: 'PDF', description: 'Generando PDF, por favor espera...' });
+    toast({ title: 'PDF', description: 'Generando PDF mejorado, por favor espera...' });
     try {
       const [{ default: jsPDF }, { default: html2canvas }, { createRoot }, { createElement }] = await Promise.all([
         import('jspdf'), import('html2canvas'), import('react-dom/client'), import('react'),
       ]);
-      const pdf = new jsPDF({ orientation: 'p', unit: 'px', format: 'letter', compress: true, hotfixes: ['px_scaling'] });
-      const W = pdf.internal.pageSize.getWidth();
-      const H = pdf.internal.pageSize.getHeight();
 
-      const { PdfReportPage } = await import('@/components/PdfReportPage');
-      const el = document.createElement('div');
-      el.style.cssText = 'position:absolute;left:-9999px;top:0;width:816px;min-height:1056px;';
-      document.body.appendChild(el);
-      const root = createRoot(el);
-      root.render(createElement(PdfReportPage, {
-        reportData, aiContent, clientName,
-        visibleMetrics: selectedMetricsVisibility,
-        allMetrics: ALL_AVAILABLE_METRICS,
-        fileName,
-      }));
-      await new Promise(r => setTimeout(r, 1500));
-      const canvas = await html2canvas(el, { scale: 2, useCORS: true, logging: false, backgroundColor: '#ffffff', windowWidth: 816 });
-      const img = canvas.toDataURL('image/png', 0.92);
-      const imgH = (canvas.height * W) / canvas.width;
-      // paginate if taller than one page
-      let yOffset = 0;
-      let firstPage = true;
-      while (yOffset < imgH) {
-        if (!firstPage) pdf.addPage();
-        pdf.addImage(img, 'PNG', 0, -yOffset, W, imgH);
-        yOffset += H;
-        firstPage = false;
+      const pdf = new jsPDF({ orientation: 'p', unit: 'px', format: 'letter', compress: true, hotfixes: ['px_scaling'] });
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const brand = config.platform === 'meta-4101' ? '4101' : 'default';
+      const pdfPlatform: 'meta' | 'tiktok' = config.platform === 'tiktok' ? 'tiktok' : 'meta';
+      const safePageName = mainPageName && mainPageName !== '0' && mainPageName !== 'N/A'
+        ? mainPageName
+        : config.platform === 'tiktok' ? 'TikTok Ads' : 'Reporte';
+
+      // Convert logo to base64 to avoid CORS canvas taint
+      const toBase64 = (path: string): Promise<string> =>
+        fetch(window.location.origin + path)
+          .then(r => r.blob())
+          .then(blob => new Promise<string>((res, rej) => {
+            const reader = new FileReader();
+            reader.onloadend = () => res(reader.result as string);
+            reader.onerror = rej;
+            reader.readAsDataURL(blob);
+          }))
+          .catch(() => '');
+
+      const logoSrc = await toBase64(config.logoLight);
+
+      const canvasOpts = {
+        scale: 1.5,
+        allowTaint: true,
+        useCORS: false,
+        logging: false,
+        backgroundColor: '#ffffff',
+        windowWidth: 816,
+        windowHeight: 1056,
+        onclone: (doc: Document) => {
+          doc.querySelectorAll('style, link[rel="stylesheet"]').forEach(s => s.remove());
+        },
+      };
+
+      const renderPage = async (Component: React.ComponentType<any>, props: any): Promise<HTMLCanvasElement> => {
+        const el = document.createElement('div');
+        el.style.cssText = 'position:absolute;left:-9999px;top:0;width:816px;min-height:1056px;';
+        document.body.appendChild(el);
+        const root = createRoot(el);
+        root.render(createElement(Component, props));
+        await new Promise(r => setTimeout(r, 1200));
+        const canvas = await html2canvas(el, canvasOpts);
+        root.unmount();
+        document.body.removeChild(el);
+        return canvas;
+      };
+
+      const addPage = (canvas: HTMLCanvasElement, isFirstPage = false) => {
+        if (!isFirstPage) pdf.addPage();
+        const imgData = canvas.toDataURL('image/png', 0.92);
+        const imgProps = pdf.getImageProperties(imgData);
+        const h = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, h);
+      };
+
+      // Cover page
+      const { default: PdfCoverPage } = await import('@/components/PdfCoverPage');
+      const uniqueCampaigns = new Set(reportData.map(d => d.campaignName)).size;
+      const analysisPeriod = `${formatDateDisplay(overallStart)} – ${formatDateDisplay(overallEnd)}`;
+      const coverCanvas = await renderPage(PdfCoverPage, {
+        clientName: clientName || safePageName,
+        generationDate: new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' }),
+        analysisPeriod,
+        campaignsAnalyzed: uniqueCampaigns,
+        adsAnalyzed: reportData.filter(d => d.adName).length,
+        platform: pdfPlatform,
+        brand,
+        logoSrc,
+      });
+      addPage(coverCanvas, true);
+
+      // Per-campaign pages
+      const { default: SimplePdfContent } = await import('@/components/SimplePdfContent');
+      const { default: PdfAnalysisPage } = await import('@/components/PdfAnalysisPage');
+
+      for (let i = 0; i < reportData.length; i++) {
+        const metricsCanvas = await renderPage(SimplePdfContent, {
+          campaignData: reportData[i],
+          aiContent: aiContent[i],
+          index: i,
+          totalCampaigns: reportData.length,
+          platform: pdfPlatform,
+          brand,
+        });
+        addPage(metricsCanvas);
+
+        const ac = aiContent[i];
+        if (ac && !('error' in ac)) {
+          const analysisCanvas = await renderPage(PdfAnalysisPage, {
+            campaignData: reportData[i],
+            aiContent: ac,
+            index: i,
+            totalCampaigns: reportData.length,
+            platform: pdfPlatform,
+            brand,
+          });
+          addPage(analysisCanvas);
+        }
       }
-      root.unmount();
-      document.body.removeChild(el);
-      const safeName = (clientName || mainPageName || 'Reporte').replace(/[^a-z0-9]/gi, '_');
+
+      // Account summary page
+      const { default: PdfAccountSummaryPage } = await import('@/components/PdfAccountSummaryPage');
+      const summaryCanvas = await renderPage(PdfAccountSummaryPage, {
+        reportData,
+        overallStartDate: overallStart,
+        overallEndDate: overallEnd,
+        mainFacebookPageName: safePageName,
+        platform: pdfPlatform,
+        brand,
+      });
+      addPage(summaryCanvas);
+
+      // Closing page
+      const { default: PdfFooterPage } = await import('@/components/PdfFooterPage');
+      const footerCanvas = await renderPage(PdfFooterPage, { platform: pdfPlatform, brand, logoSrc });
+      addPage(footerCanvas);
+
+      const safeName = (clientName || safePageName).replace(/[^a-z0-9]/gi, '_');
       pdf.save(`${config.pdfPrefix}_${safeName}_${new Date().toISOString().slice(0, 10)}.pdf`);
       toast({ title: 'PDF Generado', description: 'El archivo PDF se descargó correctamente.' });
     } catch (err: any) {
@@ -707,7 +844,7 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
     } finally {
       setIsGeneratingPdf(false);
     }
-  }, [reportData, aiContent, clientName, selectedMetricsVisibility, mainPageName, fileName, config.pdfPrefix, toast]);
+  }, [reportData, aiContent, clientName, mainPageName, overallStart, overallEnd, config, toast]);
 
   const handleSendEmail = useCallback(async () => {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailRecipient)) {
@@ -772,12 +909,30 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
   return (
     <div className="w-full p-4 sm:p-6 lg:p-8 min-h-screen">
 
+      {/* ── AI Loading Overlay ──────────────────────────────────────────────── */}
+      {isGeneratingAll && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm">
+          <div className="bg-card border border-border rounded-2xl shadow-2xl p-6 sm:p-10 max-w-sm w-[calc(100%-2rem)] mx-4 flex flex-col items-center gap-6">
+            <div className="relative flex items-center justify-center w-20 h-20">
+              <div className="absolute inset-0 rounded-full border-4 border-primary/20 border-t-primary animate-spin" />
+              <Brain className="h-8 w-8 text-primary" />
+            </div>
+            <div className="text-center space-y-2">
+              <h3 className="text-lg font-semibold text-foreground">Analizando con IA</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {statusMessage || 'Preparando análisis...'}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ── Header ──────────────────────────────────────────────────────────── */}
       <header className="relative mb-8">
         <div className="flex flex-col md:flex-row justify-between items-start gap-6">
           <div className="flex-1">
             <h2 className="text-2xl font-semibold text-foreground flex items-center gap-2">
-              <span className={cn('p-1.5 rounded-lg bg-gradient-to-br', config.accentFrom, config.accentTo)}>
+              <span className="p-1.5 rounded-lg bg-[#011b6a]">
                 <BarChart3 className="h-5 w-5 text-white" />
               </span>
               {config.title}
@@ -851,11 +1006,11 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
               onDragLeave={() => setIsDragging(false)}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={cn('mx-auto mb-6 p-6 rounded-2xl border-2 border-dashed cursor-pointer transition-colors w-32 h-32 flex items-center justify-center',
+              className={cn('mx-auto mb-6 p-4 sm:p-6 rounded-2xl border-2 border-dashed cursor-pointer transition-colors w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center',
                 isDragging ? 'border-primary bg-primary/10' : 'border-border/40 hover:border-primary/40 hover:bg-muted/30'
               )}
             >
-              <FileUp className={cn('h-12 w-12', isDragging ? 'text-primary' : 'text-muted-foreground/50')} />
+              <FileUp className={cn('h-8 w-8 sm:h-12 sm:w-12', isDragging ? 'text-primary' : 'text-muted-foreground/50')} />
             </div>
             <CardTitle className="text-foreground text-xl mb-3">Sube un archivo CSV para comenzar el análisis</CardTitle>
           </CardHeader>
@@ -867,39 +1022,14 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
         </Card>
       )}
 
-      {/* ── Client name + Analyze button ────────────────────────────────────── */}
-      {reportData.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-          <div className="sm:col-span-2">
-            <Label className="text-xs font-medium text-muted-foreground">Nombre del Cliente (opcional)</Label>
-            <Input
-              value={clientName}
-              onChange={e => setClientName(e.target.value)}
-              placeholder="Ej. Empresa ABC"
-              className="mt-1"
-              disabled={isAnyGenerating}
-            />
-          </div>
-          <div className="flex items-end">
-            <Button
-              className={cn('w-full gap-2 bg-gradient-to-r hover:opacity-90', config.accentFrom, config.accentTo)}
-              onClick={generateAll}
-              disabled={isAnyGenerating}
-            >
-              {isAnyGenerating ? <Loader2 className="h-4 w-4 animate-spin" /> : <Brain className="h-4 w-4" />}
-              {isAnyGenerating ? 'Analizando...' : `Analizar con IA (${reportData.length})`}
-            </Button>
-          </div>
-        </div>
-      )}
 
       {/* ── Summary stats ───────────────────────────────────────────────────── */}
       {reportData.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-          <SummaryStatCard label="Gasto Total" value={`$${totalSpent.toFixed(2)}`} icon={DollarSign} color="bg-[#011b6a]" />
-          <SummaryStatCard label="Resultados" value={totalResults.toLocaleString()} icon={Target} color="bg-orange-500" />
-          <SummaryStatCard label="Impresiones" value={totalImpressions >= 1000 ? `${(totalImpressions / 1000).toFixed(1)}K` : totalImpressions.toString()} icon={TrendingUp} color="bg-blue-500" />
-          <SummaryStatCard label="Alcance" value={totalReach >= 1000 ? `${(totalReach / 1000).toFixed(1)}K` : totalReach.toString()} icon={Users} color="bg-green-500" />
+          <SummaryStatCard label="Gasto Total" value={`$${totalSpent.toFixed(2)}`} icon={DollarSign} color={config.primaryHex} />
+          <SummaryStatCard label="Resultados" value={totalResults.toLocaleString()} icon={Target} color={config.accentHex} />
+          <SummaryStatCard label="Impresiones" value={totalImpressions >= 1000 ? `${(totalImpressions / 1000).toFixed(1)}K` : totalImpressions.toString()} icon={TrendingUp} color={config.primaryHex} />
+          <SummaryStatCard label="Alcance" value={totalReach >= 1000 ? `${(totalReach / 1000).toFixed(1)}K` : totalReach.toString()} icon={Users} color={config.accentHex} />
         </div>
       )}
 
@@ -956,21 +1086,21 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
 
       {/* ── View mode + count ───────────────────────────────────────────────── */}
       {reportData.length > 0 && (
-        <div className="flex items-center justify-between mb-6 gap-4">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-2 sm:gap-4">
+          <div className="flex items-center flex-wrap gap-2">
             <span className="text-sm text-muted-foreground">{reportData.length} campaña{reportData.length !== 1 ? 's' : ''}</span>
             {isSavedToHistory && (
               <span className="text-xs text-green-600 bg-green-50 border border-green-200 px-2 py-0.5 rounded-full flex items-center gap-1">
-                <CheckCircle2 className="h-3 w-3" /> Guardado en historial
+                <CheckCircle2 className="h-3 w-3" /> Guardado
               </span>
             )}
             {aiDoneCount > 0 && (
               <span className="text-xs text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded-full">
-                {aiDoneCount}/{reportData.length} análisis generados
+                {aiDoneCount}/{reportData.length} IA
               </span>
             )}
           </div>
-          <Tabs value={viewMode} onValueChange={v => setViewMode(v as 'list' | 'grid')} className="w-auto">
+          <Tabs value={viewMode} onValueChange={v => setViewMode(v as 'list' | 'grid')} className="w-auto self-end sm:self-auto">
             <TabsList className="grid grid-cols-2 rounded-lg bg-muted/80 h-8">
               <TabsTrigger value="list" className="rounded-md flex items-center gap-1.5 text-xs h-7">
                 <List className="h-3.5 w-3.5" /> Lista
@@ -1002,7 +1132,7 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
                   <div className="flex items-center gap-3">
                     <div className={cn(
                       'w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0',
-                      hasError ? 'bg-destructive' : hasAi ? 'bg-green-500' : isGeneratingThis ? 'bg-primary' : 'bg-muted-foreground'
+                      hasError ? 'bg-destructive' : hasAi ? 'bg-green-500' : isGeneratingThis ? 'bg-[#011b6a]' : 'bg-muted-foreground'
                     )}>
                       {isGeneratingThis ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : index + 1}
                     </div>
@@ -1101,7 +1231,7 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
                         </CardDescription>
                       </CardHeader>
                       <CardContent className="pt-0">
-                        <CampaignTimelineChart dailyEntries={campaign.dailyEntries} />
+                        <CampaignTimelineChart dailyEntries={campaign.dailyEntries} primaryColor={config.primaryHex} accentColor={config.accentHex} />
                       </CardContent>
                     </Card>
                   )}
@@ -1129,7 +1259,7 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
                 <CardHeader className="pb-2">
                   <div className="flex items-start justify-between gap-2">
                     <div className={cn('w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5',
-                      isGeneratingThis ? 'bg-primary' : hasAi ? 'bg-green-500' : 'bg-muted-foreground'
+                      isGeneratingThis ? 'bg-[#011b6a]' : hasAi ? 'bg-green-500' : 'bg-muted-foreground'
                     )}>
                       {isGeneratingThis ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : index + 1}
                     </div>
@@ -1200,7 +1330,7 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
                 </div>
 
                 {/* Combined timeline chart */}
-                <CampaignTimelineChart dailyEntries={aggregatedMetrics.combinedDailyEntries} />
+                <CampaignTimelineChart dailyEntries={aggregatedMetrics.combinedDailyEntries} primaryColor={config.primaryHex} accentColor={config.accentHex} />
               </div>
             )}
 
@@ -1208,7 +1338,7 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
             {aggregatedMetrics.investmentByCampaign.length > 1 && (
               <div className="space-y-4">
                 <h4 className="text-lg font-semibold text-foreground">Inversión por Campaña</h4>
-                <CampaignSpendChart data={reportData} />
+                <CampaignSpendChart data={reportData} palette={config.chartPalette} />
               </div>
             )}
 
@@ -1229,8 +1359,8 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
                     {reportData.map((row, i) => (
                       <tr key={i} className="hover:bg-muted/30 transition-colors">
                         <td className="px-3 py-2.5">
-                          <p className="font-medium text-foreground max-w-[200px] truncate">{row.campaignName}</p>
-                          {row.adSetName && <p className="text-muted-foreground text-xs truncate max-w-[200px]">{row.adSetName}</p>}
+                          <p className="font-medium text-foreground max-w-[100px] sm:max-w-[180px] truncate">{row.campaignName}</p>
+                          {row.adSetName && <p className="text-muted-foreground text-xs truncate max-w-[100px] sm:max-w-[180px]">{row.adSetName}</p>}
                         </td>
                         {selectedMetrics.map(m => (
                           <td key={m.id} className="px-3 py-2.5 text-right text-foreground font-medium whitespace-nowrap">
@@ -1284,7 +1414,7 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
                 disabled={isAnyGenerating}
                 variant="outline"
                 size="sm"
-                className="gap-2 border-blue-200 text-blue-700 hover:bg-blue-50"
+                className="gap-2 border-[#011b6a]/20 text-[#011b6a] hover:bg-[#011b6a]/5"
               >
                 <Mail className="h-4 w-4" /> Enviar por Email
               </Button>
@@ -1406,7 +1536,7 @@ function AnalyzerInner({ config }: { config: AnalyzerConfig }) {
               <Button variant="outline" onClick={() => { setIsSendDialogOpen(false); setEmailRecipient(''); }} disabled={isSending}>
                 Cancelar
               </Button>
-              <Button onClick={handleSendEmail} disabled={isSending || !emailRecipient.trim()} className="gap-2 bg-blue-600 hover:bg-blue-700">
+              <Button onClick={handleSendEmail} disabled={isSending || !emailRecipient.trim()} className="gap-2 bg-[#011b6a] hover:bg-[#02308a] text-white">
                 {isSending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Mail className="h-4 w-4" />}
                 {isSending ? 'Enviando...' : 'Enviar Reporte'}
               </Button>
