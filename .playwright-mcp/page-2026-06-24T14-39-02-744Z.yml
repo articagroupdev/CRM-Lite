@@ -1,0 +1,498 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - region "Announcement" [ref=e3]:
+    - generic [ref=e4]:
+      - img [ref=e6]
+      - paragraph [ref=e8]: See the biggest outages we detected early in May 2026
+    - link "Learn more" [ref=e9] [cursor=pointer]:
+      - /url: https://statusgator.com/blog/may-2026-early-warning-signals/
+  - banner [ref=e10]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - button "Open main menu" [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+        - link "StatusGator" [ref=e17] [cursor=pointer]:
+          - /url: /
+          - img "StatusGator" [ref=e18]
+      - generic [ref=e20]:
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - link "StatusGator" [ref=e24] [cursor=pointer]:
+              - /url: /
+              - img "StatusGator" [ref=e25]
+            - button "Close main menu" [ref=e26] [cursor=pointer]:
+              - img [ref=e27]
+          - navigation "Main navigation" [ref=e29]:
+            - button "Use Cases toggle menu icon" [ref=e31] [cursor=pointer]:
+              - generic [ref=e32]: Use Cases
+              - img "toggle menu icon" [ref=e34]
+            - button "Features toggle menu icon" [ref=e37] [cursor=pointer]:
+              - generic [ref=e38]: Features
+              - img "toggle menu icon" [ref=e40]
+            - button "Pricing toggle menu icon" [ref=e43] [cursor=pointer]:
+              - generic [ref=e44]: Pricing
+              - img "toggle menu icon" [ref=e46]
+            - button "Integrations toggle menu icon" [ref=e49] [cursor=pointer]:
+              - generic [ref=e50]: Integrations
+              - img "toggle menu icon" [ref=e52]
+            - link "Blog" [ref=e54] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=e55]:
+            - link "Sign In" [ref=e56] [cursor=pointer]:
+              - /url: /users/sign_in
+            - link "Sign Up" [ref=e57] [cursor=pointer]:
+              - /url: /users/sign_up
+        - generic [ref=e58]:
+          - button "Open search" [ref=e59] [cursor=pointer]:
+            - img "magnifying glass icon" [ref=e60]
+          - link "Sign In" [ref=e62] [cursor=pointer]:
+            - /url: /users/sign_in
+          - link "Sign Up" [ref=e63] [cursor=pointer]:
+            - /url: /users/sign_up
+  - main [ref=e64]:
+    - generic [ref=e66]:
+      - heading "Now monitoring and normalizing data from 8,790 services!" [level=1] [ref=e67]:
+        - text: Now monitoring and normalizing data
+        - text: from 8,790 services!
+      - generic [ref=e70]:
+        - generic [ref=e71]:
+          - img "magnifying glass icon" [ref=e73]
+          - textbox "Search for the status of 8,790+ apps..." [ref=e75]: facebook
+        - button "Search" [ref=e76] [cursor=pointer]:
+          - generic [ref=e77]: Search
+          - img [ref=e78]
+      - generic [ref=e80]:
+        - navigation [ref=e82]:
+          - heading "Browse" [level=3] [ref=e83]
+          - generic [ref=e84]:
+            - link "Most Popular" [ref=e86] [cursor=pointer]:
+              - /url: /search/popular
+            - link "... for Education" [ref=e88] [cursor=pointer]:
+              - /url: /search/popular/education
+            - link "... for DevOps" [ref=e90] [cursor=pointer]:
+              - /url: /search/popular/devops
+            - link "... for HelpDesk" [ref=e92] [cursor=pointer]:
+              - /url: /search/popular/it
+            - link "Recently Added" [ref=e94] [cursor=pointer]:
+              - /url: /search/recent
+          - heading "Categories" [level=3] [ref=e95]
+          - generic [ref=e96]:
+            - link "Accounting" [ref=e98] [cursor=pointer]:
+              - /url: /search/accounting
+            - link "Advertising" [ref=e100] [cursor=pointer]:
+              - /url: /search/advertising
+            - link "AI" [ref=e102] [cursor=pointer]:
+              - /url: /search/ai
+            - link "Analytics" [ref=e104] [cursor=pointer]:
+              - /url: /search/analytics
+            - link "APIs" [ref=e106] [cursor=pointer]:
+              - /url: /search/apis
+            - link "Audio" [ref=e108] [cursor=pointer]:
+              - /url: /search/audio
+            - link "Audit" [ref=e110] [cursor=pointer]:
+              - /url: /search/audit
+            - link "Authentication" [ref=e112] [cursor=pointer]:
+              - /url: /search/authentication
+            - link "Backup" [ref=e114] [cursor=pointer]:
+              - /url: /search/backup
+            - link "BI" [ref=e116] [cursor=pointer]:
+              - /url: /search/bi
+            - generic [ref=e117] [cursor=pointer]: Show More
+        - generic [ref=e118]:
+          - link "Meta icon Meta Operator of Facebook, Instagram, WhatsApp, and Threads" [ref=e119] [cursor=pointer]:
+            - /url: /services/meta
+            - generic [ref=e120]:
+              - img "Meta icon" [ref=e122]
+              - generic [ref=e123]:
+                - heading "Meta" [level=3] [ref=e124]
+                - paragraph [ref=e125]: Operator of Facebook, Instagram, WhatsApp, and Threads
+          - link "Meta Workplace icon Meta Workplace Collaborative workspace for teams. unofficial service icon" [ref=e126] [cursor=pointer]:
+            - /url: /services/meta-workplace
+            - generic [ref=e127]:
+              - img "Meta Workplace icon" [ref=e129]
+              - generic [ref=e130]:
+                - heading "Meta Workplace" [level=3] [ref=e131]
+                - paragraph [ref=e132]: Collaborative workspace for teams.
+            - img "unofficial service icon" [ref=e136]
+          - link "META Data Transparency icon META Data Transparency Provides insights into data usage policies." [ref=e139] [cursor=pointer]:
+            - /url: /services/meta-data-transparency
+            - generic [ref=e140]:
+              - img "META Data Transparency icon" [ref=e142]
+              - generic [ref=e143]:
+                - heading "META Data Transparency" [level=3] [ref=e144]
+                - paragraph [ref=e145]: Provides insights into data usage policies.
+          - link "Later icon Later Social media scheduling and influencer marketing platform." [ref=e146] [cursor=pointer]:
+            - /url: /services/later
+            - generic [ref=e147]:
+              - img "Later icon" [ref=e149]
+              - generic [ref=e150]:
+                - heading "Later" [level=3] [ref=e151]
+                - paragraph [ref=e152]: Social media scheduling and influencer marketing platform.
+          - link "Planable icon Planable Social media content planning and collaboration tool for marketers." [ref=e153] [cursor=pointer]:
+            - /url: /services/planable
+            - generic [ref=e154]:
+              - img "Planable icon" [ref=e156]
+              - generic [ref=e157]:
+                - heading "Planable" [level=3] [ref=e158]
+                - paragraph [ref=e159]: Social media content planning and collaboration tool for marketers.
+          - link "Rasayel icon Rasayel WhatsApp B2B sales platform with chatbots, AI, broadcasts, and more." [ref=e160] [cursor=pointer]:
+            - /url: /services/rasayel
+            - generic [ref=e161]:
+              - img "Rasayel icon" [ref=e163]
+              - generic [ref=e164]:
+                - heading "Rasayel" [level=3] [ref=e165]
+                - paragraph [ref=e166]: WhatsApp B2B sales platform with chatbots, AI, broadcasts, and more.
+          - link "ManyChat icon ManyChat Automate interactive conversations on Instagram, Facebook, and SMS to grow brand." [ref=e167] [cursor=pointer]:
+            - /url: /services/manychat
+            - generic [ref=e168]:
+              - img "ManyChat icon" [ref=e170]
+              - generic [ref=e171]:
+                - heading "ManyChat" [level=3] [ref=e172]
+                - paragraph [ref=e173]: Automate interactive conversations on Instagram, Facebook, and SMS to grow brand.
+          - link "Zoom icon Zoom Video meetings, team chat, VoIP phone, webinars, whiteboard, contact center." [ref=e174] [cursor=pointer]:
+            - /url: /services/zoom
+            - generic [ref=e175]:
+              - img "Zoom icon" [ref=e177]
+              - generic [ref=e178]:
+                - heading "Zoom" [level=3] [ref=e179]
+                - paragraph [ref=e180]: Video meetings, team chat, VoIP phone, webinars, whiteboard, contact center.
+          - link "SHOPLINE icon SHOPLINE E-commerce solution for businesses to go online and global." [ref=e181] [cursor=pointer]:
+            - /url: /services/shopline
+            - generic [ref=e182]:
+              - img "SHOPLINE icon" [ref=e184]
+              - generic [ref=e185]:
+                - heading "SHOPLINE" [level=3] [ref=e186]
+                - paragraph [ref=e187]: E-commerce solution for businesses to go online and global.
+          - link "Glassix icon Glassix AI-powered customer support and omnichannel ticketing software." [ref=e188] [cursor=pointer]:
+            - /url: /services/glassix
+            - generic [ref=e189]:
+              - img "Glassix icon" [ref=e191]
+              - generic [ref=e192]:
+                - heading "Glassix" [level=3] [ref=e193]
+                - paragraph [ref=e194]: AI-powered customer support and omnichannel ticketing software.
+          - link "Bodyguard icon Bodyguard Content moderation and audience insights solution." [ref=e195] [cursor=pointer]:
+            - /url: /services/bodyguard
+            - generic [ref=e196]:
+              - img "Bodyguard icon" [ref=e198]
+              - generic [ref=e199]:
+                - heading "Bodyguard" [level=3] [ref=e200]
+                - paragraph [ref=e201]: Content moderation and audience insights solution.
+          - link "Callbell icon Callbell Unified messaging platform for WhatsApp, Messenger, Instagram, and Telegram." [ref=e202] [cursor=pointer]:
+            - /url: /services/callbell
+            - generic [ref=e203]:
+              - img "Callbell icon" [ref=e205]
+              - generic [ref=e206]:
+                - heading "Callbell" [level=3] [ref=e207]
+                - paragraph [ref=e208]: Unified messaging platform for WhatsApp, Messenger, Instagram, and Telegram.
+          - link "Modrinth icon Modrinth Discover and share Minecraft mods and content." [ref=e209] [cursor=pointer]:
+            - /url: /services/modrinth
+            - generic [ref=e210]:
+              - img "Modrinth icon" [ref=e212]
+              - generic [ref=e213]:
+                - heading "Modrinth" [level=3] [ref=e214]
+                - paragraph [ref=e215]: Discover and share Minecraft mods and content.
+          - link "Chatfuel icon Chatfuel AI-powered chatbot platform for sales and marketing across multiple channels." [ref=e216] [cursor=pointer]:
+            - /url: /services/chatfuel
+            - generic [ref=e217]:
+              - img "Chatfuel icon" [ref=e219]
+              - generic [ref=e220]:
+                - heading "Chatfuel" [level=3] [ref=e221]
+                - paragraph [ref=e222]: AI-powered chatbot platform for sales and marketing across multiple channels.
+          - link "Switcher icon Switcher Live streaming platform for engaging audiences and monetizing content." [ref=e223] [cursor=pointer]:
+            - /url: /services/switcher
+            - generic [ref=e224]:
+              - img "Switcher icon" [ref=e226]
+              - generic [ref=e227]:
+                - heading "Switcher" [level=3] [ref=e228]
+                - paragraph [ref=e229]: Live streaming platform for engaging audiences and monetizing content.
+          - link "Chatrace icon Chatrace Omnichannel chatbot platform for sales, marketing, and customer support." [ref=e230] [cursor=pointer]:
+            - /url: /services/chatrace
+            - generic [ref=e231]:
+              - img "Chatrace icon" [ref=e233]
+              - generic [ref=e234]:
+                - heading "Chatrace" [level=3] [ref=e235]
+                - paragraph [ref=e236]: Omnichannel chatbot platform for sales, marketing, and customer support.
+          - link "Qualifio icon Qualifio Interactive data collection platform for building relationships with customers." [ref=e237] [cursor=pointer]:
+            - /url: /services/qualifio
+            - generic [ref=e238]:
+              - img "Qualifio icon" [ref=e240]
+              - generic [ref=e241]:
+                - heading "Qualifio" [level=3] [ref=e242]
+                - paragraph [ref=e243]: Interactive data collection platform for building relationships with customers.
+          - link "Feed The Beast icon Feed The Beast Minecraft mods and modpacks for Java and Bedrock editions." [ref=e244] [cursor=pointer]:
+            - /url: /services/feed-the-beast
+            - generic [ref=e245]:
+              - img "Feed The Beast icon" [ref=e247]
+              - generic [ref=e248]:
+                - heading "Feed The Beast" [level=3] [ref=e249]
+                - paragraph [ref=e250]: Minecraft mods and modpacks for Java and Bedrock editions.
+          - link "Swat.io icon Swat.io Social media management tool for professionals." [ref=e251] [cursor=pointer]:
+            - /url: /services/swatio
+            - generic [ref=e252]:
+              - img "Swat.io icon" [ref=e254]
+              - generic [ref=e255]:
+                - heading "Swat.io" [level=3] [ref=e256]
+                - paragraph [ref=e257]: Social media management tool for professionals.
+          - link "Gnatta icon Gnatta Omnichannel customer communication tool for teams and suppliers." [ref=e258] [cursor=pointer]:
+            - /url: /services/gnatta
+            - generic [ref=e259]:
+              - img "Gnatta icon" [ref=e261]
+              - generic [ref=e262]:
+                - heading "Gnatta" [level=3] [ref=e263]
+                - paragraph [ref=e264]: Omnichannel customer communication tool for teams and suppliers.
+  - contentinfo [ref=e265]:
+    - generic [ref=e267]:
+      - generic [ref=e268]:
+        - generic [ref=e269]:
+          - generic [ref=e270]: Use Cases
+          - generic [ref=e271]:
+            - img "it teams icon" [ref=e272]
+            - link "IT Teams" [ref=e274] [cursor=pointer]:
+              - /url: /use-cases/it-teams
+          - generic [ref=e275]:
+            - img "devops icon" [ref=e276]
+            - link "DevOps" [ref=e278] [cursor=pointer]:
+              - /url: /use-cases/devops
+          - generic [ref=e279]:
+            - img "education icon" [ref=e280]
+            - link "Education" [ref=e282] [cursor=pointer]:
+              - /url: /use-cases/education
+          - generic [ref=e283]:
+            - img "enterprise icon" [ref=e284]
+            - link "Enterprise" [ref=e286] [cursor=pointer]:
+              - /url: /use-cases/enterprise
+          - generic [ref=e287]:
+            - img "managed service providers icon" [ref=e288]
+            - link "Managed service providers" [ref=e290] [cursor=pointer]:
+              - /url: /use-cases/managed-service-providers
+          - generic [ref=e291]:
+            - img "competitive intelligence icon" [ref=e292]
+            - link "Competitive intelligence" [ref=e294] [cursor=pointer]:
+              - /url: /use-cases/competitive-intelligence
+          - generic [ref=e295]:
+            - img "e-commerce icon" [ref=e296]
+            - link "E-commerce" [ref=e301] [cursor=pointer]:
+              - /url: /use-cases/e-commerce
+          - generic [ref=e302]:
+            - img "saas icon" [ref=e303]
+            - link "SaaS providers" [ref=e305] [cursor=pointer]:
+              - /url: /use-cases/saas
+        - generic [ref=e306]:
+          - generic [ref=e307]: Features
+          - generic [ref=e308]:
+            - img "status-page" [ref=e309]
+            - link "Status page" [ref=e310] [cursor=pointer]:
+              - /url: /features/status-page
+          - generic [ref=e311]:
+            - img "private-status-page" [ref=e312]
+            - link "Private status page" [ref=e313] [cursor=pointer]:
+              - /url: /features/private-status-page
+          - generic [ref=e314]:
+            - img "status-aggregation" [ref=e315]
+            - link "Status aggregation" [ref=e316] [cursor=pointer]:
+              - /url: /features/status-aggregation
+          - generic [ref=e317]:
+            - img "status-page-aggregator" [ref=e318]
+            - link "Status page aggregator" [ref=e319] [cursor=pointer]:
+              - /url: /features/status-page-aggregator
+          - generic [ref=e320]:
+            - img "cloud-monitoring" [ref=e321]
+            - link "Cloud monitoring" [ref=e322] [cursor=pointer]:
+              - /url: /features/cloud-monitoring
+          - generic [ref=e323]:
+            - img "website-monitoring" [ref=e324]
+            - link "Website monitoring" [ref=e325] [cursor=pointer]:
+              - /url: /features/website-monitoring
+          - generic [ref=e326]:
+            - img "early-warning-signals" [ref=e327]
+            - link "Early Warning Signals" [ref=e328] [cursor=pointer]:
+              - /url: /features/early-warning-signals
+          - generic [ref=e329]:
+            - img "ping-monitoring" [ref=e330]
+            - link "Ping monitoring" [ref=e331] [cursor=pointer]:
+              - /url: /features/ping-monitoring
+          - generic [ref=e332]:
+            - img "incidents" [ref=e333]
+            - link "Incidents" [ref=e334] [cursor=pointer]:
+              - /url: /features/incidents
+          - generic [ref=e335]:
+            - img [ref=e336]
+            - link "Multi-region monitoring" [ref=e340] [cursor=pointer]:
+              - /url: /multi-region-monitoring
+        - generic [ref=e341]:
+          - generic [ref=e342]: Pricing
+          - generic [ref=e343]:
+            - img [ref=e344]
+            - link "Business" [ref=e346] [cursor=pointer]:
+              - /url: /plans
+          - generic [ref=e347]:
+            - img [ref=e348]
+            - link "Education" [ref=e350] [cursor=pointer]:
+              - /url: /plans/education
+          - generic [ref=e351]: StatusGator vs.
+          - generic [ref=e352]:
+            - img [ref=e353]
+            - link "Other status page tools" [ref=e357] [cursor=pointer]:
+              - /url: /compare/status-page-tools
+          - generic [ref=e358]:
+            - img [ref=e359]
+            - link "Other monitoring tools" [ref=e361] [cursor=pointer]:
+              - /url: /compare/monitoring-tools
+          - generic [ref=e362]:
+            - img [ref=e363]
+            - link "Other status aggregators" [ref=e365] [cursor=pointer]:
+              - /url: /compare/status-aggregators
+        - generic [ref=e366]:
+          - generic [ref=e367]: More
+          - generic [ref=e368]:
+            - generic [ref=e369]:
+              - img [ref=e370]
+              - link "About us" [ref=e372] [cursor=pointer]:
+                - /url: /about
+            - generic [ref=e373]:
+              - img [ref=e374]
+              - link "In the Media" [ref=e377] [cursor=pointer]:
+                - /url: /in-the-media
+            - generic [ref=e378]:
+              - img [ref=e379]
+              - link "Service Directory" [ref=e381] [cursor=pointer]:
+                - /url: /search
+            - generic [ref=e382]:
+              - img [ref=e383]
+              - link "Integrations" [ref=e385] [cursor=pointer]:
+                - /url: /integration/all
+            - generic [ref=e386]:
+              - img [ref=e387]
+              - link "Support" [ref=e389] [cursor=pointer]:
+                - /url: https://support.statusgator.com/support/home
+            - generic [ref=e390]:
+              - img [ref=e391]
+              - link "Blog" [ref=e393] [cursor=pointer]:
+                - /url: /blog/
+            - generic [ref=e394]:
+              - img [ref=e395]
+              - link "Changelog" [ref=e399] [cursor=pointer]:
+                - /url: https://statusgator.com/blog/category/changelog/
+            - generic [ref=e400]:
+              - img [ref=e401]
+              - link "Trust and security" [ref=e403] [cursor=pointer]:
+                - /url: /trust
+            - generic [ref=e404]:
+              - img [ref=e405]
+              - link "Vulnerability" [ref=e409] [cursor=pointer]:
+                - /url: /security
+            - generic [ref=e410]:
+              - img [ref=e411]
+              - link "Privacy" [ref=e414] [cursor=pointer]:
+                - /url: /privacy
+            - generic [ref=e415]:
+              - img [ref=e416]
+              - link "Terms" [ref=e419] [cursor=pointer]:
+                - /url: /terms
+            - generic [ref=e420]:
+              - img [ref=e421]
+              - link "FAQs" [ref=e424] [cursor=pointer]:
+                - /url: /faqs
+        - generic [ref=e425]:
+          - generic [ref=e426]: Popular Services
+          - generic [ref=e427]:
+            - generic [ref=e428]:
+              - img "Amazon Web Services" [ref=e429]
+              - link "AWS status" [ref=e430] [cursor=pointer]:
+                - /url: /services/amazon-web-services
+            - generic [ref=e431]:
+              - img "Azure" [ref=e432]
+              - link "Azure status" [ref=e433] [cursor=pointer]:
+                - /url: /services/azure
+            - generic [ref=e434]:
+              - img "Cloudflare" [ref=e435]
+              - link "Cloudflare status" [ref=e436] [cursor=pointer]:
+                - /url: /services/cloudflare
+            - generic [ref=e437]:
+              - img "GitHub" [ref=e438]
+              - link "GitHub status" [ref=e439] [cursor=pointer]:
+                - /url: /services/github
+            - generic [ref=e440]:
+              - img "Google Cloud" [ref=e441]
+              - link "Google Cloud status" [ref=e442] [cursor=pointer]:
+                - /url: /services/google-cloud
+            - generic [ref=e443]:
+              - img "Google Workspace" [ref=e444]
+              - link "Google Workspace status" [ref=e445] [cursor=pointer]:
+                - /url: /services/google-workspace
+            - generic [ref=e446]:
+              - img "Microsoft Teams" [ref=e447]
+              - link "Microsoft Teams status" [ref=e448] [cursor=pointer]:
+                - /url: /services/microsoft-teams
+            - generic [ref=e449]:
+              - img "Microsoft 365" [ref=e450]
+              - link "Microsoft 365 status" [ref=e451] [cursor=pointer]:
+                - /url: /services/microsoft-365-apps
+            - generic [ref=e452]:
+              - img "Okta" [ref=e453]
+              - link "Okta status" [ref=e454] [cursor=pointer]:
+                - /url: /services/okta
+            - generic [ref=e455]:
+              - img "OpenAI" [ref=e456]
+              - link "OpenAI status" [ref=e457] [cursor=pointer]:
+                - /url: /services/openai
+            - generic [ref=e458]:
+              - img "Salesforce" [ref=e459]
+              - link "Salesforce status" [ref=e460] [cursor=pointer]:
+                - /url: /services/salesforce
+            - generic [ref=e461]:
+              - img "Slack" [ref=e462]
+              - link "Slack status" [ref=e463] [cursor=pointer]:
+                - /url: /services/slack
+            - generic [ref=e464]:
+              - img "Zoom" [ref=e465]
+              - link "Zoom status" [ref=e466] [cursor=pointer]:
+                - /url: /services/zoom
+      - generic [ref=e467]:
+        - generic [ref=e468]:
+          - link "StatusGator Logo" [ref=e469] [cursor=pointer]:
+            - /url: /
+            - img "StatusGator Logo" [ref=e470]
+          - paragraph [ref=e471]: StatusGator is a status page aggregator and independent monitoring service tracking the availability of more than 8,790 services since 2015. References to third-party services are for identification purposes only. It is not endorsed by or affiliated with the services we monitor. All trademarks are the property of their respective owners. Copyright © 2026 Nimble Industries, Inc.
+        - generic [ref=e472]:
+          - generic [ref=e473]:
+            - link "StatusGator on reddit" [ref=e474] [cursor=pointer]:
+              - /url: https://www.reddit.com/r/StatusGator/?rdt=37492
+              - img [ref=e475]
+            - link "StatusGator on linkedin" [ref=e477] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/statusgator/
+              - img [ref=e478]
+            - link "StatusGator on youtube" [ref=e480] [cursor=pointer]:
+              - /url: https://www.youtube.com/@StatusGator
+              - img [ref=e481]
+            - link "StatusGator on bluesky" [ref=e484] [cursor=pointer]:
+              - /url: https://bsky.app/profile/statusgator.bsky.social
+              - img [ref=e485]
+            - link "StatusGator on mastodon" [ref=e487] [cursor=pointer]:
+              - /url: https://mastodon.social/@statusgator
+              - img [ref=e488]
+            - link "StatusGator on github" [ref=e490] [cursor=pointer]:
+              - /url: https://github.com/StatusGator
+              - img [ref=e491]
+            - link "StatusGator on facebook" [ref=e493] [cursor=pointer]:
+              - /url: https://www.facebook.com/profile.php?id=61555868134663
+              - img [ref=e494]
+            - link "StatusGator on x" [ref=e496] [cursor=pointer]:
+              - /url: https://x.com/statusgator
+              - img [ref=e497]
+          - generic [ref=e499]:
+            - link "StatusGator Trust" [ref=e500] [cursor=pointer]:
+              - /url: https://statusgator.com/trust
+              - img "SOC 2 Type 2 Certified" [ref=e501]
+            - link "StatusGator Accessibility Conformance Report (VPAT)" [ref=e502] [cursor=pointer]:
+              - /url: https://support.statusgator.com/support/solutions/articles/47001293313-statusgator-accessibility-conformance-report-vpat-
+              - img "Accessibility Conformance Report" [ref=e503]
+  - iframe [ref=e504]:
+    - generic [active]:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - img "Help"

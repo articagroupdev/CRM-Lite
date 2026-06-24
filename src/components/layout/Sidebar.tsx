@@ -12,7 +12,7 @@ import {
   Megaphone, EnvelopeSimple, Users, ChartBar,
   SignOut, CaretRight, CaretDown,
   List as ListIcon, X, ChartBarHorizontal, CalendarBlank, ClockCounterClockwise,
-  GearSix, UserCircle, Bell, NotePencil,
+  GearSix, UserCircle, Bell, NotePencil, Pulse,
 } from "@phosphor-icons/react";
 
 function isLightColor(hex: string): boolean {
@@ -49,6 +49,11 @@ const navItems: NavItem[] = [
     children: [
       { label: "Email Planner", href: "/email-planner", icon: <CalendarBlank size={15} /> },
     ],
+  },
+  {
+    label: "Servicios Meta",
+    href: "/status-gator",
+    icon: <Pulse size={18} weight="duotone" />,
   },
   {
     label: "Usuarios",

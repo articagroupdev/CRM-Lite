@@ -1,0 +1,969 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - region "Announcement" [ref=e5]:
+    - generic [ref=e6]:
+      - img "Chrome icon" [ref=e8]
+      - paragraph [ref=e15]: New! Check service status instantly with our Chrome extension
+    - link "Add to Chrome External link icon" [ref=e16] [cursor=pointer]:
+      - /url: https://chromewebstore.google.com/detail/statusgator/gkdejaehclmenkkkabkehbiacgmmbaji
+      - text: Add to Chrome
+      - img "External link icon" [ref=e17]
+  - banner [ref=e19]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - button "Open main menu" [ref=e23] [cursor=pointer]:
+          - img [ref=e24]
+        - link "StatusGator" [ref=e26] [cursor=pointer]:
+          - /url: /
+          - img "StatusGator" [ref=e27]
+      - generic [ref=e29]:
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - link "StatusGator" [ref=e33] [cursor=pointer]:
+              - /url: /
+              - img "StatusGator" [ref=e34]
+            - button "Close main menu" [ref=e35] [cursor=pointer]:
+              - img [ref=e36]
+          - navigation "Main navigation" [ref=e38]:
+            - button "Use Cases toggle menu icon" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: Use Cases
+              - img "toggle menu icon" [ref=e43]
+            - button "Features toggle menu icon" [ref=e46] [cursor=pointer]:
+              - generic [ref=e47]: Features
+              - img "toggle menu icon" [ref=e49]
+            - button "Pricing toggle menu icon" [ref=e52] [cursor=pointer]:
+              - generic [ref=e53]: Pricing
+              - img "toggle menu icon" [ref=e55]
+            - button "Integrations toggle menu icon" [ref=e58] [cursor=pointer]:
+              - generic [ref=e59]: Integrations
+              - img "toggle menu icon" [ref=e61]
+            - link "Blog" [ref=e63] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=e64]:
+            - link "Sign In" [ref=e65] [cursor=pointer]:
+              - /url: /users/sign_in
+            - link "Sign Up" [ref=e66] [cursor=pointer]:
+              - /url: /users/sign_up
+        - generic [ref=e67]:
+          - button "Open search" [ref=e68] [cursor=pointer]:
+            - img "magnifying glass icon" [ref=e69]
+          - link "Sign In" [ref=e71] [cursor=pointer]:
+            - /url: /users/sign_in
+          - link "Sign Up" [ref=e72] [cursor=pointer]:
+            - /url: /users/sign_up
+  - main [ref=e73]:
+    - generic [ref=e74]:
+      - generic [ref=e77]:
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - link "Home" [ref=e80] [cursor=pointer]:
+              - /url: /
+            - text: •
+            - link "Service directory" [ref=e81] [cursor=pointer]:
+              - /url: /search
+            - text: •
+            - link "WhatsApp" [ref=e82] [cursor=pointer]:
+              - /url: /services/whatsapp
+          - paragraph [ref=e83]: Unofficial status updated based on recent service health data
+        - heading "WhatsApp Status" [level=1] [ref=e84]:
+          - img [ref=e85]
+          - generic [ref=e87]: WhatsApp Status
+        - generic [ref=e88]:
+          - generic [ref=e89]:
+            - img "WhatsApp icon" [ref=e92]
+            - generic [ref=e94]:
+              - heading "Is WhatsApp down?" [level=2] [ref=e95]
+              - heading "WhatsApp is up" [level=3] [ref=e96]
+              - paragraph [ref=e97]: Instant messaging and voice calling app.
+          - generic [ref=e98]:
+            - paragraph [ref=e99]: Not working for you?
+            - button "Report an outage" [ref=e101] [cursor=pointer]
+        - paragraph [ref=e102]: StatusGator reports that WhatsApp is currently operational. There have been 409 user-submitted reports of outages in the past 24 hours.
+        - generic [ref=e103]:
+          - generic [ref=e104]: "Similar services:"
+          - link "SAP icon SAP" [ref=e105] [cursor=pointer]:
+            - /url: /services/sap
+            - img "SAP icon" [ref=e107]
+            - generic [ref=e108]: SAP
+          - link "SAP Build Apps icon SAP Build Apps" [ref=e109] [cursor=pointer]:
+            - /url: /services/sap_build_apps
+            - img "SAP Build Apps icon" [ref=e111]
+            - generic [ref=e112]: SAP Build Apps
+          - link "SAP Concur icon SAP Concur" [ref=e113] [cursor=pointer]:
+            - /url: /services/sap-concur
+            - img "SAP Concur icon" [ref=e115]
+            - generic [ref=e116]: SAP Concur
+      - generic [ref=e119]:
+        - generic [ref=e120]:
+          - generic [ref=e121]:
+            - heading "WhatsApp service health" [level=3] [ref=e122]
+            - paragraph [ref=e123]:
+              - text: This chart represents WhatsApp service health over the last 24 hours, with data points collected every 15 minutes based on issue reports, page visits, and signal strength.
+              - link "Sign up for free" [ref=e124] [cursor=pointer]:
+                - /url: /users/sign_up
+              - text: to see more WhatsApp status data.
+          - generic [ref=e125]:
+            - generic [ref=e126]:
+              - generic [ref=e127]:
+                - img "WhatsApp icon" [ref=e129]
+                - generic [ref=e130]: WhatsApp service health
+              - paragraph [ref=e131]:
+                - text: 24 hrs ending
+                - time [ref=e132]: Jun 24, 2026 10:36 AM
+            - generic [ref=e136]:
+              - generic [ref=e137]:
+                - generic [ref=e138]: ● Service up
+                - generic [ref=e139]: ● Possible outage
+                - generic [ref=e140]: ● Likely outage
+              - img [ref=e141]
+        - generic [ref=e176]:
+          - heading "Top reported issues" [level=3] [ref=e177]
+          - generic [ref=e178]:
+            - paragraph [ref=e179]: View and upvote the most commonly reported WhatsApp issues to help us better indicate the service status.
+            - list [ref=e181]:
+              - listitem "App not loading" [ref=e182]:
+                - generic [ref=e183]: App not loading
+                - button "56" [ref=e185] [cursor=pointer]:
+                  - img [ref=e186]
+                  - generic [ref=e189]: "56"
+              - listitem "Unable to download" [ref=e190]:
+                - generic [ref=e191]: Unable to download
+                - button "38" [ref=e193] [cursor=pointer]:
+                  - img [ref=e194]
+                  - generic [ref=e197]: "38"
+              - listitem "Connectivity issue" [ref=e198]:
+                - generic [ref=e199]: Connectivity issue
+                - button "24" [ref=e201] [cursor=pointer]:
+                  - img [ref=e202]
+                  - generic [ref=e205]: "24"
+              - listitem "Service down" [ref=e206]:
+                - generic [ref=e207]: Service down
+                - button "23" [ref=e209] [cursor=pointer]:
+                  - img [ref=e210]
+                  - generic [ref=e213]: "23"
+              - listitem "Error message" [ref=e214]:
+                - generic [ref=e215]: Error message
+                - button "16" [ref=e217] [cursor=pointer]:
+                  - img [ref=e218]
+                  - generic [ref=e221]: "16"
+              - listitem "Slow performance" [ref=e222]:
+                - generic [ref=e223]: Slow performance
+                - button "6" [ref=e225] [cursor=pointer]:
+                  - img [ref=e226]
+                  - generic [ref=e229]: "6"
+              - listitem "Other" [ref=e230]:
+                - generic [ref=e231]: Other
+                - button "5" [ref=e233] [cursor=pointer]:
+                  - img [ref=e234]
+                  - generic [ref=e237]: "5"
+              - listitem "Sign in problem" [ref=e238]:
+                - generic [ref=e239]: Sign in problem
+                - button "4" [ref=e241] [cursor=pointer]:
+                  - img [ref=e242]
+                  - generic [ref=e245]: "4"
+              - listitem "Server not responding" [ref=e246]:
+                - generic [ref=e247]: Server not responding
+                - button "3" [ref=e249] [cursor=pointer]:
+                  - img [ref=e250]
+                  - generic [ref=e253]: "3"
+            - generic [ref=e254]:
+              - paragraph [ref=e255]: Have a different problem with WhatsApp?
+              - button "Report an outage" [ref=e257] [cursor=pointer]
+      - generic [ref=e259]:
+        - heading "Recent outage reports" [level=3] [ref=e260]
+        - generic [ref=e261]:
+          - paragraph [ref=e262]: See recent outage reports from real WhatsApp users
+          - paragraph [ref=e263]: 5,884 outage reports in the last 24 hours
+        - generic [ref=e264]:
+          - generic [ref=e265]:
+            - generic [ref=e266]:
+              - img "User avatar" [ref=e267]
+              - generic [ref=e268]:
+                - paragraph [ref=e269]:
+                  - img "SN" [ref=e270]
+                  - text: Dakar, Senegal
+                - paragraph [ref=e271]: "\"Il y a un problème sur le code doit mettre mais il ne l’ envoie pas\""
+            - paragraph [ref=e272]:
+              - time [ref=e273]: Jun 24, 9:21 AM
+              - text: about 1 hour ago
+          - generic [ref=e274]:
+            - generic [ref=e275]:
+              - img "User avatar" [ref=e276]
+              - generic [ref=e277]:
+                - paragraph [ref=e278]:
+                  - img "IN" [ref=e279]
+                  - text: Maharashtra, India
+                - paragraph [ref=e280]: Sign in problem
+            - paragraph [ref=e281]:
+              - time [ref=e282]: Jun 24, 8:50 AM
+              - text: about 2 hours ago
+          - generic [ref=e283]:
+            - generic [ref=e284]:
+              - img "User avatar" [ref=e285]
+              - generic [ref=e286]:
+                - paragraph [ref=e287]:
+                  - img "IN" [ref=e288]
+                  - text: India
+                - paragraph [ref=e289]: App not loading
+            - paragraph [ref=e290]:
+              - time [ref=e291]: Jun 24, 8:36 AM
+              - text: about 2 hours ago
+          - generic [ref=e292]:
+            - generic [ref=e293]:
+              - img "User avatar" [ref=e294]
+              - generic [ref=e295]:
+                - paragraph [ref=e296]:
+                  - img "BB" [ref=e297]
+                  - text: Saint Michael, Barbados
+                - paragraph [ref=e298]: Sign in problem
+            - paragraph [ref=e299]:
+              - time [ref=e300]: Jun 24, 7:12 AM
+              - text: about 3 hours ago
+          - generic [ref=e301]:
+            - generic [ref=e302]:
+              - img "User avatar" [ref=e303]
+              - generic [ref=e304]:
+                - paragraph [ref=e305]:
+                  - img "KE" [ref=e306]
+                  - text: Nairobi County, Kenya
+                - paragraph [ref=e307]: Connectivity issue
+            - paragraph [ref=e308]:
+              - time [ref=e309]: Jun 24, 7:05 AM
+              - text: about 4 hours ago
+          - generic [ref=e310]:
+            - generic [ref=e311]:
+              - img "User avatar" [ref=e312]
+              - generic [ref=e313]:
+                - paragraph [ref=e314]:
+                  - img "IN" [ref=e315]
+                  - text: Madhya Pradesh, India
+                - paragraph [ref=e316]: Other
+            - paragraph [ref=e317]:
+              - time [ref=e318]: Jun 24, 5:35 AM
+              - text: about 5 hours ago
+          - generic [ref=e319]:
+            - generic [ref=e320]:
+              - img "User avatar" [ref=e321]
+              - generic [ref=e322]:
+                - paragraph [ref=e323]:
+                  - img "MY" [ref=e324]
+                  - text: Selangor, Malaysia
+                - paragraph [ref=e325]: Slow performance
+            - paragraph [ref=e326]:
+              - time [ref=e327]: Jun 24, 5:03 AM
+              - text: about 6 hours ago
+          - generic [ref=e328]:
+            - generic [ref=e329]:
+              - img "User avatar" [ref=e330]
+              - generic [ref=e331]:
+                - paragraph [ref=e332]:
+                  - img "IT" [ref=e333]
+                  - text: Italy
+                - paragraph [ref=e334]: Server not responding
+            - paragraph [ref=e335]:
+              - time [ref=e336]: Jun 24, 4:41 AM
+              - text: about 6 hours ago
+          - generic [ref=e337]:
+            - generic [ref=e338]:
+              - img "User avatar" [ref=e339]
+              - generic [ref=e340]:
+                - paragraph [ref=e341]:
+                  - img "GB" [ref=e342]
+                  - text: England, United Kingdom
+                - paragraph [ref=e343]: Service down
+            - paragraph [ref=e344]:
+              - time [ref=e345]: Jun 24, 4:24 AM
+              - text: about 6 hours ago
+          - generic [ref=e346]:
+            - generic [ref=e347]:
+              - img "User avatar" [ref=e348]
+              - generic [ref=e349]:
+                - paragraph [ref=e350]:
+                  - img "RO" [ref=e351]
+                  - text: Bucharest, Romania
+                - paragraph [ref=e352]: Unable to download
+            - paragraph [ref=e353]:
+              - time [ref=e354]: Jun 24, 4:23 AM
+              - text: about 6 hours ago
+      - generic [ref=e357]:
+        - generic [ref=e359]:
+          - img "WhatsApp outage map" [ref=e360]
+          - link "WhatsApp outage map" [ref=e362] [cursor=pointer]:
+            - /url: /services/whatsapp/map
+        - generic [ref=e363]:
+          - heading "WhatsApp outage map" [level=1] [ref=e364]
+          - paragraph [ref=e366]: Explore our interactive WhatsApp outage map to monitor real-time incidents and service issues across the globe. This dynamic map highlights regions around the world affected by recent WhatsApp outages, giving you a clear view of performance and downtime trends.
+          - generic [ref=e367]:
+            - paragraph [ref=e368]: "Top reported WhatsApp outage locations, last 24 hours:"
+            - list [ref=e369]:
+              - listitem [ref=e370]: United Kingdom
+              - listitem [ref=e371]: India
+              - listitem [ref=e372]: Israel
+          - link "WhatsApp outage map" [ref=e373] [cursor=pointer]:
+            - /url: /services/whatsapp/map
+      - generic [ref=e375]:
+        - heading "Recently detected WhatsApp outages" [level=3] [ref=e377]
+        - table [ref=e380]:
+          - rowgroup [ref=e381]:
+            - row "Incident description Duration StatusGator detected Officially acknowledged" [ref=e382]:
+              - columnheader "Incident description" [ref=e383]
+              - columnheader "Duration" [ref=e384]
+              - columnheader "StatusGator detected" [ref=e385]
+              - columnheader "Officially acknowledged" [ref=e386]
+          - rowgroup [ref=e387]:
+            - row "Unable to send or receive messages in the app and web. 4h 7m Jun 23, 2026 3:14 PM Never acknowledged" [ref=e388]:
+              - cell "Unable to send or receive messages in the app and web." [ref=e389]
+              - cell "4h 7m" [ref=e390]
+              - cell "Jun 23, 2026 3:14 PM" [ref=e391]:
+                - time [ref=e392]: Jun 23, 2026 3:14 PM
+              - cell "Never acknowledged" [ref=e393]:
+                - generic [ref=e394]: Never acknowledged
+            - row "Web version not loading or sending messages 8h 58m Jun 12, 2026 9:44 AM Never acknowledged" [ref=e395]:
+              - cell "Web version not loading or sending messages" [ref=e396]
+              - cell "8h 58m" [ref=e397]
+              - cell "Jun 12, 2026 9:44 AM" [ref=e398]:
+                - time [ref=e399]: Jun 12, 2026 9:44 AM
+              - cell "Never acknowledged" [ref=e400]:
+                - generic [ref=e401]: Never acknowledged
+            - row "WhatsApp Web redirects to Facebook login page 2h 6m May 19, 2026 7:27 PM Never acknowledged" [ref=e402]:
+              - cell "WhatsApp Web redirects to Facebook login page" [ref=e403]
+              - cell "2h 6m" [ref=e404]
+              - cell "May 19, 2026 7:27 PM" [ref=e405]:
+                - time [ref=e406]: May 19, 2026 7:27 PM
+              - cell "Never acknowledged" [ref=e407]:
+                - generic [ref=e408]: Never acknowledged
+            - row "WhatsApp Web not loading 11h 59m Feb 26, 2026 10:06 PM Never acknowledged" [ref=e409]:
+              - cell "WhatsApp Web not loading" [ref=e410]
+              - cell "11h 59m" [ref=e411]
+              - cell "Feb 26, 2026 10:06 PM" [ref=e412]:
+                - time [ref=e413]: Feb 26, 2026 10:06 PM
+              - cell "Never acknowledged" [ref=e414]:
+                - generic [ref=e415]: Never acknowledged
+            - row "App not loading or responding on desktop and web. 1h 55m Feb 19, 2026 1:39 PM Never acknowledged" [ref=e416]:
+              - cell "App not loading or responding on desktop and web." [ref=e417]
+              - cell "1h 55m" [ref=e418]
+              - cell "Feb 19, 2026 1:39 PM" [ref=e419]:
+                - time [ref=e420]: Feb 19, 2026 1:39 PM
+              - cell "Never acknowledged" [ref=e421]:
+                - generic [ref=e422]: Never acknowledged
+            - row "Delays sending messages and issues with calls 2h Nov 17, 2025 4:36 PM Never acknowledged" [ref=e423]:
+              - cell "Delays sending messages and issues with calls" [ref=e424]
+              - cell "2h" [ref=e425]
+              - cell "Nov 17, 2025 4:36 PM" [ref=e426]:
+                - time [ref=e427]: Nov 17, 2025 4:36 PM
+              - cell "Never acknowledged" [ref=e428]:
+                - generic [ref=e429]: Never acknowledged
+            - row "Chats not loading on WhatsApp Web 1h 25m Nov 4, 2025 10:29 AM Never acknowledged" [ref=e430]:
+              - cell "Chats not loading on WhatsApp Web" [ref=e431]
+              - cell "1h 25m" [ref=e432]
+              - cell "Nov 4, 2025 10:29 AM" [ref=e433]:
+                - time [ref=e434]: Nov 4, 2025 10:29 AM
+              - cell "Never acknowledged" [ref=e435]:
+                - generic [ref=e436]: Never acknowledged
+            - row "App not loading or opening 5h 32m Oct 29, 2025 4:10 PM Never acknowledged" [ref=e437]:
+              - cell "App not loading or opening" [ref=e438]
+              - cell "5h 32m" [ref=e439]
+              - cell "Oct 29, 2025 4:10 PM" [ref=e440]:
+                - time [ref=e441]: Oct 29, 2025 4:10 PM
+              - cell "Never acknowledged" [ref=e442]:
+                - generic [ref=e443]: Never acknowledged
+            - row "App not opening or loading 17h 32m Oct 29, 2025 4:09 AM Never acknowledged" [ref=e444]:
+              - cell "App not opening or loading" [ref=e445]
+              - cell "17h 32m" [ref=e446]
+              - cell "Oct 29, 2025 4:09 AM" [ref=e447]:
+                - time [ref=e448]: Oct 29, 2025 4:09 AM
+              - cell "Never acknowledged" [ref=e449]:
+                - generic [ref=e450]: Never acknowledged
+      - generic [ref=e453]:
+        - img [ref=e454]
+        - generic [ref=e455]:
+          - heading "Looking to track WhatsApp downtime and outages?" [level=3] [ref=e456]
+          - list [ref=e457]:
+            - listitem [ref=e458]:
+              - img [ref=e459]
+              - generic [ref=e461]: Receive real-time status updates
+            - listitem [ref=e462]:
+              - img [ref=e463]
+              - generic [ref=e465]: Show current status on private or public status page
+            - listitem [ref=e466]:
+              - img [ref=e467]
+              - generic [ref=e469]: Be the first to know if service is down
+            - listitem [ref=e470]:
+              - img [ref=e471]
+              - generic [ref=e473]: Keep your team informed
+            - listitem [ref=e474]:
+              - img [ref=e475]
+              - generic [ref=e477]: Monitor alongside other services and websites
+          - link "Start monitoring for free" [ref=e478] [cursor=pointer]:
+            - /url: /users/sign_up
+      - generic [ref=e480]:
+        - heading "WhatsApp status history" [level=3] [ref=e481]
+        - paragraph [ref=e482]: Since October 10, 2024, StatusGator has been monitoring WhatsApp outages, downtime, and service disruptions to provide comprehensive insights into its status history. Over the years, we've tracked and logged service outages and problems submitted by the community.
+        - list "Service status history over the last 30 days" [ref=e483]:
+          - 'listitem "April 25, 2026: Up all day" [ref=e484]'
+          - 'listitem "April 26, 2026: Up all day" [ref=e485]'
+          - 'listitem "April 27, 2026: Up all day" [ref=e486]'
+          - 'listitem "April 28, 2026: Up all day" [ref=e487]'
+          - 'listitem "April 29, 2026: Up all day" [ref=e488]'
+          - 'listitem "April 30, 2026: Up all day" [ref=e489]'
+          - 'listitem "May 01, 2026: Up all day" [ref=e490]'
+          - 'listitem "May 02, 2026: Up all day" [ref=e491]'
+          - 'listitem "May 03, 2026: Up all day" [ref=e492]'
+          - 'listitem "May 04, 2026: Up all day" [ref=e493]'
+          - 'listitem "May 05, 2026: Up all day" [ref=e494]'
+          - 'listitem "May 06, 2026: Up all day" [ref=e495]'
+          - 'listitem "May 07, 2026: Up all day" [ref=e496]'
+          - 'listitem "May 08, 2026: Up all day" [ref=e497]'
+          - 'listitem "May 09, 2026: Up all day" [ref=e498]'
+          - 'listitem "May 10, 2026: Up all day" [ref=e499]'
+          - 'listitem "May 11, 2026: Up all day" [ref=e500]'
+          - 'listitem "May 12, 2026: Up all day" [ref=e501]'
+          - 'listitem "May 13, 2026: Up all day" [ref=e502]'
+          - 'listitem "May 14, 2026: Up all day" [ref=e503]'
+          - 'listitem "May 15, 2026: Up all day" [ref=e504]'
+          - 'listitem "May 16, 2026: Up all day" [ref=e505]'
+          - 'listitem "May 17, 2026: Up all day" [ref=e506]'
+          - 'listitem "May 18, 2026: Up all day" [ref=e507]'
+          - 'listitem "May 19, 2026: Up all day" [ref=e508]'
+          - 'listitem "May 20, 2026: Up all day" [ref=e509]'
+          - 'listitem "May 21, 2026: Up all day" [ref=e510]'
+          - 'listitem "May 22, 2026: Up all day" [ref=e511]'
+          - 'listitem "May 23, 2026: Up all day" [ref=e512]'
+          - 'listitem "May 24, 2026: Up all day" [ref=e513]'
+          - 'listitem "May 25, 2026: Up all day" [ref=e514]'
+          - 'listitem "May 26, 2026: Up all day" [ref=e515]'
+          - 'listitem "May 27, 2026: Up all day" [ref=e516]'
+          - 'listitem "May 28, 2026: Up all day" [ref=e517]'
+          - 'listitem "May 29, 2026: Up all day" [ref=e518]'
+          - 'listitem "May 30, 2026: Up all day" [ref=e519]'
+          - 'listitem "May 31, 2026: Up all day" [ref=e520]'
+          - 'listitem "June 01, 2026: Up all day" [ref=e521]'
+          - 'listitem "June 02, 2026: Up all day" [ref=e522]'
+          - 'listitem "June 03, 2026: Up all day" [ref=e523]'
+          - 'listitem "June 04, 2026: Up all day" [ref=e524]'
+          - 'listitem "June 05, 2026: Up all day" [ref=e525]'
+          - 'listitem "June 06, 2026: Up all day" [ref=e526]'
+          - 'listitem "June 07, 2026: Up all day" [ref=e527]'
+          - 'listitem "June 08, 2026: Up all day" [ref=e528]'
+          - 'listitem "June 09, 2026: Up all day" [ref=e529]'
+          - 'listitem "June 10, 2026: Up all day" [ref=e530]'
+          - 'listitem "June 11, 2026: Up all day" [ref=e531]'
+          - 'listitem "June 12, 2026: Up all day" [ref=e532]'
+          - 'listitem "June 13, 2026: Up all day" [ref=e533]'
+          - 'listitem "June 14, 2026: Up all day" [ref=e534]'
+          - 'listitem "June 15, 2026: Up all day" [ref=e535]'
+          - 'listitem "June 16, 2026: Up all day" [ref=e536]'
+          - 'listitem "June 17, 2026: Up all day" [ref=e537]'
+          - 'listitem "June 18, 2026: Up all day" [ref=e538]'
+          - 'listitem "June 19, 2026: Up all day" [ref=e539]'
+          - 'listitem "June 20, 2026: Up all day" [ref=e540]'
+          - 'listitem "June 21, 2026: Up all day" [ref=e541]'
+          - 'listitem "June 22, 2026: Up all day" [ref=e542]'
+          - 'listitem "June 23, 2026: Up all day" [ref=e543]'
+          - 'listitem "June 24, 2026: Up all day" [ref=e544]'
+        - generic [ref=e545]:
+          - generic [ref=e546]: 60 days ago
+          - generic [ref=e547]: Today
+        - generic [ref=e548]:
+          - generic [ref=e551]: Up
+          - generic [ref=e554]: Down
+          - generic [ref=e557]: Warn
+          - generic [ref=e560]: Maintenance
+          - generic [ref=e563]: Unknown
+      - generic [ref=e567]:
+        - generic [ref=e568]:
+          - heading "Get notified about WhatsApp outages" [level=3] [ref=e569]
+          - paragraph [ref=e570]: Stay updated with instant alerts for WhatsApp outages by signing up now!
+        - link "Start monitoring for free" [ref=e571] [cursor=pointer]:
+          - /url: /users/sign_up
+      - generic [ref=e574]:
+        - heading "See WhatsApp status on your status page" [level=3] [ref=e575]
+        - paragraph [ref=e576]: You can also monitor any service or website on your status page
+        - img [ref=e578]
+        - link "Start monitoring for free" [ref=e580] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e584]:
+        - generic [ref=e585]:
+          - heading "Get notified about WhatsApp outages" [level=3] [ref=e586]
+          - paragraph [ref=e587]: Stay updated with instant alerts for WhatsApp outages by signing up now!
+        - link "Start monitoring for free" [ref=e588] [cursor=pointer]:
+          - /url: /users/sign_up
+      - generic [ref=e589]:
+        - generic [ref=e590]:
+          - heading "One App that has it all" [level=3] [ref=e591]
+          - paragraph [ref=e592]: With features designed to cover all your needs for monitoring and communicating outages or downtime, StatusGator keeps your team connected and informed. Stay updated on WhatsApp outages, potential problems, and its current status in real-time, ensuring you're always prepared to act.
+        - generic [ref=e595]:
+          - img "Monitor CrowdStrike along with other services and websites" [ref=e597]
+          - generic [ref=e598]:
+            - heading "Monitor WhatsApp along with other services and websites" [level=2] [ref=e599]
+            - paragraph [ref=e601]: StatusGator monitors over 8,790 cloud services, hosted applications, and websites. Just add what you need to the list, and we'll automatically aggregate their statuses into a single page. You'll receive notifications for any issues affecting you and your page subscribers.
+            - link "Start monitoring for free" [ref=e603] [cursor=pointer]:
+              - /url: /users/sign_up
+      - generic [ref=e606]:
+        - generic [ref=e607]:
+          - heading "Get notified on WhatsApp status change" [level=2] [ref=e608]
+          - paragraph [ref=e610]: "StatusGator monitors all of your services and websites and sends your team instant notifications when they go down. Stay abreast of issues that affect your team with notifications: in email, Slack, Teams, or wherever your team communicates."
+          - link "Start monitoring for free" [ref=e612] [cursor=pointer]:
+            - /url: /users/sign_up
+        - img "Get notified on CrowdStrike status change" [ref=e614]
+      - generic [ref=e617]:
+        - img "Show CrowdStrike on your status page" [ref=e619]
+        - generic [ref=e620]:
+          - heading "Show WhatsApp on your status page" [level=2] [ref=e621]
+          - paragraph [ref=e623]: Easily notify your end-users of outages using a customizable status page. Display cloud services or websites, as well as any custom monitors you add manually. Create multiple status pages tailored to different needs, customize them, and embed them for maximum effectiveness.
+          - link "Start monitoring for free" [ref=e625] [cursor=pointer]:
+            - /url: /users/sign_up
+      - generic [ref=e628]:
+        - heading "Users who monitor WhatsApp status also follow these services" [level=3] [ref=e629]
+        - generic [ref=e630]:
+          - link "Slack icon Slack up icon" [ref=e631] [cursor=pointer]:
+            - /url: /services/slack
+            - generic [ref=e632]:
+              - generic [ref=e633]:
+                - img "Slack icon" [ref=e635]
+                - generic [ref=e636]: Slack
+              - img "up icon" [ref=e637]
+          - link "Cloudflare icon Cloudflare warn icon" [ref=e639] [cursor=pointer]:
+            - /url: /services/cloudflare
+            - generic [ref=e640]:
+              - generic [ref=e641]:
+                - img "Cloudflare icon" [ref=e643]
+                - generic [ref=e644]: Cloudflare
+              - img "warn icon" [ref=e645]
+          - link "Amazon Web Services icon Amazon Web Services warn icon" [ref=e647] [cursor=pointer]:
+            - /url: /services/amazon-web-services
+            - generic [ref=e648]:
+              - generic [ref=e649]:
+                - img "Amazon Web Services icon" [ref=e651]
+                - generic [ref=e652]: Amazon Web Services
+              - img "warn icon" [ref=e653]
+          - link "GitHub icon GitHub up icon" [ref=e655] [cursor=pointer]:
+            - /url: /services/github
+            - generic [ref=e656]:
+              - generic [ref=e657]:
+                - img "GitHub icon" [ref=e659]
+                - generic [ref=e660]: GitHub
+              - img "up icon" [ref=e661]
+          - link "Azure icon Azure up icon" [ref=e663] [cursor=pointer]:
+            - /url: /services/azure
+            - generic [ref=e664]:
+              - generic [ref=e665]:
+                - img "Azure icon" [ref=e667]
+                - generic [ref=e668]: Azure
+              - img "up icon" [ref=e669]
+          - link "Google Workspace icon Google Workspace up icon" [ref=e671] [cursor=pointer]:
+            - /url: /services/google-workspace
+            - generic [ref=e672]:
+              - generic [ref=e673]:
+                - img "Google Workspace icon" [ref=e675]
+                - generic [ref=e676]: Google Workspace
+              - img "up icon" [ref=e677]
+          - link "Google Cloud icon Google Cloud warn icon" [ref=e679] [cursor=pointer]:
+            - /url: /services/google-cloud
+            - generic [ref=e680]:
+              - generic [ref=e681]:
+                - img "Google Cloud icon" [ref=e683]
+                - generic [ref=e684]: Google Cloud
+              - img "warn icon" [ref=e685]
+          - link "Zoom icon Zoom up icon" [ref=e687] [cursor=pointer]:
+            - /url: /services/zoom
+            - generic [ref=e688]:
+              - generic [ref=e689]:
+                - img "Zoom icon" [ref=e691]
+                - generic [ref=e692]: Zoom
+              - img "up icon" [ref=e693]
+          - link "OpenAI icon OpenAI warn icon" [ref=e695] [cursor=pointer]:
+            - /url: /services/openai
+            - generic [ref=e696]:
+              - generic [ref=e697]:
+                - img "OpenAI icon" [ref=e699]
+                - generic [ref=e700]: OpenAI
+              - img "warn icon" [ref=e701]
+          - link "Meta icon Meta up icon" [ref=e703] [cursor=pointer]:
+            - /url: /services/meta
+            - generic [ref=e704]:
+              - generic [ref=e705]:
+                - img "Meta icon" [ref=e707]
+                - generic [ref=e708]: Meta
+              - img "up icon" [ref=e709]
+          - link "Microsoft Teams icon Microsoft Teams up icon" [ref=e711] [cursor=pointer]:
+            - /url: /services/microsoft-teams
+            - generic [ref=e712]:
+              - generic [ref=e713]:
+                - img "Microsoft Teams icon" [ref=e715]
+                - generic [ref=e716]: Microsoft Teams
+              - img "up icon" [ref=e717]
+          - link "Microsoft 365 apps icon Microsoft 365 apps up icon" [ref=e719] [cursor=pointer]:
+            - /url: /services/microsoft-365-apps
+            - generic [ref=e720]:
+              - generic [ref=e721]:
+                - img "Microsoft 365 apps icon" [ref=e723]
+                - generic [ref=e724]: Microsoft 365 apps
+              - img "up icon" [ref=e725]
+        - generic [ref=e727]:
+          - link "Service directory" [ref=e728] [cursor=pointer]:
+            - /url: /search
+          - link "Start monitoring for free" [ref=e729] [cursor=pointer]:
+            - /url: /users/sign_up
+      - generic [ref=e731]:
+        - heading "About our WhatsApp status page integration" [level=3] [ref=e732]
+        - generic [ref=e733]:
+          - paragraph [ref=e734]: WhatsApp (Instant messaging and voice calling app) is a a SMS solution that StatusGator has been monitoring since October 2024. Over the past over 1 year, we have collected data on on outages that affected WhatsApp users. When WhatsApp users report issues, we collect that data and provide a comprehensive view of the service's status history.
+          - paragraph [ref=e735]: If you're wondering, "Is WhatsApp down?", or need to know its current status, we've got you covered. Our platform tracks every reported outage, performance issue, and maintenance window to ensure you're informed. Whether WhatsApp is experiencing a problem now or has recently resolved one, our detailed history keeps you updated.
+          - paragraph [ref=e736]:
+            - text: More than 100 StatusGator users monitor WhatsApp to get notified when it's down, is under maintenance, or has an outage. This makes it one of the most popular SMS services monitored on our platform. We've sent more than 100 notifications to our users about WhatsApp incidents, providing transparency and peace of mind. You can get alerts by
+            - link "signing up" [ref=e737] [cursor=pointer]:
+              - /url: /users/sign_up
+            - text: for a free StatusGator account.
+        - list [ref=e738]:
+          - listitem [ref=e739]:
+            - button "Early Warning Signals expand icon" [ref=e740] [cursor=pointer]:
+              - generic [ref=e741]:
+                - img [ref=e742]
+                - generic [ref=e744]: Early Warning Signals
+              - img "expand icon" [ref=e746]
+          - listitem [ref=e748]:
+            - button "Down Notifications expand icon" [ref=e749] [cursor=pointer]:
+              - generic [ref=e750]:
+                - img [ref=e751]
+                - generic [ref=e753]: Down Notifications
+              - img "expand icon" [ref=e755]
+          - listitem [ref=e757]:
+            - button "Warning Notifications expand icon" [ref=e758] [cursor=pointer]:
+              - generic [ref=e759]:
+                - img [ref=e760]
+                - generic [ref=e762]: Warning Notifications
+              - img "expand icon" [ref=e764]
+          - listitem [ref=e766]:
+            - button "Maintenance Notifications expand icon" [ref=e767] [cursor=pointer]:
+              - generic [ref=e768]:
+                - img [ref=e769]
+                - generic [ref=e771]: Maintenance Notifications
+              - img "expand icon" [ref=e773]
+          - listitem [ref=e775]:
+            - button "Status Messages expand icon" [ref=e776] [cursor=pointer]:
+              - generic [ref=e777]:
+                - img [ref=e778]
+                - generic [ref=e780]: Status Messages
+              - img "expand icon" [ref=e782]
+          - listitem [ref=e784]:
+            - button "Status Details expand icon" [ref=e785] [cursor=pointer]:
+              - generic [ref=e786]:
+                - img [ref=e787]
+                - generic [ref=e789]: Status Details
+              - img "expand icon" [ref=e791]
+          - listitem [ref=e793]:
+            - button "Component Status Filtering expand icon" [ref=e794] [cursor=pointer]:
+              - generic [ref=e795]:
+                - img [ref=e796]
+                - generic [ref=e798]: Component Status Filtering
+              - img "expand icon" [ref=e800]
+      - generic [ref=e805]:
+        - generic [ref=e806]:
+          - heading "Get notified about WhatsApp outages" [level=3] [ref=e807]
+          - paragraph [ref=e808]: Stay updated with instant alerts for WhatsApp outages by signing up now!
+        - link "Start monitoring for free" [ref=e809] [cursor=pointer]:
+          - /url: /users/sign_up
+      - generic [ref=e811]:
+        - heading "Looking for Downdetector WhatsApp alerts?" [level=3] [ref=e813]
+        - table [ref=e816]:
+          - rowgroup [ref=e817]:
+            - row "Features StatusGator Downdetector" [ref=e818]:
+              - columnheader "Features" [ref=e819]
+              - columnheader "StatusGator" [ref=e820]
+              - columnheader "Downdetector" [ref=e821]
+          - rowgroup [ref=e822]:
+            - row "More than 8,790 services monitored. check icon x icon" [ref=e823]:
+              - cell "More than 8,790 services monitored." [ref=e824]
+              - cell "check icon" [ref=e825]:
+                - img "check icon" [ref=e827]
+              - cell "x icon" [ref=e829]:
+                - img "x icon" [ref=e831]
+            - row "Proactive alerts on WhatsApp status changes sent to your Slack, Microsoft Teams, and more. check icon x icon" [ref=e833]:
+              - cell "Proactive alerts on WhatsApp status changes sent to your Slack, Microsoft Teams, and more." [ref=e834]
+              - cell "check icon" [ref=e835]:
+                - img "check icon" [ref=e837]
+              - cell "x icon" [ref=e839]:
+                - img "x icon" [ref=e841]
+            - row "Monitoring of both WhatsApp and your own apps. check icon x icon" [ref=e843]:
+              - cell "Monitoring of both WhatsApp and your own apps." [ref=e844]
+              - cell "check icon" [ref=e845]:
+                - img "check icon" [ref=e847]
+              - cell "x icon" [ref=e849]:
+                - img "x icon" [ref=e851]
+      - generic [ref=e855]:
+        - heading "Frequently asked questions" [level=2] [ref=e856]
+        - list [ref=e857]:
+          - listitem [ref=e858]:
+            - button "Is WhatsApp down today?" [ref=e859] [cursor=pointer]:
+              - paragraph [ref=e860]: Is WhatsApp down today?
+              - img [ref=e863]
+          - listitem [ref=e865]:
+            - button "How can I get notified when WhatsApp is not working or have outages?" [ref=e866] [cursor=pointer]:
+              - paragraph [ref=e867]: How can I get notified when WhatsApp is not working or have outages?
+              - img [ref=e870]
+          - listitem [ref=e872]:
+            - button "How can I find out if WhatsApp is having issues?" [ref=e873] [cursor=pointer]:
+              - paragraph [ref=e874]: How can I find out if WhatsApp is having issues?
+              - img [ref=e877]
+          - listitem [ref=e879]:
+            - button "WhatsApp status page says the service is up, but I'm having issues. What's wrong?" [ref=e880] [cursor=pointer]:
+              - paragraph [ref=e881]: WhatsApp status page says the service is up, but I'm having issues. What's wrong?
+              - img [ref=e884]
+          - listitem [ref=e886]:
+            - button "Where do you get the WhatsApp status?" [ref=e887] [cursor=pointer]:
+              - paragraph [ref=e888]: Where do you get the WhatsApp status?
+              - img [ref=e891]
+        - paragraph [ref=e893]:
+          - text: Can't find your question?
+          - link "Email us" [ref=e894] [cursor=pointer]:
+            - /url: https://support.statusgator.com/support/home
+          - text: to arrange a time to discuss. We'd love to chat!
+  - contentinfo [ref=e895]:
+    - generic [ref=e897]:
+      - generic [ref=e898]:
+        - generic [ref=e899]:
+          - generic [ref=e900]: Use Cases
+          - generic [ref=e901]:
+            - img "it teams icon" [ref=e902]
+            - link "IT Teams" [ref=e904] [cursor=pointer]:
+              - /url: /use-cases/it-teams
+          - generic [ref=e905]:
+            - img "devops icon" [ref=e906]
+            - link "DevOps" [ref=e908] [cursor=pointer]:
+              - /url: /use-cases/devops
+          - generic [ref=e909]:
+            - img "education icon" [ref=e910]
+            - link "Education" [ref=e912] [cursor=pointer]:
+              - /url: /use-cases/education
+          - generic [ref=e913]:
+            - img "enterprise icon" [ref=e914]
+            - link "Enterprise" [ref=e916] [cursor=pointer]:
+              - /url: /use-cases/enterprise
+          - generic [ref=e917]:
+            - img "managed service providers icon" [ref=e918]
+            - link "Managed service providers" [ref=e920] [cursor=pointer]:
+              - /url: /use-cases/managed-service-providers
+          - generic [ref=e921]:
+            - img "competitive intelligence icon" [ref=e922]
+            - link "Competitive intelligence" [ref=e924] [cursor=pointer]:
+              - /url: /use-cases/competitive-intelligence
+          - generic [ref=e925]:
+            - img "e-commerce icon" [ref=e926]
+            - link "E-commerce" [ref=e931] [cursor=pointer]:
+              - /url: /use-cases/e-commerce
+          - generic [ref=e932]:
+            - img "saas icon" [ref=e933]
+            - link "SaaS providers" [ref=e935] [cursor=pointer]:
+              - /url: /use-cases/saas
+        - generic [ref=e936]:
+          - generic [ref=e937]: Features
+          - generic [ref=e938]:
+            - img "status-page" [ref=e939]
+            - link "Status page" [ref=e940] [cursor=pointer]:
+              - /url: /features/status-page
+          - generic [ref=e941]:
+            - img "private-status-page" [ref=e942]
+            - link "Private status page" [ref=e943] [cursor=pointer]:
+              - /url: /features/private-status-page
+          - generic [ref=e944]:
+            - img "status-aggregation" [ref=e945]
+            - link "Status aggregation" [ref=e946] [cursor=pointer]:
+              - /url: /features/status-aggregation
+          - generic [ref=e947]:
+            - img "status-page-aggregator" [ref=e948]
+            - link "Status page aggregator" [ref=e949] [cursor=pointer]:
+              - /url: /features/status-page-aggregator
+          - generic [ref=e950]:
+            - img "cloud-monitoring" [ref=e951]
+            - link "Cloud monitoring" [ref=e952] [cursor=pointer]:
+              - /url: /features/cloud-monitoring
+          - generic [ref=e953]:
+            - img "website-monitoring" [ref=e954]
+            - link "Website monitoring" [ref=e955] [cursor=pointer]:
+              - /url: /features/website-monitoring
+          - generic [ref=e956]:
+            - img "early-warning-signals" [ref=e957]
+            - link "Early Warning Signals" [ref=e958] [cursor=pointer]:
+              - /url: /features/early-warning-signals
+          - generic [ref=e959]:
+            - img "ping-monitoring" [ref=e960]
+            - link "Ping monitoring" [ref=e961] [cursor=pointer]:
+              - /url: /features/ping-monitoring
+          - generic [ref=e962]:
+            - img "incidents" [ref=e963]
+            - link "Incidents" [ref=e964] [cursor=pointer]:
+              - /url: /features/incidents
+          - generic [ref=e965]:
+            - img [ref=e966]
+            - link "Multi-region monitoring" [ref=e970] [cursor=pointer]:
+              - /url: /multi-region-monitoring
+        - generic [ref=e971]:
+          - generic [ref=e972]: Pricing
+          - generic [ref=e973]:
+            - img [ref=e974]
+            - link "Business" [ref=e976] [cursor=pointer]:
+              - /url: /plans
+          - generic [ref=e977]:
+            - img [ref=e978]
+            - link "Education" [ref=e980] [cursor=pointer]:
+              - /url: /plans/education
+          - generic [ref=e981]: StatusGator vs.
+          - generic [ref=e982]:
+            - img [ref=e983]
+            - link "Other status page tools" [ref=e987] [cursor=pointer]:
+              - /url: /compare/status-page-tools
+          - generic [ref=e988]:
+            - img [ref=e989]
+            - link "Other monitoring tools" [ref=e991] [cursor=pointer]:
+              - /url: /compare/monitoring-tools
+          - generic [ref=e992]:
+            - img [ref=e993]
+            - link "Other status aggregators" [ref=e995] [cursor=pointer]:
+              - /url: /compare/status-aggregators
+        - generic [ref=e996]:
+          - generic [ref=e997]: More
+          - generic [ref=e998]:
+            - generic [ref=e999]:
+              - img [ref=e1000]
+              - link "About us" [ref=e1002] [cursor=pointer]:
+                - /url: /about
+            - generic [ref=e1003]:
+              - img [ref=e1004]
+              - link "In the Media" [ref=e1007] [cursor=pointer]:
+                - /url: /in-the-media
+            - generic [ref=e1008]:
+              - img [ref=e1009]
+              - link "Service Directory" [ref=e1011] [cursor=pointer]:
+                - /url: /search
+            - generic [ref=e1012]:
+              - img [ref=e1013]
+              - link "Integrations" [ref=e1015] [cursor=pointer]:
+                - /url: /integration/all
+            - generic [ref=e1016]:
+              - img [ref=e1017]
+              - link "Support" [ref=e1019] [cursor=pointer]:
+                - /url: https://support.statusgator.com/support/home
+            - generic [ref=e1020]:
+              - img [ref=e1021]
+              - link "Blog" [ref=e1023] [cursor=pointer]:
+                - /url: /blog/
+            - generic [ref=e1024]:
+              - img [ref=e1025]
+              - link "Changelog" [ref=e1029] [cursor=pointer]:
+                - /url: https://statusgator.com/blog/category/changelog/
+            - generic [ref=e1030]:
+              - img [ref=e1031]
+              - link "Trust and security" [ref=e1033] [cursor=pointer]:
+                - /url: /trust
+            - generic [ref=e1034]:
+              - img [ref=e1035]
+              - link "Vulnerability" [ref=e1039] [cursor=pointer]:
+                - /url: /security
+            - generic [ref=e1040]:
+              - img [ref=e1041]
+              - link "Privacy" [ref=e1044] [cursor=pointer]:
+                - /url: /privacy
+            - generic [ref=e1045]:
+              - img [ref=e1046]
+              - link "Terms" [ref=e1049] [cursor=pointer]:
+                - /url: /terms
+            - generic [ref=e1050]:
+              - img [ref=e1051]
+              - link "FAQs" [ref=e1054] [cursor=pointer]:
+                - /url: /faqs
+        - generic [ref=e1055]:
+          - generic [ref=e1056]: Popular Services
+          - generic [ref=e1057]:
+            - generic [ref=e1058]:
+              - img "Amazon Web Services" [ref=e1059]
+              - link "AWS status" [ref=e1060] [cursor=pointer]:
+                - /url: /services/amazon-web-services
+            - generic [ref=e1061]:
+              - img "Azure" [ref=e1062]
+              - link "Azure status" [ref=e1063] [cursor=pointer]:
+                - /url: /services/azure
+            - generic [ref=e1064]:
+              - img "Cloudflare" [ref=e1065]
+              - link "Cloudflare status" [ref=e1066] [cursor=pointer]:
+                - /url: /services/cloudflare
+            - generic [ref=e1067]:
+              - img "GitHub" [ref=e1068]
+              - link "GitHub status" [ref=e1069] [cursor=pointer]:
+                - /url: /services/github
+            - generic [ref=e1070]:
+              - img "Google Cloud" [ref=e1071]
+              - link "Google Cloud status" [ref=e1072] [cursor=pointer]:
+                - /url: /services/google-cloud
+            - generic [ref=e1073]:
+              - img "Google Workspace" [ref=e1074]
+              - link "Google Workspace status" [ref=e1075] [cursor=pointer]:
+                - /url: /services/google-workspace
+            - generic [ref=e1076]:
+              - img "Microsoft Teams" [ref=e1077]
+              - link "Microsoft Teams status" [ref=e1078] [cursor=pointer]:
+                - /url: /services/microsoft-teams
+            - generic [ref=e1079]:
+              - img "Microsoft 365" [ref=e1080]
+              - link "Microsoft 365 status" [ref=e1081] [cursor=pointer]:
+                - /url: /services/microsoft-365-apps
+            - generic [ref=e1082]:
+              - img "Okta" [ref=e1083]
+              - link "Okta status" [ref=e1084] [cursor=pointer]:
+                - /url: /services/okta
+            - generic [ref=e1085]:
+              - img "OpenAI" [ref=e1086]
+              - link "OpenAI status" [ref=e1087] [cursor=pointer]:
+                - /url: /services/openai
+            - generic [ref=e1088]:
+              - img "Salesforce" [ref=e1089]
+              - link "Salesforce status" [ref=e1090] [cursor=pointer]:
+                - /url: /services/salesforce
+            - generic [ref=e1091]:
+              - img "Slack" [ref=e1092]
+              - link "Slack status" [ref=e1093] [cursor=pointer]:
+                - /url: /services/slack
+            - generic [ref=e1094]:
+              - img "Zoom" [ref=e1095]
+              - link "Zoom status" [ref=e1096] [cursor=pointer]:
+                - /url: /services/zoom
+      - generic [ref=e1097]:
+        - generic [ref=e1098]:
+          - link "StatusGator Logo" [ref=e1099] [cursor=pointer]:
+            - /url: /
+            - img "StatusGator Logo" [ref=e1100]
+          - paragraph [ref=e1101]: StatusGator is a status page aggregator and independent monitoring service tracking the availability of more than 8,790 services since 2015. References to third-party services are for identification purposes only. It is not endorsed by or affiliated with the services we monitor. All trademarks are the property of their respective owners. Copyright © 2026 Nimble Industries, Inc.
+        - generic [ref=e1102]:
+          - generic [ref=e1103]:
+            - link "StatusGator on reddit" [ref=e1104] [cursor=pointer]:
+              - /url: https://www.reddit.com/r/StatusGator/?rdt=37492
+              - img [ref=e1105]
+            - link "StatusGator on linkedin" [ref=e1107] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/statusgator/
+              - img [ref=e1108]
+            - link "StatusGator on youtube" [ref=e1110] [cursor=pointer]:
+              - /url: https://www.youtube.com/@StatusGator
+              - img [ref=e1111]
+            - link "StatusGator on bluesky" [ref=e1114] [cursor=pointer]:
+              - /url: https://bsky.app/profile/statusgator.bsky.social
+              - img [ref=e1115]
+            - link "StatusGator on mastodon" [ref=e1117] [cursor=pointer]:
+              - /url: https://mastodon.social/@statusgator
+              - img [ref=e1118]
+            - link "StatusGator on github" [ref=e1120] [cursor=pointer]:
+              - /url: https://github.com/StatusGator
+              - img [ref=e1121]
+            - link "StatusGator on facebook" [ref=e1123] [cursor=pointer]:
+              - /url: https://www.facebook.com/profile.php?id=61555868134663
+              - img [ref=e1124]
+            - link "StatusGator on x" [ref=e1126] [cursor=pointer]:
+              - /url: https://x.com/statusgator
+              - img [ref=e1127]
+          - generic [ref=e1129]:
+            - link "StatusGator Trust" [ref=e1130] [cursor=pointer]:
+              - /url: https://statusgator.com/trust
+              - img "SOC 2 Type 2 Certified" [ref=e1131]
+            - link "StatusGator Accessibility Conformance Report (VPAT)" [ref=e1132] [cursor=pointer]:
+              - /url: https://support.statusgator.com/support/solutions/articles/47001293313-statusgator-accessibility-conformance-report-vpat-
+              - img "Accessibility Conformance Report" [ref=e1133]

@@ -1,0 +1,784 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - region "Announcement" [ref=e5]:
+    - generic [ref=e6]:
+      - img "Chrome icon" [ref=e8]
+      - paragraph [ref=e15]: New! Check service status instantly with our Chrome extension
+    - link "Add to Chrome External link icon" [ref=e16] [cursor=pointer]:
+      - /url: https://chromewebstore.google.com/detail/statusgator/gkdejaehclmenkkkabkehbiacgmmbaji
+      - text: Add to Chrome
+      - img "External link icon" [ref=e17]
+  - banner [ref=e19]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - button "Open main menu" [ref=e23] [cursor=pointer]:
+          - img [ref=e24]
+        - link "StatusGator" [ref=e26] [cursor=pointer]:
+          - /url: /
+          - img "StatusGator" [ref=e27]
+      - generic [ref=e29]:
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - link "StatusGator" [ref=e33] [cursor=pointer]:
+              - /url: /
+              - img "StatusGator" [ref=e34]
+            - button "Close main menu" [ref=e35] [cursor=pointer]:
+              - img [ref=e36]
+          - navigation "Main navigation" [ref=e38]:
+            - button "Use Cases toggle menu icon" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: Use Cases
+              - img "toggle menu icon" [ref=e43]
+            - button "Features toggle menu icon" [ref=e46] [cursor=pointer]:
+              - generic [ref=e47]: Features
+              - img "toggle menu icon" [ref=e49]
+            - button "Pricing toggle menu icon" [ref=e52] [cursor=pointer]:
+              - generic [ref=e53]: Pricing
+              - img "toggle menu icon" [ref=e55]
+            - button "Integrations toggle menu icon" [ref=e58] [cursor=pointer]:
+              - generic [ref=e59]: Integrations
+              - img "toggle menu icon" [ref=e61]
+            - link "Blog" [ref=e63] [cursor=pointer]:
+              - /url: /blog
+        - button "Open search" [ref=e65] [cursor=pointer]:
+          - img "magnifying glass icon" [ref=e66]
+  - main [ref=e68]:
+    - generic [ref=e69]:
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - link "Home" [ref=e75] [cursor=pointer]:
+              - /url: /
+            - text: •
+            - link "Service directory" [ref=e76] [cursor=pointer]:
+              - /url: /search
+            - text: •
+            - link "Instagram" [ref=e77] [cursor=pointer]:
+              - /url: /services/instagram
+          - paragraph [ref=e78]: Unofficial status updated based on recent service health data
+        - heading "Instagram Status" [level=1] [ref=e79]:
+          - img [ref=e80]
+          - generic [ref=e82]: Instagram Status
+        - generic [ref=e83]:
+          - generic [ref=e84]:
+            - img "Instagram icon" [ref=e87]
+            - generic [ref=e89]:
+              - heading "Is Instagram down?" [level=2] [ref=e90]
+              - heading "Instagram is up" [level=3] [ref=e91]
+              - paragraph [ref=e92]: Social media platform for sharing photos and videos.
+          - generic [ref=e93]:
+            - paragraph [ref=e94]: Not working for you?
+            - button "Report an outage" [ref=e96] [cursor=pointer]
+        - paragraph [ref=e97]: StatusGator reports that Instagram is currently operational. There have been 1834 user-submitted reports of outages in the past 24 hours.
+        - generic [ref=e98]:
+          - generic [ref=e99]: "Similar services:"
+          - link "RAM Tracking icon RAM Tracking" [ref=e100] [cursor=pointer]:
+            - /url: /services/ram-tracking
+            - img "RAM Tracking icon" [ref=e102]
+            - generic [ref=e103]: RAM Tracking
+      - generic [ref=e106]:
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - heading "Instagram service health" [level=3] [ref=e109]
+            - paragraph [ref=e110]:
+              - text: This chart represents Instagram service health over the last 24 hours, with data points collected every 15 minutes based on issue reports, page visits, and signal strength.
+              - link "Sign up for free" [ref=e111] [cursor=pointer]:
+                - /url: /users/sign_up
+              - text: to see more Instagram status data.
+          - generic [ref=e112]:
+            - generic [ref=e113]:
+              - generic [ref=e114]:
+                - img "Instagram icon" [ref=e116]
+                - generic [ref=e117]: Instagram service health
+              - paragraph [ref=e118]:
+                - text: 24 hrs ending
+                - time [ref=e119]: Jun 24, 2026 10:33 AM
+            - generic [ref=e123]:
+              - generic [ref=e124]:
+                - generic [ref=e125]: ● Service up
+                - generic [ref=e126]: ● Possible outage
+                - generic [ref=e127]: ● Likely outage
+              - img [ref=e128]
+        - generic [ref=e163]:
+          - heading "Top reported issues" [level=3] [ref=e164]
+          - generic [ref=e165]:
+            - paragraph [ref=e166]: View and upvote the most commonly reported Instagram issues to help us better indicate the service status.
+            - list [ref=e168]:
+              - listitem "App not loading" [ref=e169]:
+                - generic [ref=e170]: App not loading
+                - button "478" [ref=e172] [cursor=pointer]:
+                  - img [ref=e173]
+                  - generic [ref=e176]: "478"
+              - listitem "Error message" [ref=e177]:
+                - generic [ref=e178]: Error message
+                - button "109" [ref=e180] [cursor=pointer]:
+                  - img [ref=e181]
+                  - generic [ref=e184]: "109"
+              - listitem "Slow performance" [ref=e185]:
+                - generic [ref=e186]: Slow performance
+                - button "58" [ref=e188] [cursor=pointer]:
+                  - img [ref=e189]
+                  - generic [ref=e192]: "58"
+              - listitem "Service down" [ref=e193]:
+                - generic [ref=e194]: Service down
+                - button "49" [ref=e196] [cursor=pointer]:
+                  - img [ref=e197]
+                  - generic [ref=e200]: "49"
+              - listitem "Connectivity issue" [ref=e201]:
+                - generic [ref=e202]: Connectivity issue
+                - button "39" [ref=e204] [cursor=pointer]:
+                  - img [ref=e205]
+                  - generic [ref=e208]: "39"
+              - listitem "Server not responding" [ref=e209]:
+                - generic [ref=e210]: Server not responding
+                - button "31" [ref=e212] [cursor=pointer]:
+                  - img [ref=e213]
+                  - generic [ref=e216]: "31"
+              - listitem "Sign in problem" [ref=e217]:
+                - generic [ref=e218]: Sign in problem
+                - button "31" [ref=e220] [cursor=pointer]:
+                  - img [ref=e221]
+                  - generic [ref=e224]: "31"
+              - listitem "Other" [ref=e225]:
+                - generic [ref=e226]: Other
+                - button "12" [ref=e228] [cursor=pointer]:
+                  - img [ref=e229]
+                  - generic [ref=e232]: "12"
+              - listitem "Unable to download" [ref=e233]:
+                - generic [ref=e234]: Unable to download
+                - button "1" [ref=e236] [cursor=pointer]:
+                  - img [ref=e237]
+                  - generic [ref=e240]: "1"
+            - generic [ref=e241]:
+              - paragraph [ref=e242]: Have a different problem with Instagram?
+              - button "Report an outage" [ref=e244] [cursor=pointer]
+      - generic [ref=e246]:
+        - heading "Recent outage reports" [level=3] [ref=e247]
+        - generic [ref=e248]:
+          - paragraph [ref=e249]: See recent outage reports from real Instagram users
+          - paragraph [ref=e250]: 6,033 outage reports in the last 24 hours
+        - generic [ref=e251]:
+          - generic [ref=e252]:
+            - generic [ref=e253]:
+              - img "User avatar" [ref=e254]
+              - generic [ref=e255]:
+                - paragraph [ref=e256]:
+                  - img "KE" [ref=e257]
+                  - text: Nairobi County, Kenya
+                - paragraph [ref=e258]: Error message
+            - paragraph [ref=e259]:
+              - time [ref=e260]: Jun 24, 10:30 AM
+              - text: 3 minutes ago
+          - generic [ref=e261]:
+            - generic [ref=e262]:
+              - img "User avatar" [ref=e263]
+              - generic [ref=e264]:
+                - paragraph [ref=e265]:
+                  - img "KE" [ref=e266]
+                  - text: Nairobi County, Kenya
+                - paragraph [ref=e267]: Sign in problem
+            - paragraph [ref=e268]:
+              - time [ref=e269]: Jun 24, 10:30 AM
+              - text: 3 minutes ago
+          - generic [ref=e270]:
+            - generic [ref=e271]:
+              - img "User avatar" [ref=e272]
+              - generic [ref=e273]:
+                - paragraph [ref=e274]:
+                  - img "KE" [ref=e275]
+                  - text: Nairobi County, Kenya
+                - paragraph [ref=e276]: "\"cannot log in for over 7 hours\""
+            - paragraph [ref=e277]:
+              - time [ref=e278]: Jun 24, 10:28 AM
+              - text: 4 minutes ago
+          - generic [ref=e279]:
+            - generic [ref=e280]:
+              - img "User avatar" [ref=e281]
+              - generic [ref=e282]:
+                - paragraph [ref=e283]:
+                  - img "KE" [ref=e284]
+                  - text: Nairobi County, Kenya
+                - paragraph [ref=e285]: Sign in problem
+            - paragraph [ref=e286]:
+              - time [ref=e287]: Jun 24, 10:28 AM
+              - text: 5 minutes ago
+          - generic [ref=e288]:
+            - generic [ref=e289]:
+              - img "User avatar" [ref=e290]
+              - generic [ref=e291]:
+                - paragraph [ref=e292]:
+                  - img "KE" [ref=e293]
+                  - text: Nairobi County, Kenya
+                - paragraph [ref=e294]: Sign in problem
+            - paragraph [ref=e295]:
+              - time [ref=e296]: Jun 24, 10:27 AM
+              - text: 6 minutes ago
+          - generic [ref=e297]:
+            - generic [ref=e298]:
+              - img "User avatar" [ref=e299]
+              - generic [ref=e300]:
+                - paragraph [ref=e301]:
+                  - img "KE" [ref=e302]
+                  - text: Nairobi County, Kenya
+                - paragraph [ref=e303]: Sign in problem
+            - paragraph [ref=e304]:
+              - time [ref=e305]: Jun 24, 10:26 AM
+              - text: 7 minutes ago
+          - generic [ref=e306]:
+            - generic [ref=e307]:
+              - img "User avatar" [ref=e308]
+              - generic [ref=e309]:
+                - paragraph [ref=e310]:
+                  - img "KE" [ref=e311]
+                  - text: Nairobi County, Kenya
+                - paragraph [ref=e312]: Sign in problem
+            - paragraph [ref=e313]:
+              - time [ref=e314]: Jun 24, 10:22 AM
+              - text: 10 minutes ago
+          - generic [ref=e315]:
+            - generic [ref=e316]:
+              - img "User avatar" [ref=e317]
+              - generic [ref=e318]:
+                - paragraph [ref=e319]:
+                  - img "KE" [ref=e320]
+                  - text: Nairobi County, Kenya
+                - paragraph [ref=e321]: Error message
+            - paragraph [ref=e322]:
+              - time [ref=e323]: Jun 24, 10:21 AM
+              - text: 12 minutes ago
+          - generic [ref=e324]:
+            - generic [ref=e325]:
+              - img "User avatar" [ref=e326]
+              - generic [ref=e327]:
+                - paragraph [ref=e328]:
+                  - img "IN" [ref=e329]
+                  - text: Haryana, India
+                - paragraph [ref=e330]: Sign in problem
+            - paragraph [ref=e331]:
+              - time [ref=e332]: Jun 24, 8:35 AM
+              - text: about 2 hours ago
+          - generic [ref=e333]:
+            - generic [ref=e334]:
+              - img "User avatar" [ref=e335]
+              - generic [ref=e336]:
+                - paragraph [ref=e337]:
+                  - img "US" [ref=e338]
+                  - text: Florida, United States
+                - paragraph [ref=e339]: Error message
+            - paragraph [ref=e340]:
+              - time [ref=e341]: Jun 24, 8:07 AM
+              - text: about 2 hours ago
+      - generic [ref=e344]:
+        - generic [ref=e346]:
+          - img "Instagram outage map" [ref=e347]
+          - link "Instagram outage map" [ref=e349] [cursor=pointer]:
+            - /url: /services/instagram/map
+        - generic [ref=e350]:
+          - heading "Instagram outage map" [level=1] [ref=e351]
+          - paragraph [ref=e353]: Explore our interactive Instagram outage map to monitor real-time incidents and service issues across the globe. This dynamic map highlights regions around the world affected by recent Instagram outages, giving you a clear view of performance and downtime trends.
+          - generic [ref=e354]:
+            - paragraph [ref=e355]: "Top reported Instagram outage locations, last 24 hours:"
+            - list [ref=e356]:
+              - listitem [ref=e357]: United Kingdom
+              - listitem [ref=e358]: Canada
+              - listitem [ref=e359]: France
+          - link "Instagram outage map" [ref=e360] [cursor=pointer]:
+            - /url: /services/instagram/map
+      - generic [ref=e362]:
+        - heading "Recently detected Instagram outages" [level=3] [ref=e364]
+        - table [ref=e367]:
+          - rowgroup [ref=e368]:
+            - row "Incident description Duration StatusGator detected Officially acknowledged" [ref=e369]:
+              - columnheader "Incident description" [ref=e370]
+              - columnheader "Duration" [ref=e371]
+              - columnheader "StatusGator detected" [ref=e372]
+              - columnheader "Officially acknowledged" [ref=e373]
+          - rowgroup [ref=e374]:
+            - row "Service outage 3h 19m Jun 23, 2026 5:10 PM Never acknowledged" [ref=e375]:
+              - cell "Service outage" [ref=e376]
+              - cell "3h 19m" [ref=e377]
+              - cell "Jun 23, 2026 5:10 PM" [ref=e378]:
+                - time [ref=e379]: Jun 23, 2026 5:10 PM
+              - cell "Never acknowledged" [ref=e380]:
+                - generic [ref=e381]: Never acknowledged
+            - row "Instagram website not loading and messaging issues 23h 47m Jun 12, 2026 9:43 AM Never acknowledged" [ref=e382]:
+              - cell "Instagram website not loading and messaging issues" [ref=e383]
+              - cell "23h 47m" [ref=e384]
+              - cell "Jun 12, 2026 9:43 AM" [ref=e385]:
+                - time [ref=e386]: Jun 12, 2026 9:43 AM
+              - cell "Never acknowledged" [ref=e387]:
+                - generic [ref=e388]: Never acknowledged
+            - row "Unable to upload or share posts. 1h 50m Apr 17, 2026 12:13 PM Never acknowledged" [ref=e389]:
+              - cell "Unable to upload or share posts." [ref=e390]
+              - cell "1h 50m" [ref=e391]
+              - cell "Apr 17, 2026 12:13 PM" [ref=e392]:
+                - time [ref=e393]: Apr 17, 2026 12:13 PM
+              - cell "Never acknowledged" [ref=e394]:
+                - generic [ref=e395]: Never acknowledged
+            - row "Posting is unavailable 1h 31m Apr 17, 2026 8:45 AM Never acknowledged" [ref=e396]:
+              - cell "Posting is unavailable" [ref=e397]
+              - cell "1h 31m" [ref=e398]
+              - cell "Apr 17, 2026 8:45 AM" [ref=e399]:
+                - time [ref=e400]: Apr 17, 2026 8:45 AM
+              - cell "Never acknowledged" [ref=e401]:
+                - generic [ref=e402]: Never acknowledged
+            - row "Messages not loading or delayed in app. 7h 59m Mar 10, 2026 11:29 PM Never acknowledged" [ref=e403]:
+              - cell "Messages not loading or delayed in app." [ref=e404]
+              - cell "7h 59m" [ref=e405]
+              - cell "Mar 10, 2026 11:29 PM" [ref=e406]:
+                - time [ref=e407]: Mar 10, 2026 11:29 PM
+              - cell "Never acknowledged" [ref=e408]:
+                - generic [ref=e409]: Never acknowledged
+            - row "Website unavailable or displaying errors. 31m Feb 4, 2026 9:35 PM Never acknowledged" [ref=e410]:
+              - cell "Website unavailable or displaying errors." [ref=e411]
+              - cell "31m" [ref=e412]
+              - cell "Feb 4, 2026 9:35 PM" [ref=e413]:
+                - time [ref=e414]: Feb 4, 2026 9:35 PM
+              - cell "Never acknowledged" [ref=e415]:
+                - generic [ref=e416]: Never acknowledged
+            - row "App not loading or updating feed. 24m Oct 16, 2025 4:22 AM Never acknowledged" [ref=e417]:
+              - cell "App not loading or updating feed." [ref=e418]
+              - cell "24m" [ref=e419]
+              - cell "Oct 16, 2025 4:22 AM" [ref=e420]:
+                - time [ref=e421]: Oct 16, 2025 4:22 AM
+              - cell "Never acknowledged" [ref=e422]:
+                - generic [ref=e423]: Never acknowledged
+            - row "Issues accessing Instagram features 36m Feb 26, 2025 1:30 PM Never acknowledged" [ref=e424]:
+              - cell "Issues accessing Instagram features" [ref=e425]
+              - cell "36m" [ref=e426]
+              - cell "Feb 26, 2025 1:30 PM" [ref=e427]:
+                - time [ref=e428]: Feb 26, 2025 1:30 PM
+              - cell "Never acknowledged" [ref=e429]:
+                - generic [ref=e430]: Never acknowledged
+            - row "Issues with feed not refreshing and chats not loading. 1h 48m Dec 11, 2024 2:32 PM Never acknowledged" [ref=e431]:
+              - cell "Issues with feed not refreshing and chats not loading." [ref=e432]
+              - cell "1h 48m" [ref=e433]
+              - cell "Dec 11, 2024 2:32 PM" [ref=e434]:
+                - time [ref=e435]: Dec 11, 2024 2:32 PM
+              - cell "Never acknowledged" [ref=e436]:
+                - generic [ref=e437]: Never acknowledged
+      - generic [ref=e439]:
+        - heading "Instagram status history" [level=3] [ref=e440]
+        - paragraph [ref=e441]: Since October 10, 2024, StatusGator has been monitoring Instagram outages, downtime, and service disruptions to provide comprehensive insights into its status history. Over the years, we've tracked and logged service outages and problems submitted by the community.
+        - list "Service status history over the last 30 days" [ref=e442]:
+          - 'listitem "April 25, 2026: Up all day" [ref=e443]'
+          - 'listitem "April 26, 2026: Up all day" [ref=e444]'
+          - 'listitem "April 27, 2026: Up all day" [ref=e445]'
+          - 'listitem "April 28, 2026: Up all day" [ref=e446]'
+          - 'listitem "April 29, 2026: Up all day" [ref=e447]'
+          - 'listitem "April 30, 2026: Up all day" [ref=e448]'
+          - 'listitem "May 01, 2026: Up all day" [ref=e449]'
+          - 'listitem "May 02, 2026: Up all day" [ref=e450]'
+          - 'listitem "May 03, 2026: Up all day" [ref=e451]'
+          - 'listitem "May 04, 2026: Up all day" [ref=e452]'
+          - 'listitem "May 05, 2026: Up all day" [ref=e453]'
+          - 'listitem "May 06, 2026: Up all day" [ref=e454]'
+          - 'listitem "May 07, 2026: Up all day" [ref=e455]'
+          - 'listitem "May 08, 2026: Up all day" [ref=e456]'
+          - 'listitem "May 09, 2026: Up all day" [ref=e457]'
+          - 'listitem "May 10, 2026: Up all day" [ref=e458]'
+          - 'listitem "May 11, 2026: Up all day" [ref=e459]'
+          - 'listitem "May 12, 2026: Up all day" [ref=e460]'
+          - 'listitem "May 13, 2026: Up all day" [ref=e461]'
+          - 'listitem "May 14, 2026: Up all day" [ref=e462]'
+          - 'listitem "May 15, 2026: Up all day" [ref=e463]'
+          - 'listitem "May 16, 2026: Up all day" [ref=e464]'
+          - 'listitem "May 17, 2026: Up all day" [ref=e465]'
+          - 'listitem "May 18, 2026: Up all day" [ref=e466]'
+          - 'listitem "May 19, 2026: Up all day" [ref=e467]'
+          - 'listitem "May 20, 2026: Up all day" [ref=e468]'
+          - 'listitem "May 21, 2026: Up all day" [ref=e469]'
+          - 'listitem "May 22, 2026: Up all day" [ref=e470]'
+          - 'listitem "May 23, 2026: Up all day" [ref=e471]'
+          - 'listitem "May 24, 2026: Up all day" [ref=e472]'
+          - 'listitem "May 25, 2026: Up all day" [ref=e473]'
+          - 'listitem "May 26, 2026: Up all day" [ref=e474]'
+          - 'listitem "May 27, 2026: Up all day" [ref=e475]'
+          - 'listitem "May 28, 2026: Up all day" [ref=e476]'
+          - 'listitem "May 29, 2026: Up all day" [ref=e477]'
+          - 'listitem "May 30, 2026: Up all day" [ref=e478]'
+          - 'listitem "May 31, 2026: Up all day" [ref=e479]'
+          - 'listitem "June 01, 2026: Up all day" [ref=e480]'
+          - 'listitem "June 02, 2026: Up all day" [ref=e481]'
+          - 'listitem "June 03, 2026: Up all day" [ref=e482]'
+          - 'listitem "June 04, 2026: Up all day" [ref=e483]'
+          - 'listitem "June 05, 2026: Up all day" [ref=e484]'
+          - 'listitem "June 06, 2026: Up all day" [ref=e485]'
+          - 'listitem "June 07, 2026: Up all day" [ref=e486]'
+          - 'listitem "June 08, 2026: Up all day" [ref=e487]'
+          - 'listitem "June 09, 2026: Up all day" [ref=e488]'
+          - 'listitem "June 10, 2026: Up all day" [ref=e489]'
+          - 'listitem "June 11, 2026: Up all day" [ref=e490]'
+          - 'listitem "June 12, 2026: Up all day" [ref=e491]'
+          - 'listitem "June 13, 2026: Up all day" [ref=e492]'
+          - 'listitem "June 14, 2026: Up all day" [ref=e493]'
+          - 'listitem "June 15, 2026: Up all day" [ref=e494]'
+          - 'listitem "June 16, 2026: Up all day" [ref=e495]'
+          - 'listitem "June 17, 2026: Up all day" [ref=e496]'
+          - 'listitem "June 18, 2026: Up all day" [ref=e497]'
+          - 'listitem "June 19, 2026: Up all day" [ref=e498]'
+          - 'listitem "June 20, 2026: Up all day" [ref=e499]'
+          - 'listitem "June 21, 2026: Up all day" [ref=e500]'
+          - 'listitem "June 22, 2026: Up all day" [ref=e501]'
+          - 'listitem "June 23, 2026: Up all day" [ref=e502]'
+          - 'listitem "June 24, 2026: Up all day" [ref=e503]'
+        - generic [ref=e504]:
+          - generic [ref=e505]: 60 days ago
+          - generic [ref=e506]: Today
+        - generic [ref=e507]:
+          - generic [ref=e510]: Up
+          - generic [ref=e513]: Down
+          - generic [ref=e516]: Warn
+          - generic [ref=e519]: Maintenance
+          - generic [ref=e522]: Unknown
+      - generic [ref=e524]:
+        - heading "About our Instagram status page integration" [level=3] [ref=e525]
+        - generic [ref=e526]:
+          - paragraph [ref=e527]: Instagram (Social media platform for sharing photos and videos) is a a Social Media solution that StatusGator has been monitoring since October 2024. Over the past over 1 year, we have collected data on on outages that affected Instagram users. When Instagram users report issues, we collect that data and provide a comprehensive view of the service's status history.
+          - paragraph [ref=e528]: If you're wondering, "Is Instagram down?", or need to know its current status, we've got you covered. Our platform tracks every reported outage, performance issue, and maintenance window to ensure you're informed. Whether Instagram is experiencing a problem now or has recently resolved one, our detailed history keeps you updated.
+          - paragraph [ref=e529]: More than 100 StatusGator users monitor Instagram to get notified when it's down, is under maintenance, or has an outage. This makes it one of the most popular Social Media services monitored on our platform. We've sent more than 100 notifications to our users about Instagram incidents, providing transparency and peace of mind.
+        - list [ref=e530]:
+          - listitem [ref=e531]:
+            - button "Early Warning Signals expand icon" [ref=e532] [cursor=pointer]:
+              - generic [ref=e533]:
+                - img [ref=e534]
+                - generic [ref=e536]: Early Warning Signals
+              - img "expand icon" [ref=e538]
+          - listitem [ref=e540]:
+            - button "Down Notifications expand icon" [ref=e541] [cursor=pointer]:
+              - generic [ref=e542]:
+                - img [ref=e543]
+                - generic [ref=e545]: Down Notifications
+              - img "expand icon" [ref=e547]
+          - listitem [ref=e549]:
+            - button "Warning Notifications expand icon" [ref=e550] [cursor=pointer]:
+              - generic [ref=e551]:
+                - img [ref=e552]
+                - generic [ref=e554]: Warning Notifications
+              - img "expand icon" [ref=e556]
+          - listitem [ref=e558]:
+            - button "Maintenance Notifications expand icon" [ref=e559] [cursor=pointer]:
+              - generic [ref=e560]:
+                - img [ref=e561]
+                - generic [ref=e563]: Maintenance Notifications
+              - img "expand icon" [ref=e565]
+          - listitem [ref=e567]:
+            - button "Status Messages expand icon" [ref=e568] [cursor=pointer]:
+              - generic [ref=e569]:
+                - img [ref=e570]
+                - generic [ref=e572]: Status Messages
+              - img "expand icon" [ref=e574]
+          - listitem [ref=e576]:
+            - button "Status Details expand icon" [ref=e577] [cursor=pointer]:
+              - generic [ref=e578]:
+                - img [ref=e579]
+                - generic [ref=e581]: Status Details
+              - img "expand icon" [ref=e583]
+          - listitem [ref=e585]:
+            - button "Component Status Filtering expand icon" [ref=e586] [cursor=pointer]:
+              - generic [ref=e587]:
+                - img [ref=e588]
+                - generic [ref=e590]: Component Status Filtering
+              - img "expand icon" [ref=e592]
+      - generic [ref=e595]:
+        - heading "Looking for Downdetector Instagram alerts?" [level=3] [ref=e597]
+        - table [ref=e600]:
+          - rowgroup [ref=e601]:
+            - row "Features StatusGator Downdetector" [ref=e602]:
+              - columnheader "Features" [ref=e603]
+              - columnheader "StatusGator" [ref=e604]
+              - columnheader "Downdetector" [ref=e605]
+          - rowgroup [ref=e606]:
+            - row "More than 8,790 services monitored. check icon x icon" [ref=e607]:
+              - cell "More than 8,790 services monitored." [ref=e608]
+              - cell "check icon" [ref=e609]:
+                - img "check icon" [ref=e611]
+              - cell "x icon" [ref=e613]:
+                - img "x icon" [ref=e615]
+            - row "Proactive alerts on Instagram status changes sent to your Slack, Microsoft Teams, and more. check icon x icon" [ref=e617]:
+              - cell "Proactive alerts on Instagram status changes sent to your Slack, Microsoft Teams, and more." [ref=e618]
+              - cell "check icon" [ref=e619]:
+                - img "check icon" [ref=e621]
+              - cell "x icon" [ref=e623]:
+                - img "x icon" [ref=e625]
+            - row "Monitoring of both Instagram and your own apps. check icon x icon" [ref=e627]:
+              - cell "Monitoring of both Instagram and your own apps." [ref=e628]
+              - cell "check icon" [ref=e629]:
+                - img "check icon" [ref=e631]
+              - cell "x icon" [ref=e633]:
+                - img "x icon" [ref=e635]
+      - generic [ref=e639]:
+        - heading "Frequently asked questions" [level=2] [ref=e640]
+        - list [ref=e641]:
+          - listitem [ref=e642]:
+            - button "Is Instagram down today?" [ref=e643] [cursor=pointer]:
+              - paragraph [ref=e644]: Is Instagram down today?
+              - img [ref=e647]
+          - listitem [ref=e649]:
+            - button "How can I get notified when Instagram is not working or have outages?" [ref=e650] [cursor=pointer]:
+              - paragraph [ref=e651]: How can I get notified when Instagram is not working or have outages?
+              - img [ref=e654]
+          - listitem [ref=e656]:
+            - button "How can I find out if Instagram is having issues?" [ref=e657] [cursor=pointer]:
+              - paragraph [ref=e658]: How can I find out if Instagram is having issues?
+              - img [ref=e661]
+          - listitem [ref=e663]:
+            - button "Instagram status page says the service is up, but I'm having issues. What's wrong?" [ref=e664] [cursor=pointer]:
+              - paragraph [ref=e665]: Instagram status page says the service is up, but I'm having issues. What's wrong?
+              - img [ref=e668]
+          - listitem [ref=e670]:
+            - button "Where do you get the Instagram status?" [ref=e671] [cursor=pointer]:
+              - paragraph [ref=e672]: Where do you get the Instagram status?
+              - img [ref=e675]
+        - paragraph [ref=e677]:
+          - text: Can't find your question?
+          - link "Email us" [ref=e678] [cursor=pointer]:
+            - /url: https://support.statusgator.com/support/home
+          - text: to arrange a time to discuss. We'd love to chat!
+  - contentinfo [ref=e679]:
+    - generic [ref=e681]:
+      - generic [ref=e682]:
+        - generic [ref=e683]:
+          - generic [ref=e684]: Use Cases
+          - generic [ref=e685]:
+            - img "it teams icon" [ref=e686]
+            - link "IT Teams" [ref=e688] [cursor=pointer]:
+              - /url: /use-cases/it-teams
+          - generic [ref=e689]:
+            - img "devops icon" [ref=e690]
+            - link "DevOps" [ref=e692] [cursor=pointer]:
+              - /url: /use-cases/devops
+          - generic [ref=e693]:
+            - img "education icon" [ref=e694]
+            - link "Education" [ref=e696] [cursor=pointer]:
+              - /url: /use-cases/education
+          - generic [ref=e697]:
+            - img "enterprise icon" [ref=e698]
+            - link "Enterprise" [ref=e700] [cursor=pointer]:
+              - /url: /use-cases/enterprise
+          - generic [ref=e701]:
+            - img "managed service providers icon" [ref=e702]
+            - link "Managed service providers" [ref=e704] [cursor=pointer]:
+              - /url: /use-cases/managed-service-providers
+          - generic [ref=e705]:
+            - img "competitive intelligence icon" [ref=e706]
+            - link "Competitive intelligence" [ref=e708] [cursor=pointer]:
+              - /url: /use-cases/competitive-intelligence
+          - generic [ref=e709]:
+            - img "e-commerce icon" [ref=e710]
+            - link "E-commerce" [ref=e715] [cursor=pointer]:
+              - /url: /use-cases/e-commerce
+          - generic [ref=e716]:
+            - img "saas icon" [ref=e717]
+            - link "SaaS providers" [ref=e719] [cursor=pointer]:
+              - /url: /use-cases/saas
+        - generic [ref=e720]:
+          - generic [ref=e721]: Features
+          - generic [ref=e722]:
+            - img "status-page" [ref=e723]
+            - link "Status page" [ref=e724] [cursor=pointer]:
+              - /url: /features/status-page
+          - generic [ref=e725]:
+            - img "private-status-page" [ref=e726]
+            - link "Private status page" [ref=e727] [cursor=pointer]:
+              - /url: /features/private-status-page
+          - generic [ref=e728]:
+            - img "status-aggregation" [ref=e729]
+            - link "Status aggregation" [ref=e730] [cursor=pointer]:
+              - /url: /features/status-aggregation
+          - generic [ref=e731]:
+            - img "status-page-aggregator" [ref=e732]
+            - link "Status page aggregator" [ref=e733] [cursor=pointer]:
+              - /url: /features/status-page-aggregator
+          - generic [ref=e734]:
+            - img "cloud-monitoring" [ref=e735]
+            - link "Cloud monitoring" [ref=e736] [cursor=pointer]:
+              - /url: /features/cloud-monitoring
+          - generic [ref=e737]:
+            - img "website-monitoring" [ref=e738]
+            - link "Website monitoring" [ref=e739] [cursor=pointer]:
+              - /url: /features/website-monitoring
+          - generic [ref=e740]:
+            - img "early-warning-signals" [ref=e741]
+            - link "Early Warning Signals" [ref=e742] [cursor=pointer]:
+              - /url: /features/early-warning-signals
+          - generic [ref=e743]:
+            - img "ping-monitoring" [ref=e744]
+            - link "Ping monitoring" [ref=e745] [cursor=pointer]:
+              - /url: /features/ping-monitoring
+          - generic [ref=e746]:
+            - img "incidents" [ref=e747]
+            - link "Incidents" [ref=e748] [cursor=pointer]:
+              - /url: /features/incidents
+          - generic [ref=e749]:
+            - img [ref=e750]
+            - link "Multi-region monitoring" [ref=e754] [cursor=pointer]:
+              - /url: /multi-region-monitoring
+        - generic [ref=e755]:
+          - generic [ref=e756]: Pricing
+          - generic [ref=e757]:
+            - img [ref=e758]
+            - link "Business" [ref=e760] [cursor=pointer]:
+              - /url: /plans
+          - generic [ref=e761]:
+            - img [ref=e762]
+            - link "Education" [ref=e764] [cursor=pointer]:
+              - /url: /plans/education
+          - generic [ref=e765]: StatusGator vs.
+          - generic [ref=e766]:
+            - img [ref=e767]
+            - link "Other status page tools" [ref=e771] [cursor=pointer]:
+              - /url: /compare/status-page-tools
+          - generic [ref=e772]:
+            - img [ref=e773]
+            - link "Other monitoring tools" [ref=e775] [cursor=pointer]:
+              - /url: /compare/monitoring-tools
+          - generic [ref=e776]:
+            - img [ref=e777]
+            - link "Other status aggregators" [ref=e779] [cursor=pointer]:
+              - /url: /compare/status-aggregators
+        - generic [ref=e780]:
+          - generic [ref=e781]: More
+          - generic [ref=e782]:
+            - generic [ref=e783]:
+              - img [ref=e784]
+              - link "About us" [ref=e786] [cursor=pointer]:
+                - /url: /about
+            - generic [ref=e787]:
+              - img [ref=e788]
+              - link "In the Media" [ref=e791] [cursor=pointer]:
+                - /url: /in-the-media
+            - generic [ref=e792]:
+              - img [ref=e793]
+              - link "Service Directory" [ref=e795] [cursor=pointer]:
+                - /url: /search
+            - generic [ref=e796]:
+              - img [ref=e797]
+              - link "Integrations" [ref=e799] [cursor=pointer]:
+                - /url: /integration/all
+            - generic [ref=e800]:
+              - img [ref=e801]
+              - link "Support" [ref=e803] [cursor=pointer]:
+                - /url: https://support.statusgator.com/support/home
+            - generic [ref=e804]:
+              - img [ref=e805]
+              - link "Blog" [ref=e807] [cursor=pointer]:
+                - /url: /blog/
+            - generic [ref=e808]:
+              - img [ref=e809]
+              - link "Changelog" [ref=e813] [cursor=pointer]:
+                - /url: https://statusgator.com/blog/category/changelog/
+            - generic [ref=e814]:
+              - img [ref=e815]
+              - link "Trust and security" [ref=e817] [cursor=pointer]:
+                - /url: /trust
+            - generic [ref=e818]:
+              - img [ref=e819]
+              - link "Vulnerability" [ref=e823] [cursor=pointer]:
+                - /url: /security
+            - generic [ref=e824]:
+              - img [ref=e825]
+              - link "Privacy" [ref=e828] [cursor=pointer]:
+                - /url: /privacy
+            - generic [ref=e829]:
+              - img [ref=e830]
+              - link "Terms" [ref=e833] [cursor=pointer]:
+                - /url: /terms
+            - generic [ref=e834]:
+              - img [ref=e835]
+              - link "FAQs" [ref=e838] [cursor=pointer]:
+                - /url: /faqs
+        - generic [ref=e839]:
+          - generic [ref=e840]: Popular Services
+          - generic [ref=e841]:
+            - generic [ref=e842]:
+              - img "Amazon Web Services" [ref=e843]
+              - link "AWS status" [ref=e844] [cursor=pointer]:
+                - /url: /services/amazon-web-services
+            - generic [ref=e845]:
+              - img "Azure" [ref=e846]
+              - link "Azure status" [ref=e847] [cursor=pointer]:
+                - /url: /services/azure
+            - generic [ref=e848]:
+              - img "Cloudflare" [ref=e849]
+              - link "Cloudflare status" [ref=e850] [cursor=pointer]:
+                - /url: /services/cloudflare
+            - generic [ref=e851]:
+              - img "GitHub" [ref=e852]
+              - link "GitHub status" [ref=e853] [cursor=pointer]:
+                - /url: /services/github
+            - generic [ref=e854]:
+              - img "Google Cloud" [ref=e855]
+              - link "Google Cloud status" [ref=e856] [cursor=pointer]:
+                - /url: /services/google-cloud
+            - generic [ref=e857]:
+              - img "Google Workspace" [ref=e858]
+              - link "Google Workspace status" [ref=e859] [cursor=pointer]:
+                - /url: /services/google-workspace
+            - generic [ref=e860]:
+              - img "Microsoft Teams" [ref=e861]
+              - link "Microsoft Teams status" [ref=e862] [cursor=pointer]:
+                - /url: /services/microsoft-teams
+            - generic [ref=e863]:
+              - img "Microsoft 365" [ref=e864]
+              - link "Microsoft 365 status" [ref=e865] [cursor=pointer]:
+                - /url: /services/microsoft-365-apps
+            - generic [ref=e866]:
+              - img "Okta" [ref=e867]
+              - link "Okta status" [ref=e868] [cursor=pointer]:
+                - /url: /services/okta
+            - generic [ref=e869]:
+              - img "OpenAI" [ref=e870]
+              - link "OpenAI status" [ref=e871] [cursor=pointer]:
+                - /url: /services/openai
+            - generic [ref=e872]:
+              - img "Salesforce" [ref=e873]
+              - link "Salesforce status" [ref=e874] [cursor=pointer]:
+                - /url: /services/salesforce
+            - generic [ref=e875]:
+              - img "Slack" [ref=e876]
+              - link "Slack status" [ref=e877] [cursor=pointer]:
+                - /url: /services/slack
+            - generic [ref=e878]:
+              - img "Zoom" [ref=e879]
+              - link "Zoom status" [ref=e880] [cursor=pointer]:
+                - /url: /services/zoom
+      - generic [ref=e881]:
+        - generic [ref=e882]:
+          - link "StatusGator Logo" [ref=e883] [cursor=pointer]:
+            - /url: /
+            - img "StatusGator Logo" [ref=e884]
+          - paragraph [ref=e885]: StatusGator is a status page aggregator and independent monitoring service tracking the availability of more than 8,790 services since 2015. References to third-party services are for identification purposes only. It is not endorsed by or affiliated with the services we monitor. All trademarks are the property of their respective owners. Copyright © 2026 Nimble Industries, Inc.
+        - generic [ref=e886]:
+          - generic [ref=e887]:
+            - link "StatusGator on reddit" [ref=e888] [cursor=pointer]:
+              - /url: https://www.reddit.com/r/StatusGator/?rdt=37492
+              - img [ref=e889]
+            - link "StatusGator on linkedin" [ref=e891] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/statusgator/
+              - img [ref=e892]
+            - link "StatusGator on youtube" [ref=e894] [cursor=pointer]:
+              - /url: https://www.youtube.com/@StatusGator
+              - img [ref=e895]
+            - link "StatusGator on bluesky" [ref=e898] [cursor=pointer]:
+              - /url: https://bsky.app/profile/statusgator.bsky.social
+              - img [ref=e899]
+            - link "StatusGator on mastodon" [ref=e901] [cursor=pointer]:
+              - /url: https://mastodon.social/@statusgator
+              - img [ref=e902]
+            - link "StatusGator on github" [ref=e904] [cursor=pointer]:
+              - /url: https://github.com/StatusGator
+              - img [ref=e905]
+            - link "StatusGator on facebook" [ref=e907] [cursor=pointer]:
+              - /url: https://www.facebook.com/profile.php?id=61555868134663
+              - img [ref=e908]
+            - link "StatusGator on x" [ref=e910] [cursor=pointer]:
+              - /url: https://x.com/statusgator
+              - img [ref=e911]
+          - generic [ref=e913]:
+            - link "StatusGator Trust" [ref=e914] [cursor=pointer]:
+              - /url: https://statusgator.com/trust
+              - img "SOC 2 Type 2 Certified" [ref=e915]
+            - link "StatusGator Accessibility Conformance Report (VPAT)" [ref=e916] [cursor=pointer]:
+              - /url: https://support.statusgator.com/support/solutions/articles/47001293313-statusgator-accessibility-conformance-report-vpat-
+              - img "Accessibility Conformance Report" [ref=e917]

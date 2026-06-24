@@ -1,0 +1,331 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - region "Announcement" [ref=e5]:
+    - generic [ref=e6]:
+      - img "Chrome icon" [ref=e8]
+      - paragraph [ref=e15]: New! Check service status instantly with our Chrome extension
+    - link "Add to Chrome External link icon" [ref=e16] [cursor=pointer]:
+      - /url: https://chromewebstore.google.com/detail/statusgator/gkdejaehclmenkkkabkehbiacgmmbaji
+      - text: Add to Chrome
+      - img "External link icon" [ref=e17]
+  - banner [ref=e19]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - button "Open main menu" [ref=e23] [cursor=pointer]:
+          - img [ref=e24]
+        - link "StatusGator" [ref=e26] [cursor=pointer]:
+          - /url: /
+          - img "StatusGator" [ref=e27]
+      - generic [ref=e29]:
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - link "StatusGator" [ref=e33] [cursor=pointer]:
+              - /url: /
+              - img "StatusGator" [ref=e34]
+            - button "Close main menu" [ref=e35] [cursor=pointer]:
+              - img [ref=e36]
+          - navigation "Main navigation" [ref=e38]:
+            - button "Use Cases toggle menu icon" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41]: Use Cases
+              - img "toggle menu icon" [ref=e43]
+            - button "Features toggle menu icon" [ref=e46] [cursor=pointer]:
+              - generic [ref=e47]: Features
+              - img "toggle menu icon" [ref=e49]
+            - button "Pricing toggle menu icon" [ref=e52] [cursor=pointer]:
+              - generic [ref=e53]: Pricing
+              - img "toggle menu icon" [ref=e55]
+            - button "Integrations toggle menu icon" [ref=e58] [cursor=pointer]:
+              - generic [ref=e59]: Integrations
+              - img "toggle menu icon" [ref=e61]
+            - link "Blog" [ref=e63] [cursor=pointer]:
+              - /url: /blog
+          - generic [ref=e64]:
+            - link "Sign In" [ref=e65] [cursor=pointer]:
+              - /url: /users/sign_in
+            - link "Sign Up" [ref=e66] [cursor=pointer]:
+              - /url: /users/sign_up
+        - generic [ref=e67]:
+          - button "Open search" [ref=e68] [cursor=pointer]:
+            - img "magnifying glass icon" [ref=e69]
+          - link "Sign In" [ref=e71] [cursor=pointer]:
+            - /url: /users/sign_in
+          - link "Sign Up" [ref=e72] [cursor=pointer]:
+            - /url: /users/sign_up
+  - main [ref=e73]:
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - img "gator with warning" [ref=e76]
+        - paragraph [ref=e77]: 404 not found
+        - paragraph [ref=e78]: Sorry, we can't find that page! Either the page does not exist or you do not have access to it. If you need help, just reach out.
+        - link "Contact us" [ref=e80] [cursor=pointer]:
+          - /url: https://support.statusgator.com/support/tickets/new
+      - generic [ref=e81]:
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - img [ref=e85]
+            - paragraph [ref=e87]: StatusGator support
+            - paragraph [ref=e88]: Report issues, we'll respond promptly.
+          - link "Contact us" [ref=e89] [cursor=pointer]:
+            - /url: https://support.statusgator.com/support/tickets/new
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - img [ref=e93]
+            - paragraph [ref=e95]: Help docs
+            - paragraph [ref=e96]: Access articles and videos for StatusGator guidance.
+          - link "Open docs" [ref=e97] [cursor=pointer]:
+            - /url: https://support.statusgator.com/support/home
+        - generic [ref=e98]:
+          - generic [ref=e99]:
+            - img [ref=e101]
+            - paragraph [ref=e103]: Back to board
+            - paragraph [ref=e104]: Return to your profile to monitor status.
+          - link "Open my board" [ref=e105] [cursor=pointer]:
+            - /url: /monitors
+  - contentinfo [ref=e106]:
+    - generic [ref=e108]:
+      - generic [ref=e109]:
+        - generic [ref=e110]:
+          - generic [ref=e111]: Use Cases
+          - generic [ref=e112]:
+            - img "it teams icon" [ref=e113]
+            - link "IT Teams" [ref=e115] [cursor=pointer]:
+              - /url: /use-cases/it-teams
+          - generic [ref=e116]:
+            - img "devops icon" [ref=e117]
+            - link "DevOps" [ref=e119] [cursor=pointer]:
+              - /url: /use-cases/devops
+          - generic [ref=e120]:
+            - img "education icon" [ref=e121]
+            - link "Education" [ref=e123] [cursor=pointer]:
+              - /url: /use-cases/education
+          - generic [ref=e124]:
+            - img "enterprise icon" [ref=e125]
+            - link "Enterprise" [ref=e127] [cursor=pointer]:
+              - /url: /use-cases/enterprise
+          - generic [ref=e128]:
+            - img "managed service providers icon" [ref=e129]
+            - link "Managed service providers" [ref=e131] [cursor=pointer]:
+              - /url: /use-cases/managed-service-providers
+          - generic [ref=e132]:
+            - img "competitive intelligence icon" [ref=e133]
+            - link "Competitive intelligence" [ref=e135] [cursor=pointer]:
+              - /url: /use-cases/competitive-intelligence
+          - generic [ref=e136]:
+            - img "e-commerce icon" [ref=e137]
+            - link "E-commerce" [ref=e142] [cursor=pointer]:
+              - /url: /use-cases/e-commerce
+          - generic [ref=e143]:
+            - img "saas icon" [ref=e144]
+            - link "SaaS providers" [ref=e146] [cursor=pointer]:
+              - /url: /use-cases/saas
+        - generic [ref=e147]:
+          - generic [ref=e148]: Features
+          - generic [ref=e149]:
+            - img "status-page" [ref=e150]
+            - link "Status page" [ref=e151] [cursor=pointer]:
+              - /url: /features/status-page
+          - generic [ref=e152]:
+            - img "private-status-page" [ref=e153]
+            - link "Private status page" [ref=e154] [cursor=pointer]:
+              - /url: /features/private-status-page
+          - generic [ref=e155]:
+            - img "status-aggregation" [ref=e156]
+            - link "Status aggregation" [ref=e157] [cursor=pointer]:
+              - /url: /features/status-aggregation
+          - generic [ref=e158]:
+            - img "status-page-aggregator" [ref=e159]
+            - link "Status page aggregator" [ref=e160] [cursor=pointer]:
+              - /url: /features/status-page-aggregator
+          - generic [ref=e161]:
+            - img "cloud-monitoring" [ref=e162]
+            - link "Cloud monitoring" [ref=e163] [cursor=pointer]:
+              - /url: /features/cloud-monitoring
+          - generic [ref=e164]:
+            - img "website-monitoring" [ref=e165]
+            - link "Website monitoring" [ref=e166] [cursor=pointer]:
+              - /url: /features/website-monitoring
+          - generic [ref=e167]:
+            - img "early-warning-signals" [ref=e168]
+            - link "Early Warning Signals" [ref=e169] [cursor=pointer]:
+              - /url: /features/early-warning-signals
+          - generic [ref=e170]:
+            - img "ping-monitoring" [ref=e171]
+            - link "Ping monitoring" [ref=e172] [cursor=pointer]:
+              - /url: /features/ping-monitoring
+          - generic [ref=e173]:
+            - img "incidents" [ref=e174]
+            - link "Incidents" [ref=e175] [cursor=pointer]:
+              - /url: /features/incidents
+          - generic [ref=e176]:
+            - img [ref=e177]
+            - link "Multi-region monitoring" [ref=e181] [cursor=pointer]:
+              - /url: /multi-region-monitoring
+        - generic [ref=e182]:
+          - generic [ref=e183]: Pricing
+          - generic [ref=e184]:
+            - img [ref=e185]
+            - link "Business" [ref=e187] [cursor=pointer]:
+              - /url: /plans
+          - generic [ref=e188]:
+            - img [ref=e189]
+            - link "Education" [ref=e191] [cursor=pointer]:
+              - /url: /plans/education
+          - generic [ref=e192]: StatusGator vs.
+          - generic [ref=e193]:
+            - img [ref=e194]
+            - link "Other status page tools" [ref=e198] [cursor=pointer]:
+              - /url: /compare/status-page-tools
+          - generic [ref=e199]:
+            - img [ref=e200]
+            - link "Other monitoring tools" [ref=e202] [cursor=pointer]:
+              - /url: /compare/monitoring-tools
+          - generic [ref=e203]:
+            - img [ref=e204]
+            - link "Other status aggregators" [ref=e206] [cursor=pointer]:
+              - /url: /compare/status-aggregators
+        - generic [ref=e207]:
+          - generic [ref=e208]: More
+          - generic [ref=e209]:
+            - generic [ref=e210]:
+              - img [ref=e211]
+              - link "About us" [ref=e213] [cursor=pointer]:
+                - /url: /about
+            - generic [ref=e214]:
+              - img [ref=e215]
+              - link "In the Media" [ref=e218] [cursor=pointer]:
+                - /url: /in-the-media
+            - generic [ref=e219]:
+              - img [ref=e220]
+              - link "Service Directory" [ref=e222] [cursor=pointer]:
+                - /url: /search
+            - generic [ref=e223]:
+              - img [ref=e224]
+              - link "Integrations" [ref=e226] [cursor=pointer]:
+                - /url: /integration/all
+            - generic [ref=e227]:
+              - img [ref=e228]
+              - link "Support" [ref=e230] [cursor=pointer]:
+                - /url: https://support.statusgator.com/support/home
+            - generic [ref=e231]:
+              - img [ref=e232]
+              - link "Blog" [ref=e234] [cursor=pointer]:
+                - /url: /blog/
+            - generic [ref=e235]:
+              - img [ref=e236]
+              - link "Changelog" [ref=e240] [cursor=pointer]:
+                - /url: https://statusgator.com/blog/category/changelog/
+            - generic [ref=e241]:
+              - img [ref=e242]
+              - link "Trust and security" [ref=e244] [cursor=pointer]:
+                - /url: /trust
+            - generic [ref=e245]:
+              - img [ref=e246]
+              - link "Vulnerability" [ref=e250] [cursor=pointer]:
+                - /url: /security
+            - generic [ref=e251]:
+              - img [ref=e252]
+              - link "Privacy" [ref=e255] [cursor=pointer]:
+                - /url: /privacy
+            - generic [ref=e256]:
+              - img [ref=e257]
+              - link "Terms" [ref=e260] [cursor=pointer]:
+                - /url: /terms
+            - generic [ref=e261]:
+              - img [ref=e262]
+              - link "FAQs" [ref=e265] [cursor=pointer]:
+                - /url: /faqs
+        - generic [ref=e266]:
+          - generic [ref=e267]: Popular Services
+          - generic [ref=e268]:
+            - generic [ref=e269]:
+              - img "Amazon Web Services" [ref=e270]
+              - link "AWS status" [ref=e271] [cursor=pointer]:
+                - /url: /services/amazon-web-services
+            - generic [ref=e272]:
+              - img "Azure" [ref=e273]
+              - link "Azure status" [ref=e274] [cursor=pointer]:
+                - /url: /services/azure
+            - generic [ref=e275]:
+              - img "Cloudflare" [ref=e276]
+              - link "Cloudflare status" [ref=e277] [cursor=pointer]:
+                - /url: /services/cloudflare
+            - generic [ref=e278]:
+              - img "GitHub" [ref=e279]
+              - link "GitHub status" [ref=e280] [cursor=pointer]:
+                - /url: /services/github
+            - generic [ref=e281]:
+              - img "Google Cloud" [ref=e282]
+              - link "Google Cloud status" [ref=e283] [cursor=pointer]:
+                - /url: /services/google-cloud
+            - generic [ref=e284]:
+              - img "Google Workspace" [ref=e285]
+              - link "Google Workspace status" [ref=e286] [cursor=pointer]:
+                - /url: /services/google-workspace
+            - generic [ref=e287]:
+              - img "Microsoft Teams" [ref=e288]
+              - link "Microsoft Teams status" [ref=e289] [cursor=pointer]:
+                - /url: /services/microsoft-teams
+            - generic [ref=e290]:
+              - img "Microsoft 365" [ref=e291]
+              - link "Microsoft 365 status" [ref=e292] [cursor=pointer]:
+                - /url: /services/microsoft-365-apps
+            - generic [ref=e293]:
+              - img "Okta" [ref=e294]
+              - link "Okta status" [ref=e295] [cursor=pointer]:
+                - /url: /services/okta
+            - generic [ref=e296]:
+              - img "OpenAI" [ref=e297]
+              - link "OpenAI status" [ref=e298] [cursor=pointer]:
+                - /url: /services/openai
+            - generic [ref=e299]:
+              - img "Salesforce" [ref=e300]
+              - link "Salesforce status" [ref=e301] [cursor=pointer]:
+                - /url: /services/salesforce
+            - generic [ref=e302]:
+              - img "Slack" [ref=e303]
+              - link "Slack status" [ref=e304] [cursor=pointer]:
+                - /url: /services/slack
+            - generic [ref=e305]:
+              - img "Zoom" [ref=e306]
+              - link "Zoom status" [ref=e307] [cursor=pointer]:
+                - /url: /services/zoom
+      - generic [ref=e308]:
+        - generic [ref=e309]:
+          - link "StatusGator Logo" [ref=e310] [cursor=pointer]:
+            - /url: /
+            - img "StatusGator Logo" [ref=e311]
+          - paragraph [ref=e312]: StatusGator is a status page aggregator and independent monitoring service tracking the availability of more than 8,790 services since 2015. References to third-party services are for identification purposes only. It is not endorsed by or affiliated with the services we monitor. All trademarks are the property of their respective owners. Copyright © 2026 Nimble Industries, Inc.
+        - generic [ref=e313]:
+          - generic [ref=e314]:
+            - link "StatusGator on reddit" [ref=e315] [cursor=pointer]:
+              - /url: https://www.reddit.com/r/StatusGator/?rdt=37492
+              - img [ref=e316]
+            - link "StatusGator on linkedin" [ref=e318] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/statusgator/
+              - img [ref=e319]
+            - link "StatusGator on youtube" [ref=e321] [cursor=pointer]:
+              - /url: https://www.youtube.com/@StatusGator
+              - img [ref=e322]
+            - link "StatusGator on bluesky" [ref=e325] [cursor=pointer]:
+              - /url: https://bsky.app/profile/statusgator.bsky.social
+              - img [ref=e326]
+            - link "StatusGator on mastodon" [ref=e328] [cursor=pointer]:
+              - /url: https://mastodon.social/@statusgator
+              - img [ref=e329]
+            - link "StatusGator on github" [ref=e331] [cursor=pointer]:
+              - /url: https://github.com/StatusGator
+              - img [ref=e332]
+            - link "StatusGator on facebook" [ref=e334] [cursor=pointer]:
+              - /url: https://www.facebook.com/profile.php?id=61555868134663
+              - img [ref=e335]
+            - link "StatusGator on x" [ref=e337] [cursor=pointer]:
+              - /url: https://x.com/statusgator
+              - img [ref=e338]
+          - generic [ref=e340]:
+            - link "StatusGator Trust" [ref=e341] [cursor=pointer]:
+              - /url: https://statusgator.com/trust
+              - img "SOC 2 Type 2 Certified" [ref=e342]
+            - link "StatusGator Accessibility Conformance Report (VPAT)" [ref=e343] [cursor=pointer]:
+              - /url: https://support.statusgator.com/support/solutions/articles/47001293313-statusgator-accessibility-conformance-report-vpat-
+              - img "Accessibility Conformance Report" [ref=e344]

@@ -1,0 +1,414 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - img "Artica" [ref=e9]
+        - generic [ref=e10]:
+          - paragraph [ref=e11]: CRM Lite
+          - paragraph [ref=e12]: Artica Creative Studio
+        - button [ref=e13] [cursor=pointer]:
+          - img [ref=e14]
+      - navigation [ref=e16]:
+        - button "Meta" [ref=e18] [cursor=pointer]:
+          - img [ref=e20]
+          - generic [ref=e23]: Meta
+          - img [ref=e24]
+        - button "Email Hub" [ref=e27] [cursor=pointer]:
+          - img [ref=e29]
+          - generic [ref=e32]: Email Hub
+          - img [ref=e33]
+        - link "Servicios Meta" [ref=e35] [cursor=pointer]:
+          - /url: /status-gator
+          - img [ref=e37]
+          - generic [ref=e40]: Servicios Meta
+        - link "Usuarios" [ref=e41] [cursor=pointer]:
+          - /url: /users
+          - img [ref=e43]
+          - generic [ref=e46]: Usuarios
+        - link "Notificaciones" [ref=e47] [cursor=pointer]:
+          - /url: /notificaciones
+          - img [ref=e49]
+          - generic [ref=e52]: Notificaciones
+        - link "Notas" [ref=e53] [cursor=pointer]:
+          - /url: /notas
+          - img [ref=e55]
+          - generic [ref=e58]: Notas
+        - link "Mi Perfil" [ref=e59] [cursor=pointer]:
+          - /url: /perfil
+          - img [ref=e61]
+          - generic [ref=e64]: Mi Perfil
+        - link "Configuraciones" [ref=e65] [cursor=pointer]:
+          - /url: /configuraciones
+          - img [ref=e67]
+          - generic [ref=e70]: Configuraciones
+      - generic [ref=e72]:
+        - link "Moi goat Moi goat moisestodoroki@gmail.com" [ref=e73] [cursor=pointer]:
+          - /url: /perfil
+          - img "Moi goat" [ref=e75]
+          - generic [ref=e76]:
+            - paragraph [ref=e77]: Moi goat
+            - paragraph [ref=e78]: moisestodoroki@gmail.com
+        - button "Cerrar sesión" [ref=e79] [cursor=pointer]:
+          - img [ref=e80]
+    - generic [ref=e82]:
+      - banner [ref=e84]:
+        - paragraph
+        - button "Notificaciones" [ref=e86] [cursor=pointer]:
+          - img [ref=e87]
+      - main [ref=e90]:
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - heading "Estado de Servicios Meta" [level=1] [ref=e95]
+              - paragraph [ref=e96]:
+                - text: Datos en tiempo real de
+                - link "statusgator.com" [ref=e97] [cursor=pointer]:
+                  - /url: https://statusgator.com
+                - text: · hace menos de un minuto
+            - generic [ref=e98]:
+              - generic [ref=e99]: Operativo
+              - button "Actualizar" [ref=e101] [cursor=pointer]:
+                - img [ref=e102]
+                - text: Actualizar
+          - generic [ref=e104]: Auto-refresh cada 30 minutos · Cache compartido entre usuarios
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - generic [ref=e110]:
+                - generic [ref=e111]:
+                  - img "Instagram" [ref=e112]
+                  - generic [ref=e113]:
+                    - heading "Instagram" [level=3] [ref=e114]
+                    - paragraph [ref=e115]: statusgator.com/services/instagram
+                - generic [ref=e116]:
+                  - generic [ref=e117]: Operativo
+                  - generic [ref=e119]:
+                    - paragraph [ref=e120]: "1837"
+                    - paragraph [ref=e121]: reportes 24h
+              - generic [ref=e122]:
+                - generic [ref=e123]:
+                  - generic [ref=e124]:
+                    - generic [ref=e125]:
+                      - paragraph [ref=e126]: Salud del servicio · 24h
+                      - link "Ver en StatusGator ↗" [ref=e127] [cursor=pointer]:
+                        - /url: https://statusgator.com/services/instagram
+                    - img [ref=e131]
+                    - generic [ref=e327]:
+                      - generic [ref=e328]: Operativo
+                      - generic [ref=e330]: Posible fallo
+                      - generic [ref=e332]: Interrupción
+                  - generic [ref=e334]:
+                    - paragraph [ref=e335]: Interrupciones recientes
+                    - list [ref=e336]:
+                      - listitem [ref=e337]:
+                        - generic [ref=e339]:
+                          - paragraph [ref=e340]: Service outage
+                          - paragraph [ref=e341]: Jun 23, 2026 9:10 PM
+                        - generic [ref=e342]: 3h 19m
+                      - listitem [ref=e343]:
+                        - generic [ref=e345]:
+                          - paragraph [ref=e346]: Instagram website not loading and messaging issues
+                          - paragraph [ref=e347]: Jun 12, 2026 1:43 PM
+                        - generic [ref=e348]: 23h 47m
+                      - listitem [ref=e349]:
+                        - generic [ref=e351]:
+                          - paragraph [ref=e352]: Unable to upload or share posts.
+                          - paragraph [ref=e353]: Apr 17, 2026 4:13 PM
+                        - generic [ref=e354]: 1h 50m
+                - generic [ref=e355]:
+                  - generic [ref=e356]:
+                    - paragraph [ref=e357]: Top problemas reportados
+                    - generic [ref=e358]: hace menos de un minuto
+                  - list [ref=e359]:
+                    - listitem [ref=e360]:
+                      - generic [ref=e361]:
+                        - generic [ref=e362]: "1"
+                        - generic [ref=e363]: App not loading
+                        - generic [ref=e364]:
+                          - img [ref=e365]
+                          - text: "478"
+                    - listitem [ref=e369]:
+                      - generic [ref=e370]:
+                        - generic [ref=e371]: "2"
+                        - generic [ref=e372]: Error message
+                        - generic [ref=e373]:
+                          - img [ref=e374]
+                          - text: "109"
+                    - listitem [ref=e378]:
+                      - generic [ref=e379]:
+                        - generic [ref=e380]: "3"
+                        - generic [ref=e381]: Slow performance
+                        - generic [ref=e382]:
+                          - img [ref=e383]
+                          - text: "59"
+                    - listitem [ref=e387]:
+                      - generic [ref=e388]:
+                        - generic [ref=e389]: "4"
+                        - generic [ref=e390]: Service down
+                        - generic [ref=e391]:
+                          - img [ref=e392]
+                          - text: "49"
+                    - listitem [ref=e396]:
+                      - generic [ref=e397]:
+                        - generic [ref=e398]: "5"
+                        - generic [ref=e399]: Connectivity issue
+                        - generic [ref=e400]:
+                          - img [ref=e401]
+                          - text: "39"
+                    - listitem [ref=e405]:
+                      - generic [ref=e406]:
+                        - generic [ref=e407]: "6"
+                        - generic [ref=e408]: Sign in problem
+                        - generic [ref=e409]:
+                          - img [ref=e410]
+                          - text: "32"
+                    - listitem [ref=e414]:
+                      - generic [ref=e415]:
+                        - generic [ref=e416]: "7"
+                        - generic [ref=e417]: Server not responding
+                        - generic [ref=e418]:
+                          - img [ref=e419]
+                          - text: "31"
+                    - listitem [ref=e423]:
+                      - generic [ref=e424]:
+                        - generic [ref=e425]: "8"
+                        - generic [ref=e426]: Other
+                        - generic [ref=e427]:
+                          - img [ref=e428]
+                          - text: "12"
+            - generic [ref=e432]:
+              - generic [ref=e435]:
+                - generic [ref=e437]:
+                  - heading "WhatsApp" [level=3] [ref=e438]
+                  - paragraph [ref=e439]: statusgator.com/services/whatsapp
+                - generic [ref=e440]:
+                  - generic [ref=e441]: Operativo
+                  - generic [ref=e443]:
+                    - paragraph [ref=e444]: "410"
+                    - paragraph [ref=e445]: reportes 24h
+              - generic [ref=e446]:
+                - generic [ref=e447]:
+                  - generic [ref=e448]:
+                    - generic [ref=e449]:
+                      - paragraph [ref=e450]: Salud del servicio · 24h
+                      - link "Ver en StatusGator ↗" [ref=e451] [cursor=pointer]:
+                        - /url: https://statusgator.com/services/whatsapp
+                    - img [ref=e455]
+                    - generic [ref=e651]:
+                      - generic [ref=e652]: Operativo
+                      - generic [ref=e654]: Posible fallo
+                      - generic [ref=e656]: Interrupción
+                  - generic [ref=e658]:
+                    - paragraph [ref=e659]: Interrupciones recientes
+                    - list [ref=e660]:
+                      - listitem [ref=e661]:
+                        - generic [ref=e663]:
+                          - paragraph [ref=e664]: Unable to send or receive messages in the app and web.
+                          - paragraph [ref=e665]: Jun 23, 2026 7:14 PM
+                        - generic [ref=e666]: 4h 7m
+                      - listitem [ref=e667]:
+                        - generic [ref=e669]:
+                          - paragraph [ref=e670]: Web version not loading or sending messages
+                          - paragraph [ref=e671]: Jun 12, 2026 1:44 PM
+                        - generic [ref=e672]: 8h 58m
+                      - listitem [ref=e673]:
+                        - generic [ref=e675]:
+                          - paragraph [ref=e676]: WhatsApp Web redirects to Facebook login page
+                          - paragraph [ref=e677]: May 19, 2026 11:27 PM
+                        - generic [ref=e678]: 2h 6m
+                - generic [ref=e679]:
+                  - generic [ref=e680]:
+                    - paragraph [ref=e681]: Top problemas reportados
+                    - generic [ref=e682]: hace menos de un minuto
+                  - list [ref=e683]:
+                    - listitem [ref=e684]:
+                      - generic [ref=e685]:
+                        - generic [ref=e686]: "1"
+                        - generic [ref=e687]: App not loading
+                        - generic [ref=e688]:
+                          - img [ref=e689]
+                          - text: "56"
+                    - listitem [ref=e693]:
+                      - generic [ref=e694]:
+                        - generic [ref=e695]: "2"
+                        - generic [ref=e696]: Unable to download
+                        - generic [ref=e697]:
+                          - img [ref=e698]
+                          - text: "38"
+                    - listitem [ref=e702]:
+                      - generic [ref=e703]:
+                        - generic [ref=e704]: "3"
+                        - generic [ref=e705]: Connectivity issue
+                        - generic [ref=e706]:
+                          - img [ref=e707]
+                          - text: "24"
+                    - listitem [ref=e711]:
+                      - generic [ref=e712]:
+                        - generic [ref=e713]: "4"
+                        - generic [ref=e714]: Service down
+                        - generic [ref=e715]:
+                          - img [ref=e716]
+                          - text: "23"
+                    - listitem [ref=e720]:
+                      - generic [ref=e721]:
+                        - generic [ref=e722]: "5"
+                        - generic [ref=e723]: Error message
+                        - generic [ref=e724]:
+                          - img [ref=e725]
+                          - text: "16"
+                    - listitem [ref=e729]:
+                      - generic [ref=e730]:
+                        - generic [ref=e731]: "6"
+                        - generic [ref=e732]: Slow performance
+                        - generic [ref=e733]:
+                          - img [ref=e734]
+                          - text: "6"
+                    - listitem [ref=e738]:
+                      - generic [ref=e739]:
+                        - generic [ref=e740]: "7"
+                        - generic [ref=e741]: Other
+                        - generic [ref=e742]:
+                          - img [ref=e743]
+                          - text: "5"
+                    - listitem [ref=e747]:
+                      - generic [ref=e748]:
+                        - generic [ref=e749]: "8"
+                        - generic [ref=e750]: Sign in problem
+                        - generic [ref=e751]:
+                          - img [ref=e752]
+                          - text: "4"
+            - generic [ref=e756]:
+              - generic [ref=e759]:
+                - generic [ref=e761]:
+                  - heading "Meta" [level=3] [ref=e762]
+                  - paragraph [ref=e763]: statusgator.com/services/meta
+                - generic [ref=e764]:
+                  - generic [ref=e765]: Operativo
+                  - generic [ref=e767]:
+                    - paragraph [ref=e768]: "1724"
+                    - paragraph [ref=e769]: reportes 24h
+              - generic [ref=e770]:
+                - generic [ref=e771]:
+                  - generic [ref=e772]:
+                    - generic [ref=e773]:
+                      - paragraph [ref=e774]: Salud del servicio · 24h
+                      - link "Ver en StatusGator ↗" [ref=e775] [cursor=pointer]:
+                        - /url: https://statusgator.com/services/meta
+                    - img [ref=e779]
+                    - generic [ref=e975]:
+                      - generic [ref=e976]: Operativo
+                      - generic [ref=e978]: Posible fallo
+                      - generic [ref=e980]: Interrupción
+                  - generic [ref=e982]:
+                    - paragraph [ref=e983]: Interrupciones recientes
+                    - list [ref=e984]:
+                      - listitem [ref=e985]:
+                        - generic [ref=e987]:
+                          - paragraph [ref=e988]: Instagram and Facebook not loading or refreshing.
+                          - paragraph [ref=e989]: Jun 23, 2026 9:14 PM
+                        - generic [ref=e990]: 2h 10m
+                      - listitem [ref=e991]:
+                        - generic [ref=e993]:
+                          - paragraph [ref=e994]: Ad performance issues and slow service
+                          - paragraph [ref=e995]: Apr 15, 2026 2:38 PM
+                        - generic [ref=e996]: 18m
+                      - listitem [ref=e997]:
+                        - generic [ref=e999]:
+                          - paragraph [ref=e1000]: Problems signing in due to ReCaptcha verification errors
+                          - paragraph [ref=e1001]: Mar 20, 2026 7:45 PM
+                        - generic [ref=e1002]: 1h 15m
+                - generic [ref=e1003]:
+                  - generic [ref=e1004]:
+                    - paragraph [ref=e1005]: Top problemas reportados
+                    - generic [ref=e1006]: hace menos de un minuto
+                  - list [ref=e1007]:
+                    - listitem [ref=e1008]:
+                      - generic [ref=e1009]:
+                        - generic [ref=e1010]: "1"
+                        - generic [ref=e1011]: App not loading
+                        - generic [ref=e1012]:
+                          - img [ref=e1013]
+                          - text: "281"
+                    - listitem [ref=e1017]:
+                      - generic [ref=e1018]:
+                        - generic [ref=e1019]: "2"
+                        - generic [ref=e1020]: Server not responding
+                        - generic [ref=e1021]:
+                          - img [ref=e1022]
+                          - text: "175"
+                    - listitem [ref=e1026]:
+                      - generic [ref=e1027]:
+                        - generic [ref=e1028]: "3"
+                        - generic [ref=e1029]: Service down
+                        - generic [ref=e1030]:
+                          - img [ref=e1031]
+                          - text: "108"
+                    - listitem [ref=e1035]:
+                      - generic [ref=e1036]:
+                        - generic [ref=e1037]: "4"
+                        - generic [ref=e1038]: Slow performance
+                        - generic [ref=e1039]:
+                          - img [ref=e1040]
+                          - text: "48"
+                    - listitem [ref=e1044]:
+                      - generic [ref=e1045]:
+                        - generic [ref=e1046]: "5"
+                        - generic [ref=e1047]: Error message
+                        - generic [ref=e1048]:
+                          - img [ref=e1049]
+                          - text: "24"
+                    - listitem [ref=e1053]:
+                      - generic [ref=e1054]:
+                        - generic [ref=e1055]: "6"
+                        - generic [ref=e1056]: Connectivity issue
+                        - generic [ref=e1057]:
+                          - img [ref=e1058]
+                          - text: "21"
+                    - listitem [ref=e1062]:
+                      - generic [ref=e1063]:
+                        - generic [ref=e1064]: "7"
+                        - generic [ref=e1065]: Other
+                        - generic [ref=e1066]:
+                          - img [ref=e1067]
+                          - text: "16"
+                    - listitem [ref=e1071]:
+                      - generic [ref=e1072]:
+                        - generic [ref=e1073]: "8"
+                        - generic [ref=e1074]: Sign in problem
+                        - generic [ref=e1075]:
+                          - img [ref=e1076]
+                          - text: "15"
+          - generic [ref=e1080]:
+            - generic [ref=e1081]:
+              - generic [ref=e1082]:
+                - heading "Historial de Incidentes" [level=2] [ref=e1083]
+                - paragraph [ref=e1084]: Interrupciones detectadas y guardadas automáticamente
+              - generic [ref=e1085]:
+                - button "Todos" [ref=e1086] [cursor=pointer]
+                - button "instagram" [ref=e1087] [cursor=pointer]
+                - button "whatsapp" [ref=e1088] [cursor=pointer]
+                - button "meta" [ref=e1089] [cursor=pointer]
+            - table [ref=e1091]:
+              - rowgroup [ref=e1092]:
+                - row "Servicio Tipo Detectado Estado" [ref=e1093]:
+                  - columnheader "Servicio" [ref=e1094]
+                  - columnheader "Tipo" [ref=e1095]
+                  - columnheader "Detectado" [ref=e1096]
+                  - columnheader "Estado" [ref=e1097]
+              - rowgroup [ref=e1098]:
+                - row "instagram Interrupción probable 24/06/2026 10:31 Marcar resuelto" [ref=e1099]:
+                  - cell "instagram" [ref=e1100]
+                  - cell "Interrupción probable" [ref=e1101]
+                  - cell "24/06/2026 10:31" [ref=e1102]
+                  - cell "Marcar resuelto" [ref=e1103]:
+                    - button "Marcar resuelto" [ref=e1104] [cursor=pointer]
+                - row "meta Interrupción probable 24/06/2026 10:31 Marcar resuelto" [ref=e1105]:
+                  - cell "meta" [ref=e1106]
+                  - cell "Interrupción probable" [ref=e1107]
+                  - cell "24/06/2026 10:31" [ref=e1108]
+                  - cell "Marcar resuelto" [ref=e1109]:
+                    - button "Marcar resuelto" [ref=e1110] [cursor=pointer]
+  - region "Notifications (F8)":
+    - list
+  - button "Open Next.js Dev Tools" [ref=e1116] [cursor=pointer]:
+    - img [ref=e1117]
+  - alert [ref=e1120]

@@ -1,0 +1,6 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]: CL
+    - paragraph [ref=e6]: Cargando...
+  - region "Notifications (F8)":
+    - list

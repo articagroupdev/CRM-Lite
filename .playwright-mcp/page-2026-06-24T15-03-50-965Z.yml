@@ -1,0 +1,36 @@
+- generic [ref=e1]:
+  - generic [ref=e17]:
+    - generic [ref=e22]:
+      - img "Artica Creative Studio" [ref=e23]
+      - heading "CRM Lite" [level=2] [ref=e25]
+      - paragraph [ref=e26]: Plataforma interna para gestionar campañas de Meta Ads y Email Marketing.
+    - generic [ref=e32]:
+      - generic [ref=e33]:
+        - heading "Iniciar Sesión" [level=1] [ref=e34]
+        - paragraph [ref=e35]: Accede a tu cuenta para continuar.
+      - generic [ref=e36]:
+        - generic [ref=e37]:
+          - generic [ref=e38]: Email
+          - generic [ref=e39]:
+            - img [ref=e40]
+            - textbox "correo@ejemplo.com" [active] [ref=e42]: moisestodoroki@gmail.com
+        - generic [ref=e43]:
+          - generic [ref=e44]: Contraseña
+          - generic [ref=e45]:
+            - img [ref=e46]
+            - textbox "••••••••" [ref=e48]
+            - button [ref=e49] [cursor=pointer]:
+              - img [ref=e50]
+        - button "Iniciar Sesión" [ref=e52] [cursor=pointer]
+      - paragraph [ref=e53]:
+        - link "¿Olvidaste tu contraseña?" [ref=e54] [cursor=pointer]:
+          - /url: /forgot-password
+      - paragraph [ref=e55]:
+        - text: ¿No tienes cuenta?
+        - link "Crear cuenta" [ref=e56] [cursor=pointer]:
+          - /url: /register
+  - region "Notifications (F8)":
+    - list
+  - button "Open Next.js Dev Tools" [ref=e12] [cursor=pointer]:
+    - img [ref=e13]
+  - alert [ref=e16]

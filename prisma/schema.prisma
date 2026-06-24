@@ -243,6 +243,20 @@ model EmailSent {
   @@map("email_sent")
 }
 
+// ── Service Status (StatusGator) ──────────────────────────────────────────────
+
+model ServiceIncident {
+  id         String    @id @default(cuid())
+  service    String    // "instagram" | "facebook" | "meta"
+  status     String    // "up" | "possible_outage" | "likely_outage"
+  issues     Json      @default("[]")
+  resolvedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@index([service, createdAt])
+  @@map("service_incidents")
+}
+
 model NoteFolder {
   id          String   @id @default(cuid())
   name        String
