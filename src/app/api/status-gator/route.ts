@@ -211,6 +211,8 @@ function buildIncidentEmail(result: ServiceStatus): string {
     : `<tr><td colspan="2" style="padding:8px 12px;color:#9ca3af;font-size:14px;">Sin problemas específicos reportados</td></tr>`;
 
   const crmUrl = process.env.NEXTAUTH_URL ?? "http://localhost:3001";
+  // Logo: use Vercel Blob CDN URL (set via ANALYZER_META_LOGO_URL after running /api/admin/upload-logo)
+  const logoUrl = process.env.ANALYZER_META_LOGO_URL ?? "";
 
   return `
 <!DOCTYPE html>
@@ -223,9 +225,16 @@ function buildIncidentEmail(result: ServiceStatus): string {
 
         <!-- Header -->
         <tr>
-          <td style="background:${result.status === "likely_outage" ? "#ef4444" : "#f59e0b"};padding:24px 32px;">
-            <p style="margin:0;color:#fff;font-size:13px;opacity:0.85;text-transform:uppercase;letter-spacing:1px;">CRM Lite · Estado de Servicios</p>
-            <h1 style="margin:8px 0 0;color:#fff;font-size:22px;font-weight:700;">${emoji} ${statusLabel} detectada</h1>
+          <td style="background:${result.status === "likely_outage" ? "#ef4444" : "#f59e0b"};padding:20px 32px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  ${logoUrl ? `<img src="${logoUrl}" alt="Artica" height="32" style="display:block;height:32px;width:auto;margin-bottom:14px;filter:brightness(0) invert(1);opacity:0.95;">` : ""}
+                  <p style="margin:0;color:#fff;font-size:12px;opacity:0.8;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;">CRM Lite · Estado de Servicios</p>
+                  <h1 style="margin:6px 0 0;color:#fff;font-size:22px;font-weight:700;line-height:1.2;">${emoji} ${statusLabel} detectada</h1>
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
 
